@@ -2,47 +2,30 @@
 //  CameraView.swift
 //  pantry
 //
-//  Created by Joris on 21.08.20.
+//  Created by Joris on 23.08.20.
 //  Copyright © 2020 Joris. All rights reserved.
 //
 
 import SwiftUI
+import AVFoundation
 
-struct CameraView: View {
+struct CameraView: UIViewRepresentable {
     
-    @State private var image = UIImage()
-    @State private var doShow = false
+    typealias UIViewType = CameraUIView
     
-    var body: some View {
-        VStack {
-            Image(uiImage: self.image)
-                .resizable()
-                .scaledToFill()
-                .frame(minWidth: 0, maxWidth: .infinity)
-                .background(Color.green)
-                .edgesIgnoringSafeArea(.all)
-            Button(action: { self.doShow = true }) {
-                HStack {
-                    Image(systemName: "photo")
-                    Text("Take Snapshot")
-                }
-                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 50)
-                .foregroundColor(.white)
-                .background(Color.blue)
-                .cornerRadius(20)
-                .padding(.horizontal)
-            }
+    let captureSession = AVCaptureSession()
+    let camera = Camera()
+    
+    func makeUIView(context: Context) -> CameraUIView {
+        print("make camera ui view")
         
-        }
-        .sheet(isPresented: $doShow) {
-            ImagePicker(selectedImage: self.$image)
-        }
+        let uiView = CameraUIView()
+        camera.setUp(captureSession: self.captureSession, view: uiView)
+        
+        return uiView
     }
     
-}
-
-struct CameraView_Previews: PreviewProvider {
-    static var previews: some View {
-        CameraView()
+    func updateUIView(_ uiView: CameraUIView, context: Context) {
+        print("update camera ui view")
     }
 }
