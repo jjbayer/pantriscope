@@ -16,8 +16,8 @@ struct ContentView: View {
             ScanProduct()
             .tabItem {
                 VStack {
-                    Image("first")
-                    Text("First")
+                    Image(systemName: "camera")
+                    Text("Scan Products")
                 }
                 
             }
@@ -25,8 +25,8 @@ struct ContentView: View {
                 .font(.title)
                 .tabItem {
                     VStack {
-                        Image("second")
-                        Text("Second")
+                        Image(systemName: "list.bullet")
+                        Text("Panry List")
                     }
                 }
                 .tag(1)

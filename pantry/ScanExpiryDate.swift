@@ -8,35 +8,39 @@
 
 import SwiftUI
 
-struct ScanProduct: View {
-    
+struct ScanExpiryDate: View {
+
     @State private var image = UIImage()
-    
+    @State private var doShow = false
+
     var body: some View {
-        NavigationView {
-            VStack {
-                Text("Scan Product")
-//                CameraView()
-                NavigationLink(destination: ScanExpiryDate()) {
-                    HStack {
-                        Image(systemName: "photo")
-                        Text("Take Snapshot")
-                    }
+        VStack {
+            Text("Scan Expiry Date")
+            //CameraView()
+            Button(
+                action: {
+                    self.doShow = true
+
+                }
+            ) {
+                HStack {
+                    Image(systemName: "photo")
+                    Text("Scan expiry date")
                 }
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 50)
                 .foregroundColor(.white)
-                .background(Color.blue)
+                .background(Color.green)
                 .cornerRadius(20)
                 .padding(.horizontal)
-
             }
+
         }
     }
-    
+
 }
 
-struct ScanExpiryDate_Previews: PreviewProvider {
+struct CameraView_Previews: PreviewProvider {
     static var previews: some View {
-        ScanExpiryDate()
+        ScanProduct()
     }
 }

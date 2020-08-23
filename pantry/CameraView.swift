@@ -28,5 +28,6 @@ struct CameraView: UIViewRepresentable {
     
     func updateUIView(_ uiView: CameraUIView, context: Context) {
         print("update camera ui view")
+        print(uiView.videoPreviewLayer.isPreviewing)
     }
 }
