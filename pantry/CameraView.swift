@@ -20,6 +20,7 @@ struct CameraView: UIViewRepresentable {
         print("make camera ui view")
         
         let uiView = CameraUIView()
+
         camera.setUp(captureSession: self.captureSession, view: uiView)
         
         return uiView

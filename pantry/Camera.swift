@@ -16,10 +16,13 @@ struct Camera {
         
         // https://developer.apple.com/documentation/avfoundation/cameras_and_media_capture/setting_up_a_capture_session
         let videoDeviceInput = try? AVCaptureDeviceInput(device: device)
+
+
         if !captureSession.canAddInput(videoDeviceInput!) { // FIXME: unwrapping
             fatalError("Failed to add video input")
         }
-        
+        captureSession.addInput(videoDeviceInput!) // FIXME: unwrapping
+
         captureSession.beginConfiguration()
 
         let photoOutput = AVCapturePhotoOutput()
@@ -35,6 +38,9 @@ struct Camera {
 
         captureSession.commitConfiguration()
         captureSession.startRunning()
+
+        print("Capture session is running")
+
     }
     
     func getDevice() -> AVCaptureDevice {
