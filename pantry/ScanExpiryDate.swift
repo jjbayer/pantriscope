@@ -38,9 +38,3 @@ struct ScanExpiryDate: View {
     }
 
 }
-
-struct CameraView_Previews: PreviewProvider {
-    static var previews: some View {
-        ScanProduct()
-    }
-}
