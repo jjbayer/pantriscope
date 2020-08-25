@@ -15,13 +15,17 @@ struct CameraView: UIViewRepresentable {
     
     let captureSession = AVCaptureSession()
     let camera = Camera()
+    let uiView = CameraUIView()
+
+
+    init() {
+        print("Init camera view")
+        camera.setUp(captureSession: self.captureSession, view: self.uiView)
+
+    }
     
     func makeUIView(context: Context) -> CameraUIView {
         print("make camera ui view")
-        
-        let uiView = CameraUIView()
-
-        camera.setUp(captureSession: self.captureSession, view: uiView)
         
         return uiView
     }

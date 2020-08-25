@@ -13,16 +13,16 @@ struct ScanProduct: View {
     @State private var image = UIImage()
     
     var body: some View {
-//        NavigationView {
+        NavigationView {
             VStack {
                 Text("Scan Product")
                 CameraView()
-//                NavigationLink(destination: ScanExpiryDate()) {
+                NavigationLink(destination: ScanExpiryDate()) {
                     HStack {
                         Image(systemName: "photo")
                         Text("Take Snapshot")
                     }
-//                }
+                }
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 50)
                 .foregroundColor(.white)
                 .background(Color.blue)
@@ -31,6 +31,6 @@ struct ScanProduct: View {
 
             }
         }
-//    }
+    }
     
 }
