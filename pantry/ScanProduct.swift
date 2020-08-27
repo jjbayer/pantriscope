@@ -17,7 +17,9 @@ struct ScanProduct: View {
             VStack {
                 Text("Scan Product")
 //                CameraView()
-                NavigationLink(destination: ScanExpiryDate()) {
+                Button(action: {
+                    }
+                ) {
                     HStack {
                         Image(systemName: "photo")
                         Text("Take Snapshot")
@@ -37,6 +39,6 @@ struct ScanProduct: View {
 
 struct ScanProduct_Previews: PreviewProvider {
     static var previews: some View {
-        /*@START_MENU_TOKEN@*/Text("Hello, World!")/*@END_MENU_TOKEN@*/
+        ScanProduct()
     }
 }

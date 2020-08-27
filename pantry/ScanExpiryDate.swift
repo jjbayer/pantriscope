@@ -10,10 +10,11 @@ import SwiftUI
 
 struct ScanExpiryDate: View {
 
-    @State var date = Date()
-    @State private var productHasExpiryDate = true
+
+    @ObservedObject private var product = Product()
 
     var body: some View {
+        NavigationView {
         ZStack {
 //            CameraView()
             VStack {
@@ -21,17 +22,17 @@ struct ScanExpiryDate: View {
                     .font(.title)
                 Spacer()
 
-                if productHasExpiryDate {
-                    DatePicker("", selection: $date, displayedComponents: .date)
+                if product.hasExpiryDate {
+                    DatePicker("", selection: $product.expiryDate, displayedComponents: .date)
                     .labelsHidden()
                 }
 
-                Toggle(isOn: $productHasExpiryDate) {
+                Toggle(isOn: $product.hasExpiryDate) {
                     Text("product has expiry date")
                 }
                 .padding()
 
-                NavigationLink(destination: ScanExpiryDate()) {
+                NavigationLink(destination: Inventory(product: product)) {
                     HStack {
                         Image(systemName: "leaf")
                         Text("Add Product")
@@ -45,7 +46,7 @@ struct ScanExpiryDate: View {
 
             }
         }
-
+        }
     }
 
 }
