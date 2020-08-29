@@ -10,11 +10,17 @@ import SwiftUI
 
 struct ScanExpiryDate: View {
 
+    // I would prefer to bind to Core Data object directly, but I haven't figured
+    // out how to handle optional bindings yet
+    @State private var hasExpiryDate = true
+    @State private var expiryDate = Date()
 
-    @ObservedObject private var product = Product()
+    @State private var statusText = "neutral"
+
+    @Environment(\.managedObjectContext) var managedObjectContext
 
     var body: some View {
-        NavigationView {
+//        NavigationView {
         ZStack {
 //            CameraView()
             VStack {
@@ -22,19 +28,38 @@ struct ScanExpiryDate: View {
                     .font(.title)
                 Spacer()
 
-                if product.hasExpiryDate {
-                    DatePicker("", selection: $product.expiryDate, displayedComponents: .date)
+                Text(statusText).foregroundColor(.red)
+
+                Spacer()
+
+                if hasExpiryDate {
+                    DatePicker("Expiry Date", selection: $expiryDate, displayedComponents: .date)
                     .labelsHidden()
                 }
 
-                Toggle(isOn: $product.hasExpiryDate) {
+
+                Toggle(isOn: $hasExpiryDate) {
                     Text("product has expiry date")
                 }
                 .padding()
 
-                NavigationLink(destination: Inventory(product: product)) {
+                Button(action: {
+
+                    let product = Product(context: self.managedObjectContext)
+                    product.id = UUID()
+                    if self.hasExpiryDate {
+                        product.expiryDate = self.expiryDate
+                    }
+
+                    do {
+                        try self.managedObjectContext.save()
+                        self.statusText = "Order saved."
+                    } catch {
+                        self.statusText = error.localizedDescription
+                    }
+                }) {
                     HStack {
-                        Image(systemName: "leaf")
+                        Image(systemName: "plus.circle")
                         Text("Add Product")
                     }
                 }
@@ -46,7 +71,7 @@ struct ScanExpiryDate: View {
 
             }
         }
-        }
+//        }
     }
 
 }

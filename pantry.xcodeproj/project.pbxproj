@@ -19,8 +19,8 @@
 		A9F456C924F2A0EA00481833 /* CameraUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F456C824F2A0EA00481833 /* CameraUIView.swift */; };
 		A9F456CB24F2A0FA00481833 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F456CA24F2A0FA00481833 /* Camera.swift */; };
 		A9F456CD24F2E31400481833 /* ScanExpiryDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F456CC24F2E31400481833 /* ScanExpiryDate.swift */; };
-		A9F456CF24F82D1800481833 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F456CE24F82D1800481833 /* Product.swift */; };
-		A9F456D124F830F100481833 /* Inventory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F456D024F830F100481833 /* Inventory.swift */; };
+		A9F456D424F93AD500481833 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A9F456D224F93AD500481833 /* DataModel.xcdatamodeld */; };
+		A9F4573824FA8F7200481833 /* InventoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F4573724FA8F7200481833 /* InventoryView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,8 +50,8 @@
 		A9F456C824F2A0EA00481833 /* CameraUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraUIView.swift; sourceTree = "<group>"; };
 		A9F456CA24F2A0FA00481833 /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		A9F456CC24F2E31400481833 /* ScanExpiryDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanExpiryDate.swift; sourceTree = "<group>"; };
-		A9F456CE24F82D1800481833 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
-		A9F456D024F830F100481833 /* Inventory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Inventory.swift; sourceTree = "<group>"; };
+		A9F456D324F93AD500481833 /* Product.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Product.xcdatamodel; sourceTree = "<group>"; };
+		A9F4573724FA8F7200481833 /* InventoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +75,7 @@
 		A9F4569024EDB19B00481833 = {
 			isa = PBXGroup;
 			children = (
+				A9F456D224F93AD500481833 /* DataModel.xcdatamodeld */,
 				A9F4569B24EDB19B00481833 /* pantry */,
 				A9F456B224EDB19E00481833 /* pantryTests */,
 				A9F4569A24EDB19B00481833 /* Products */,
@@ -105,8 +106,7 @@
 				A9F456C824F2A0EA00481833 /* CameraUIView.swift */,
 				A9F456CA24F2A0FA00481833 /* Camera.swift */,
 				A9F456CC24F2E31400481833 /* ScanExpiryDate.swift */,
-				A9F456CE24F82D1800481833 /* Product.swift */,
-				A9F456D024F830F100481833 /* Inventory.swift */,
+				A9F4573724FA8F7200481833 /* InventoryView.swift */,
 			);
 			path = pantry;
 			sourceTree = "<group>";
@@ -230,9 +230,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				A9F4569D24EDB19B00481833 /* AppDelegate.swift in Sources */,
+				A9F4573824FA8F7200481833 /* InventoryView.swift in Sources */,
 				A9F4569F24EDB19B00481833 /* SceneDelegate.swift in Sources */,
-				A9F456D124F830F100481833 /* Inventory.swift in Sources */,
-				A9F456CF24F82D1800481833 /* Product.swift in Sources */,
+				A9F456D424F93AD500481833 /* DataModel.xcdatamodeld in Sources */,
 				A9F456A124EDB19B00481833 /* ContentView.swift in Sources */,
 				A9F456CD24F2E31400481833 /* ScanExpiryDate.swift in Sources */,
 				A9F456C924F2A0EA00481833 /* CameraUIView.swift in Sources */,
@@ -503,6 +503,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		A9F456D224F93AD500481833 /* DataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				A9F456D324F93AD500481833 /* Product.xcdatamodel */,
+			);
+			currentVersion = A9F456D324F93AD500481833 /* Product.xcdatamodel */;
+			path = DataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = A9F4569124EDB19B00481833 /* Project object */;
 }

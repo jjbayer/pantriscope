@@ -9,5 +9,29 @@
 import SwiftUI
 
 struct ContentView: View {
-    var body = ScanProduct()
+    var body: some View {
+        TabView {
+
+            ScanExpiryDate()
+                .tabItem {
+                    Image(systemName: "photo")
+                    Text("Scan")
+                }
+                .tag(0)
+
+            InventoryView()
+                .tabItem {
+                    Image(systemName: "list.bullet")
+                    Text("Inventory")
+                }
+                .tag(1)
+        }
+    }
+}
+
+
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+    }
 }
