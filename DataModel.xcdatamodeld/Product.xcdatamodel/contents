@@ -8,7 +8,7 @@
         <attribute name="expiryDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="photo" optional="YES" attributeType="Binary"/>
-        <attribute name="state" optional="YES" attributeType="String"/>
+        <attribute name="state" attributeType="String" defaultValueString="available"/>
         <relationship name="inventory" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Inventory" inverseName="product" inverseEntity="Inventory"/>
     </entity>
     <elements>

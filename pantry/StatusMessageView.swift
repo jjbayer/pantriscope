@@ -20,7 +20,7 @@ struct StatusMessageView: View {
             .background(color())
             .foregroundColor(.white)
             .cornerRadius(10)
-            .padding(.horizontal)
+            .padding()
 
     }
 
@@ -33,6 +33,12 @@ struct StatusMessageView: View {
     }
 
     private func color() -> Color {
+
+        if statusMessage.message == nil {
+
+            return Color.white
+        }
+
         switch statusMessage.status {
             case .debug: return Color.gray
             case .info: return Color.blue

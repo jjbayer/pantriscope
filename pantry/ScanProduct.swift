@@ -18,9 +18,11 @@ struct ScanProduct: View {
     var body: some View {
         NavigationView {
             VStack {
-                Text("Scan Product")
+                Text("Scan Product").font(.title)
 
                 StatusMessageView()
+
+                Spacer()
 
                 cameraView
 //                Button(action: {
@@ -38,7 +40,7 @@ struct ScanProduct: View {
                 .foregroundColor(.white)
                 .background(Color.blue)
                 .cornerRadius(20)
-                .padding(.horizontal)
+                .padding()
                 .simultaneousGesture(TapGesture().onEnded {
                     self.cameraView.takeSnapshot(delegate: self.scanExpiryDate.captureHandler)
                 })

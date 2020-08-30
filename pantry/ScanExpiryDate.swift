@@ -35,16 +35,9 @@ struct ScanExpiryDate: View {
         ZStack {
 //            CameraView()
             VStack {
-                if self.captureHandler.data != nil {
-                    Image(uiImage: UIImage(data: self.captureHandler.data!)!)
-                        .resizable()
-                        .scaledToFit()
-                        .frame(height: 32)
-                }
-
                 Text("Scan Expiry Date")
                     .font(.title)
-                Spacer()
+
 
                 StatusMessageView()
 
@@ -90,7 +83,7 @@ struct ScanExpiryDate: View {
                 .foregroundColor(.white)
                 .background(Color.green)
                 .cornerRadius(20)
-                .padding(.horizontal)
+                .padding()
 
             }
         }

@@ -12,28 +12,73 @@ extension Product: Identifiable {}
 
 struct InventoryView: View {
 
-    @FetchRequest(entity: Product.entity(), sortDescriptors: [])
+    @Environment(\.managedObjectContext) var managedObjectContext
+    @EnvironmentObject var statusMessage: StatusMessage
+
+    @FetchRequest(
+        entity: Product.entity(),
+        sortDescriptors: [
+            NSSortDescriptor(key: "expiryDate", ascending: true)
+        ],
+        predicate: NSPredicate(format: "state like 'available'")
+    )
     var products: FetchedResults<Product>
 
     let currentDate = Date()
 
     var body: some View {
-        List {
-            ForEach(products) { product in
-                HStack {
 
-                    self.photo(product)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(height: 64)
+        VStack {
+            Text("Inventory").font(.title)
+            StatusMessageView()
+            List {
+                ForEach(products) { product in
+                    HStack {
 
-                    VStack {
-                        Text("expiry date:").font(.headline)
-                        Text(self.expiryText(product))
+                        self.photo(product)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 64, height: 64)
+
+                        VStack {
+                            HStack {
+                                Spacer()
+                            }
+                            Text(self.expiryText(product))
+                        }
+
+                        Spacer()
+
+                        Button(action: {
+                            product.state = "consumed"
+                            do {
+                                try self.managedObjectContext.save()
+                                self.statusMessage.message = "Product consumed."
+                            } catch {
+                                self.statusMessage.message = error.localizedDescription
+                            }
+                        }) {
+                            Image(systemName: "checkmark.circle").imageScale(.large)
+                        }
+                        .foregroundColor(Color.green)
+
+                        Button(action: {
+                            product.state = "discarded"
+                            do {
+                                try self.managedObjectContext.save()
+                                self.statusMessage.message = "Product discarded."
+                            } catch {
+                                self.statusMessage.message = error.localizedDescription
+                            }
+                        }) {
+                            Image(systemName: "trash.circle").imageScale(.large)
+                        }
+                        .foregroundColor(Color.red)
+
+
                     }
 
                 }
-
             }
         }
     }
