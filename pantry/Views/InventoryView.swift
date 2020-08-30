@@ -37,8 +37,9 @@ struct InventoryView: View {
 
                         self.photo(product)
                             .resizable()
-                            .aspectRatio(contentMode: .fit)
+                            .aspectRatio(contentMode: .fill)
                             .frame(width: 64, height: 64)
+                            .clipShape(Circle())
 
                         VStack {
                             HStack {
@@ -55,6 +56,8 @@ struct InventoryView: View {
                         self.archiveButton(product, newState: "discarded", successMessage: "Product discarded.", icon: "trash.circle")
                         .foregroundColor(Color.red)
                     }
+                    .buttonStyle(BorderlessButtonStyle()) // Else, entire list item becomes button
+
                 }
             }
         }
@@ -89,8 +92,10 @@ struct InventoryView: View {
             product.state = newState
             self.save(successMessage: successMessage, undoAction: { self.restore(product) } )
         }) {
-            Image(systemName: icon).font(.largeTitle)
+            Image(systemName: icon)
+
         }
+        .frame(minWidth: 64, maxHeight: .infinity)
     }
 
     private func restore(_ product: Product) {
