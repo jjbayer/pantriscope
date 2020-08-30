@@ -76,6 +76,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A9A72C5A24FBD54300BD7F2D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A9F456BE24F0207400481833 /* ScanProduct.swift */,
+				A9F4573724FA8F7200481833 /* InventoryView.swift */,
+				A9F456A024EDB19B00481833 /* ContentView.swift */,
+				A9F456CC24F2E31400481833 /* ScanExpiryDate.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A9A72C5B24FBD57300BD7F2D /* Widgets */ = {
+			isa = PBXGroup;
+			children = (
+				A9F456C624F2A0DB00481833 /* CameraView.swift */,
+				A9A72C5724FBA9FC00BD7F2D /* StatusMessageView.swift */,
+			);
+			path = Widgets;
+			sourceTree = "<group>";
+		};
+		A9A72C5C24FBD5AD00BD7F2D /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				A9F456C824F2A0EA00481833 /* CameraUIView.swift */,
+				A9A72C5524FBA70F00BD7F2D /* StatusMessage.swift */,
+				A9F456CA24F2A0FA00481833 /* Camera.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		A9F4569024EDB19B00481833 = {
 			isa = PBXGroup;
 			children = (
@@ -98,21 +128,15 @@
 		A9F4569B24EDB19B00481833 /* pantry */ = {
 			isa = PBXGroup;
 			children = (
-				A9F456BE24F0207400481833 /* ScanProduct.swift */,
+				A9A72C5C24FBD5AD00BD7F2D /* Helpers */,
+				A9A72C5B24FBD57300BD7F2D /* Widgets */,
+				A9A72C5A24FBD54300BD7F2D /* Views */,
 				A9F4569C24EDB19B00481833 /* AppDelegate.swift */,
 				A9F4569E24EDB19B00481833 /* SceneDelegate.swift */,
-				A9F456A024EDB19B00481833 /* ContentView.swift */,
 				A9F456A224EDB19E00481833 /* Assets.xcassets */,
 				A9F456A724EDB19E00481833 /* LaunchScreen.storyboard */,
 				A9F456AA24EDB19E00481833 /* Info.plist */,
 				A9F456A424EDB19E00481833 /* Preview Content */,
-				A9F456C624F2A0DB00481833 /* CameraView.swift */,
-				A9F456C824F2A0EA00481833 /* CameraUIView.swift */,
-				A9F456CA24F2A0FA00481833 /* Camera.swift */,
-				A9F456CC24F2E31400481833 /* ScanExpiryDate.swift */,
-				A9F4573724FA8F7200481833 /* InventoryView.swift */,
-				A9A72C5524FBA70F00BD7F2D /* StatusMessage.swift */,
-				A9A72C5724FBA9FC00BD7F2D /* StatusMessageView.swift */,
 			);
 			path = pantry;
 			sourceTree = "<group>";

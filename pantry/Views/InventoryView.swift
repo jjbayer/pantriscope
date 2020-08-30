@@ -71,7 +71,7 @@ struct InventoryView: View {
                                 self.statusMessage.message = error.localizedDescription
                             }
                         }) {
-                            Image(systemName: "trash.circle").imageScale(.large)
+                            Image(systemName: "trash.circle").font(.largeTitle)
                         }
                         .foregroundColor(Color.red)
 
