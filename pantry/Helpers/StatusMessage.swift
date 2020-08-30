@@ -16,6 +16,17 @@ class StatusMessage: ObservableObject {
         case error
     }
 
-    @Published var message: String?
+    typealias UndoAction = ()->Void
+
+    @Published var text: String?
     @Published var status: StatusType = .info
+
+    var undoAction: UndoAction?
+
+    func info(_ message: String, undoAction: UndoAction? = nil) {
+        status = .info
+        text = message
+        self.undoAction = undoAction
+    }
+    func error(_ message: String) { status = .error; text = message }
 }

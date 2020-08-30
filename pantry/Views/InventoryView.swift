@@ -49,35 +49,12 @@ struct InventoryView: View {
 
                         Spacer()
 
-                        Button(action: {
-                            product.state = "consumed"
-                            do {
-                                try self.managedObjectContext.save()
-                                self.statusMessage.message = "Product consumed."
-                            } catch {
-                                self.statusMessage.message = error.localizedDescription
-                            }
-                        }) {
-                            Image(systemName: "checkmark.circle").imageScale(.large)
-                        }
+                        self.archiveButton(product, newState: "consumed", successMessage: "Product consumed.", icon: "checkmark.circle")
                         .foregroundColor(Color.green)
 
-                        Button(action: {
-                            product.state = "discarded"
-                            do {
-                                try self.managedObjectContext.save()
-                                self.statusMessage.message = "Product discarded."
-                            } catch {
-                                self.statusMessage.message = error.localizedDescription
-                            }
-                        }) {
-                            Image(systemName: "trash.circle").font(.largeTitle)
-                        }
+                        self.archiveButton(product, newState: "discarded", successMessage: "Product discarded.", icon: "trash.circle")
                         .foregroundColor(Color.red)
-
-
                     }
-
                 }
             }
         }
@@ -104,6 +81,29 @@ struct InventoryView: View {
         } else {
 
             return "no expiry date"
+        }
+    }
+
+    private func archiveButton(_ product: Product, newState: String, successMessage: String, icon: String) -> some View {
+        return Button(action: {
+            product.state = newState
+            self.save(successMessage: successMessage, undoAction: { self.restore(product) } )
+        }) {
+            Image(systemName: icon).font(.largeTitle)
+        }
+    }
+
+    private func restore(_ product: Product) {
+        product.state = "available"
+        save(successMessage: "Product restored.")
+    }
+
+    private func save(successMessage: String, undoAction: StatusMessage.UndoAction? = nil) {
+        do {
+            try self.managedObjectContext.save()
+            self.statusMessage.info(successMessage, undoAction: undoAction)
+        } catch {
+            self.statusMessage.error(error.localizedDescription)
         }
     }
 }

@@ -67,9 +67,9 @@ struct ScanExpiryDate: View {
 
                     do {
                         try self.managedObjectContext.save()
-                        self.statusMessage.message = "Order saved."
+                        self.statusMessage.info("Order saved.")
                     } catch {
-                        self.statusMessage.message = error.localizedDescription
+                        self.statusMessage.error(error.localizedDescription)
                     }
                     // Back to product scan
                     self.presentationMode.wrappedValue.dismiss()

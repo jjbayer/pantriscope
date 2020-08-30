@@ -13,7 +13,15 @@ struct StatusMessageView: View {
     @EnvironmentObject var statusMessage: StatusMessage
 
     var body: some View {
-        Text(message())
+        HStack {
+            Text(message())
+            if statusMessage.undoAction != nil {
+                Button(action: statusMessage.undoAction!) {
+                    Text("Undo").underline()
+                }
+            }
+        }
+
             .frame(
                 minWidth: 0, maxWidth: .infinity,
                 minHeight: 32)
@@ -25,7 +33,7 @@ struct StatusMessageView: View {
     }
 
     private func message() -> String {
-        if let text = statusMessage.message {
+        if let text = statusMessage.text {
             return text
         }
 
@@ -34,7 +42,7 @@ struct StatusMessageView: View {
 
     private func color() -> Color {
 
-        if statusMessage.message == nil {
+        if statusMessage.text == nil {
 
             return Color.white
         }
