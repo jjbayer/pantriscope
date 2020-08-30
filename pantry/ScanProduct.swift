@@ -11,15 +11,21 @@ import SwiftUI
 struct ScanProduct: View {
     
     @State private var image = UIImage()
+
+    let cameraView = CameraView()
+    let scanExpiryDate = ScanExpiryDate()
     
     var body: some View {
         NavigationView {
             VStack {
                 Text("Scan Product")
-//                CameraView()
-                Button(action: {
-                    }
-                ) {
+                cameraView
+//                Button(action: {
+//                    self.cameraView.takeSnapshot(callback: self.scanExpiryDate.setImageData)
+//
+//                }
+                NavigationLink(destination: scanExpiryDate)
+                {
                     HStack {
                         Image(systemName: "photo")
                         Text("Take Snapshot")
@@ -30,6 +36,9 @@ struct ScanProduct: View {
                 .background(Color.blue)
                 .cornerRadius(20)
                 .padding(.horizontal)
+                .simultaneousGesture(TapGesture().onEnded {
+                    self.cameraView.takeSnapshot(delegate: self.scanExpiryDate.captureHandler)
+                })
 
             }
         }

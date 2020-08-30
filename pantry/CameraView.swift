@@ -9,6 +9,10 @@
 import SwiftUI
 import AVFoundation
 
+import AVFoundation
+
+
+
 struct CameraView: UIViewRepresentable {
     
     typealias UIViewType = CameraUIView
@@ -33,5 +37,19 @@ struct CameraView: UIViewRepresentable {
     func updateUIView(_ uiView: CameraUIView, context: Context) {
         print("update camera ui view")
         print(uiView.videoPreviewLayer.isPreviewing)
+    }
+
+    func takeSnapshot(delegate: AVCapturePhotoCaptureDelegate) {
+        print("Taking snapshot...")
+        camera.output.capturePhoto(
+            with: AVCapturePhotoSettings(),
+            delegate: delegate
+        )
+    }
+}
+
+struct CameraView_Previews: PreviewProvider {
+    static var previews: some View {
+        /*@START_MENU_TOKEN@*/Text("Hello, World!")/*@END_MENU_TOKEN@*/
     }
 }

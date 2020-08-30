@@ -7,6 +7,17 @@
 //
 
 import SwiftUI
+import AVFoundation
+
+class CaptureHandler: NSObject, AVCapturePhotoCaptureDelegate, ObservableObject {
+
+    @Published var data: Data?
+
+    func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
+        self.data = photo.fileDataRepresentation()
+    }
+
+}
 
 struct ScanExpiryDate: View {
 
@@ -19,11 +30,20 @@ struct ScanExpiryDate: View {
 
     @Environment(\.managedObjectContext) var managedObjectContext
 
+    @ObservedObject var captureHandler = CaptureHandler()
+
     var body: some View {
 //        NavigationView {
         ZStack {
 //            CameraView()
             VStack {
+                if self.captureHandler.data != nil {
+                    Image(uiImage: UIImage(data: self.captureHandler.data!)!)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(height: 32)
+                }
+
                 Text("Scan Expiry Date")
                     .font(.title)
                 Spacer()
@@ -47,6 +67,9 @@ struct ScanExpiryDate: View {
 
                     let product = Product(context: self.managedObjectContext)
                     product.id = UUID()
+                    if let data = self.captureHandler.data {
+                        product.photo = data
+                    }
                     if self.hasExpiryDate {
                         product.expiryDate = self.expiryDate
                     }

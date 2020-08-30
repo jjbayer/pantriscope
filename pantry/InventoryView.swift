@@ -18,12 +18,14 @@ struct InventoryView: View {
     let currentDate = Date()
 
     var body: some View {
-
         List {
             ForEach(products) { product in
                 HStack {
 
                     self.photo(product)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(height: 32)
 
                     Text(self.expiryText(product))
 

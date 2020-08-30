@@ -8,6 +8,8 @@
 import AVFoundation
 
 struct Camera {
+
+    let output = AVCapturePhotoOutput()
     
     func setUp(captureSession: AVCaptureSession, view: CameraUIView) {
         print("init camera")
@@ -25,14 +27,13 @@ struct Camera {
 
         captureSession.beginConfiguration()
 
-        let photoOutput = AVCapturePhotoOutput()
-        photoOutput.isHighResolutionCaptureEnabled = true
-        photoOutput.isLivePhotoCaptureEnabled = photoOutput.isLivePhotoCaptureSupported
+        output.isHighResolutionCaptureEnabled = true
+        output.isLivePhotoCaptureEnabled = output.isLivePhotoCaptureSupported
 
 
-        guard captureSession.canAddOutput(photoOutput) else { return }
+        guard captureSession.canAddOutput(output) else { return }
         captureSession.sessionPreset = .photo
-        captureSession.addOutput(photoOutput)
+        captureSession.addOutput(output)
 
         view.videoPreviewLayer.session = captureSession
 
@@ -43,7 +44,7 @@ struct Camera {
 
     }
     
-    func getDevice() -> AVCaptureDevice {
+    private func getDevice() -> AVCaptureDevice {
         // https://developer.apple.com/documentation/avfoundation/cameras_and_media_capture/choosing_a_capture_device
         if let device = AVCaptureDevice.default(.builtInDualCamera,
                                                 for: .video, position: .back) {

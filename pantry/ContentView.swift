@@ -12,7 +12,7 @@ struct ContentView: View {
     var body: some View {
         TabView {
 
-            ScanExpiryDate()
+            ScanProduct()
                 .tabItem {
                     Image(systemName: "photo")
                     Text("Scan")
@@ -32,6 +32,12 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        // Get the managed object context from the shared persistent container.
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+
+        // Create the SwiftUI view that provides the window contents.
+        let contentView = ContentView().environment(\.managedObjectContext, context)
+
+        return contentView
     }
 }
