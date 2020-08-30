@@ -25,11 +25,9 @@ struct ScanExpiryDate: View {
     // out how to handle optional bindings yet
     @State private var hasExpiryDate = true
     @State private var expiryDate = Date()
-
-    @State private var statusText = "neutral"
-
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @Environment(\.managedObjectContext) var managedObjectContext
-
+    @EnvironmentObject var statusMessage: StatusMessage
     @ObservedObject var captureHandler = CaptureHandler()
 
     var body: some View {
@@ -48,7 +46,7 @@ struct ScanExpiryDate: View {
                     .font(.title)
                 Spacer()
 
-                Text(statusText).foregroundColor(.red)
+                StatusMessageView()
 
                 Spacer()
 
@@ -76,10 +74,12 @@ struct ScanExpiryDate: View {
 
                     do {
                         try self.managedObjectContext.save()
-                        self.statusText = "Order saved."
+                        self.statusMessage.message = "Order saved."
                     } catch {
-                        self.statusText = error.localizedDescription
+                        self.statusMessage.message = error.localizedDescription
                     }
+                    // Back to product scan
+                    self.presentationMode.wrappedValue.dismiss()
                 }) {
                     HStack {
                         Image(systemName: "plus.circle")

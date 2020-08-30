@@ -19,6 +19,9 @@ struct ScanProduct: View {
         NavigationView {
             VStack {
                 Text("Scan Product")
+
+                StatusMessageView()
+
                 cameraView
 //                Button(action: {
 //                    self.cameraView.takeSnapshot(callback: self.scanExpiryDate.setImageData)

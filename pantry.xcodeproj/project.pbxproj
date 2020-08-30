@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A9A72C5624FBA70F00BD7F2D /* StatusMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A72C5524FBA70F00BD7F2D /* StatusMessage.swift */; };
+		A9A72C5824FBA9FC00BD7F2D /* StatusMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A72C5724FBA9FC00BD7F2D /* StatusMessageView.swift */; };
 		A9F4569D24EDB19B00481833 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F4569C24EDB19B00481833 /* AppDelegate.swift */; };
 		A9F4569F24EDB19B00481833 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F4569E24EDB19B00481833 /* SceneDelegate.swift */; };
 		A9F456A124EDB19B00481833 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F456A024EDB19B00481833 /* ContentView.swift */; };
@@ -34,6 +36,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A9A72C5524FBA70F00BD7F2D /* StatusMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusMessage.swift; sourceTree = "<group>"; };
+		A9A72C5724FBA9FC00BD7F2D /* StatusMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusMessageView.swift; sourceTree = "<group>"; };
 		A9F4569924EDB19B00481833 /* pantry.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pantry.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9F4569C24EDB19B00481833 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A9F4569E24EDB19B00481833 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -107,6 +111,8 @@
 				A9F456CA24F2A0FA00481833 /* Camera.swift */,
 				A9F456CC24F2E31400481833 /* ScanExpiryDate.swift */,
 				A9F4573724FA8F7200481833 /* InventoryView.swift */,
+				A9A72C5524FBA70F00BD7F2D /* StatusMessage.swift */,
+				A9A72C5724FBA9FC00BD7F2D /* StatusMessageView.swift */,
 			);
 			path = pantry;
 			sourceTree = "<group>";
@@ -233,11 +239,13 @@
 				A9F4573824FA8F7200481833 /* InventoryView.swift in Sources */,
 				A9F4569F24EDB19B00481833 /* SceneDelegate.swift in Sources */,
 				A9F456D424F93AD500481833 /* DataModel.xcdatamodeld in Sources */,
+				A9A72C5624FBA70F00BD7F2D /* StatusMessage.swift in Sources */,
 				A9F456A124EDB19B00481833 /* ContentView.swift in Sources */,
 				A9F456CD24F2E31400481833 /* ScanExpiryDate.swift in Sources */,
 				A9F456C924F2A0EA00481833 /* CameraUIView.swift in Sources */,
 				A9F456C724F2A0DB00481833 /* CameraView.swift in Sources */,
 				A9F456CB24F2A0FA00481833 /* Camera.swift in Sources */,
+				A9A72C5824FBA9FC00BD7F2D /* StatusMessageView.swift in Sources */,
 				A9F456BF24F0207400481833 /* ScanProduct.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

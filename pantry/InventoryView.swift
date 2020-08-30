@@ -25,9 +25,12 @@ struct InventoryView: View {
                     self.photo(product)
                     .resizable()
                     .scaledToFit()
-                    .frame(height: 32)
+                    .frame(height: 64)
 
-                    Text(self.expiryText(product))
+                    VStack {
+                        Text("expiry date:").font(.headline)
+                        Text(self.expiryText(product))
+                    }
 
                 }
 
@@ -49,18 +52,10 @@ struct InventoryView: View {
     private func expiryText(_ product: Product) -> String {
         if let expiryDate = product.expiryDate {
 
-            let diff = expiryDate.timeIntervalSince(self.currentDate)
-            let numDays = (diff / 3600).rounded()
+            let fmt = DateFormatter()
+            fmt.dateStyle = .medium
 
-            if numDays == 0 {
-
-                return "expires today"
-            } else if numDays < 0 {
-
-                return "expired \(numDays) ago"
-            }
-
-            return "expires in \(numDays) days"
+            return fmt.string(from: expiryDate)
         } else {
 
             return "no expiry date"
