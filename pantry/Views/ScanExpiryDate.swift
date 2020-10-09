@@ -33,7 +33,7 @@ struct ScanExpiryDate: View {
     var body: some View {
 //        NavigationView {
         ZStack {
-//            CameraView()
+            CameraView()
             VStack {
                 Text("Scan Expiry Date")
                     .font(.title)

@@ -11,10 +11,12 @@ struct Camera {
 
     let output = AVCapturePhotoOutput()
     
-    func setUp(captureSession: AVCaptureSession, view: CameraUIView) {
-        print("init camera")
+    func setUp(view: CameraUIView) {
+        print("Camera.setUp")
     
         let device = getDevice()
+
+        let captureSession = view.captureSession
         
         // https://developer.apple.com/documentation/avfoundation/cameras_and_media_capture/setting_up_a_capture_session
         let videoDeviceInput = try? AVCaptureDeviceInput(device: device)
@@ -38,6 +40,7 @@ struct Camera {
         view.videoPreviewLayer.session = captureSession
 
         captureSession.commitConfiguration()
+        print("startRunning...")
         captureSession.startRunning()
 
         print("Capture session is running")

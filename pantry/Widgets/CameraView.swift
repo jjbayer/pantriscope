@@ -12,39 +12,41 @@ import AVFoundation
 import AVFoundation
 
 
-
 struct CameraView: UIViewRepresentable {
     
     typealias UIViewType = CameraUIView
     
-    let captureSession = AVCaptureSession()
     let camera = Camera()
     let uiView = CameraUIView()
 
 
     init() {
-        print("Init camera view")
-        camera.setUp(captureSession: self.captureSession, view: self.uiView)
-
+        print("CameraView.init")
+        camera.setUp(view: self.uiView)
     }
     
     func makeUIView(context: Context) -> CameraUIView {
-        print("make camera ui view")
+        print("CameraView.makeUIView")
         
         return uiView
     }
     
     func updateUIView(_ uiView: CameraUIView, context: Context) {
-        print("update camera ui view")
+        print("CameraView.updateUIView")
         print(uiView.videoPreviewLayer.isPreviewing)
     }
 
     func takeSnapshot(delegate: AVCapturePhotoCaptureDelegate) {
-        print("Taking snapshot...")
+        print("CameraView.takeSnapshot")
         camera.output.capturePhoto(
             with: AVCapturePhotoSettings(),
             delegate: delegate
         )
+    }
+
+    static func dismantleUIView(_ uiView: Self.UIViewType, coordinator: Self.Coordinator) {
+        print("CameraView.dismantleUIView")
+        uiView.captureSession.stopRunning()
     }
 }
 

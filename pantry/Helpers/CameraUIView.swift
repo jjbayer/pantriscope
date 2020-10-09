@@ -11,6 +11,8 @@ import UIKit
 
 /// see https://developer.apple.com/documentation/avfoundation/cameras_and_media_capture/setting_up_a_capture_session
 class CameraUIView: UIView {
+
+    var captureSession = AVCaptureSession()
     
     override class var layerClass: AnyClass {
         return AVCaptureVideoPreviewLayer.self
