@@ -12,8 +12,23 @@ import UIKit
 /// see https://developer.apple.com/documentation/avfoundation/cameras_and_media_capture/setting_up_a_capture_session
 class CameraUIView: UIView {
 
-    var captureSession = AVCaptureSession()
-    
+    init() {
+
+        super.init(frame: .zero)
+
+        reconnect()
+    }
+
+    func reconnect() {
+        if !videoPreviewLayer.isPreviewing {
+            Camera.instance.connectPreview(previewLayer: videoPreviewLayer)
+        }
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     override class var layerClass: AnyClass {
         return AVCaptureVideoPreviewLayer.self
     }

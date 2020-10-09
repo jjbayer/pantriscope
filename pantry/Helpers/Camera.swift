@@ -9,18 +9,20 @@ import AVFoundation
 
 struct Camera {
 
+    static var instance = Camera()
+
+    let captureSession = AVCaptureSession()
     let output = AVCapturePhotoOutput()
     
-    func setUp(view: CameraUIView) {
+    private init() {
+
+
         print("Camera.setUp")
     
         let device = getDevice()
 
-        let captureSession = view.captureSession
-        
         // https://developer.apple.com/documentation/avfoundation/cameras_and_media_capture/setting_up_a_capture_session
         let videoDeviceInput = try? AVCaptureDeviceInput(device: device)
-
 
         if !captureSession.canAddInput(videoDeviceInput!) { // FIXME: unwrapping
             fatalError("Failed to add video input")
@@ -37,14 +39,18 @@ struct Camera {
         captureSession.sessionPreset = .photo
         captureSession.addOutput(output)
 
-        view.videoPreviewLayer.session = captureSession
-
         captureSession.commitConfiguration()
         print("startRunning...")
         captureSession.startRunning()
 
         print("Capture session is running")
 
+    }
+
+    func connectPreview(previewLayer: AVCaptureVideoPreviewLayer) {
+        captureSession.beginConfiguration()
+        previewLayer.session = captureSession
+        captureSession.commitConfiguration()
     }
     
     private func getDevice() -> AVCaptureDevice {

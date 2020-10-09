@@ -16,29 +16,25 @@ struct CameraView: UIViewRepresentable {
     
     typealias UIViewType = CameraUIView
     
-    let camera = Camera()
-    let uiView = CameraUIView()
-
-
     init() {
         print("CameraView.init")
-        camera.setUp(view: self.uiView)
     }
     
     func makeUIView(context: Context) -> CameraUIView {
         print("CameraView.makeUIView")
-        
-        return uiView
+
+        return CameraUIView()
     }
     
     func updateUIView(_ uiView: CameraUIView, context: Context) {
-        print("CameraView.updateUIView")
-        print(uiView.videoPreviewLayer.isPreviewing)
+        uiView.reconnect()
+        let s = Camera.instance.captureSession
+        print("CameraView.updateUIView: isRunning \(s.isRunning), isInterrupted \(s.isInterrupted), previewing: \(uiView.videoPreviewLayer.isPreviewing)")
     }
 
     func takeSnapshot(delegate: AVCapturePhotoCaptureDelegate) {
         print("CameraView.takeSnapshot")
-        camera.output.capturePhoto(
+        Camera.instance.output.capturePhoto(
             with: AVCapturePhotoSettings(),
             delegate: delegate
         )
@@ -46,7 +42,7 @@ struct CameraView: UIViewRepresentable {
 
     static func dismantleUIView(_ uiView: Self.UIViewType, coordinator: Self.Coordinator) {
         print("CameraView.dismantleUIView")
-        uiView.captureSession.stopRunning()
+//        Camera.instance.captureSession.stopRunning()
     }
 }
 
