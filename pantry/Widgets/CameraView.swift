@@ -32,16 +32,9 @@ struct CameraView: UIViewRepresentable {
         print("CameraView.updateUIView: isRunning \(s.isRunning), isInterrupted \(s.isInterrupted), previewing: \(uiView.videoPreviewLayer.isPreviewing)")
     }
 
-    func takeSnapshot(delegate: AVCapturePhotoCaptureDelegate) {
-        print("CameraView.takeSnapshot")
-        Camera.instance.output.capturePhoto(
-            with: AVCapturePhotoSettings(),
-            delegate: delegate
-        )
-    }
-
     static func dismantleUIView(_ uiView: Self.UIViewType, coordinator: Self.Coordinator) {
         print("CameraView.dismantleUIView")
+        uiView.disconnect()
 //        Camera.instance.captureSession.stopRunning()
     }
 }

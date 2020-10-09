@@ -44,7 +44,7 @@ struct StatusMessageView: View {
 
         if statusMessage.text == nil {
 
-            return Color.white
+            return Color(white: 1.0, opacity: 0.0)
         }
 
         switch statusMessage.status {

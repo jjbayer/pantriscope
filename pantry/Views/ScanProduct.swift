@@ -8,41 +8,40 @@
 
 import SwiftUI
 
+enum ScanProductMode {
+    case takeSnapshot
+    case scanExpiryDate
+}
+
 struct ScanProduct: View {
     
     @State private var image = UIImage()
 
-    let cameraView = CameraView()
-    let scanExpiryDate = ScanExpiryDate()
-    
-    var body: some View {
-        NavigationView {
-            VStack {
-                Text("Scan Product").font(.title)
+    @State var scanProductMode = ScanProductMode.takeSnapshot
 
+    var body: some View {
+        ZStack {
+            CameraView()
+                .scaledToFill()
+            VStack {
                 StatusMessageView()
 
                 Spacer()
 
-                cameraView
-
-                NavigationLink(destination: scanExpiryDate) {
-                    HStack {
-                        Image(systemName: "photo")
-                        Text("Take Snapshot")
-                    }
+                if scanProductMode == .takeSnapshot {
+                    TakeSnapshotView(scanProductMode: $scanProductMode)
+                } else {
+                    ScanExpiryDate(scanProductMode: $scanProductMode)
                 }
-                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 50)
-                .foregroundColor(.white)
-                .background(Color.blue)
-                .cornerRadius(20)
-                .padding()
-                .simultaneousGesture(TapGesture().onEnded {
-                    self.cameraView.takeSnapshot(delegate: self.scanExpiryDate.captureHandler)
-                })
-
             }
         }
+    }
+
+    private func saveSnapshot() {
+//        scanProductMode = .scanExpiryDate
+//        if let sed = self.scanExpiryDate {
+//            self.cameraView.takeSnapshot(delegate: sed.captureHandler)
+//        }
     }
     
 }

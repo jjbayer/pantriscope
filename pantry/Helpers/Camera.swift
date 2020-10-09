@@ -7,12 +7,25 @@
 //
 import AVFoundation
 
+
+class CaptureHandler: NSObject, AVCapturePhotoCaptureDelegate {
+
+    var data: Data?
+
+    func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
+        self.data = photo.fileDataRepresentation()
+    }
+
+}
+
+
 struct Camera {
 
     static var instance = Camera()
 
     let captureSession = AVCaptureSession()
     let output = AVCapturePhotoOutput()
+    let captureHandler = CaptureHandler()
     
     private init() {
 
@@ -51,6 +64,13 @@ struct Camera {
         captureSession.beginConfiguration()
         previewLayer.session = captureSession
         captureSession.commitConfiguration()
+    }
+
+    func takeSnapshot() {
+        output.capturePhoto(
+            with: AVCapturePhotoSettings(),
+            delegate: captureHandler
+        )
     }
     
     private func getDevice() -> AVCaptureDevice {
