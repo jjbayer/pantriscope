@@ -25,12 +25,8 @@ struct ScanProduct: View {
                 Spacer()
 
                 cameraView
-//                Button(action: {
-//                    self.cameraView.takeSnapshot(callback: self.scanExpiryDate.setImageData)
-//
-//                }
-                NavigationLink(destination: scanExpiryDate)
-                {
+
+                NavigationLink(destination: scanExpiryDate) {
                     HStack {
                         Image(systemName: "photo")
                         Text("Take Snapshot")

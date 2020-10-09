@@ -8,8 +8,6 @@
 
 import SwiftUI
 
-extension Product: Identifiable {}
-
 struct InventoryView: View {
 
     @Environment(\.managedObjectContext) var managedObjectContext
