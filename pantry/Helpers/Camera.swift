@@ -18,6 +18,15 @@ class CaptureHandler: NSObject, AVCapturePhotoCaptureDelegate {
 
 }
 
+class VideoHandler: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
+
+    var callback = {}
+
+    func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+        callback()
+    }
+}
+
 
 struct Camera {
 
@@ -25,7 +34,9 @@ struct Camera {
 
     let captureSession = AVCaptureSession()
     let output = AVCapturePhotoOutput()
+    let videoOutput = AVCaptureVideoDataOutput()
     let captureHandler = CaptureHandler()
+    let videoHandler = VideoHandler()
     
     private init() {
 
@@ -50,6 +61,15 @@ struct Camera {
         guard captureSession.canAddOutput(output) else { return }
         captureSession.sessionPreset = .photo
         captureSession.addOutput(output)
+
+        guard captureSession.canAddOutput(videoOutput) else {
+            print("Cannot add video output")
+            return
+        }
+
+        videoOutput.setSampleBufferDelegate(videoHandler, queue: DispatchQueue.main)
+        captureSession.addOutput(videoOutput)
+
 
         captureSession.commitConfiguration()
     }
@@ -77,6 +97,14 @@ struct Camera {
             with: AVCapturePhotoSettings(),
             delegate: captureHandler
         )
+    }
+
+    func onFrame(handler: @escaping () -> ()) {
+        videoHandler.callback = handler
+    }
+
+    func clearFrameHandler() {
+        videoHandler.callback = {}
     }
     
     private func getDevice() -> AVCaptureDevice {
