@@ -18,6 +18,12 @@ struct ContentView: View {
                     Text("Scan")
                 }
                 .tag(0)
+                .onAppear {
+                    Camera.instance.resume()
+                }
+                .onDisappear {
+                    Camera.instance.pause()
+                }
 
             InventoryView()
                 .tabItem {

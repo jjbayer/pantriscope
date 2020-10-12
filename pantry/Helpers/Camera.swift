@@ -66,6 +66,18 @@ struct Camera {
         captureSession.commitConfiguration()
     }
 
+    func pause() {
+        DispatchQueue.main.async {
+            captureSession.stopRunning()
+        }
+    }
+
+    func resume() {
+        DispatchQueue.main.async {
+            captureSession.startRunning()
+        }
+    }
+
     func takeSnapshot() {
         output.capturePhoto(
             with: AVCapturePhotoSettings(),
