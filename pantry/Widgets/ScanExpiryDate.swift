@@ -24,17 +24,32 @@ struct ScanExpiryDate: View {
     var body: some View {
         VStack {
 
+            HStack {
+                Button(action: {
+                    scanProductMode = .takeSnapshot
+                }) {
+                    Text("< back")
+                }
+                .background(Color.white)
+                .padding()
+                Spacer()
+            }
+
+
+
             Spacer()
 
             if hasExpiryDate {
                 DatePicker("Expiry Date", selection: $expiryDate, displayedComponents: .date)
                 .labelsHidden()
+                    .background(Color.white)
             }
 
 
             Toggle(isOn: $hasExpiryDate) {
                 Text("product has expiry date")
             }
+            .padding()
 
             Button(action: {
                 let product = Product(context: self.managedObjectContext)

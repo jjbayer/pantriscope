@@ -29,7 +29,6 @@ struct Camera {
     
     private init() {
 
-
         print("Camera.setUp")
     
         let device = getDevice()
@@ -53,11 +52,6 @@ struct Camera {
         captureSession.addOutput(output)
 
         captureSession.commitConfiguration()
-        print("startRunning...")
-        captureSession.startRunning()
-
-        print("Capture session is running")
-
     }
 
     func connectPreview(previewLayer: AVCaptureVideoPreviewLayer) {
@@ -66,13 +60,13 @@ struct Camera {
         captureSession.commitConfiguration()
     }
 
-    func pause() {
+    func stop() {
         DispatchQueue.main.async {
             captureSession.stopRunning()
         }
     }
 
-    func resume() {
+    func start() {
         DispatchQueue.main.async {
             captureSession.startRunning()
         }

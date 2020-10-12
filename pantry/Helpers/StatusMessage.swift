@@ -28,5 +28,10 @@ class StatusMessage: ObservableObject {
         text = message
         self.undoAction = undoAction
     }
-    func error(_ message: String) { status = .error; text = message }
+    func error(_ message: String) { status = .error; text = message; self.undoAction = nil }
+
+    func clear() {
+        text = nil
+        undoAction = nil
+    }
 }

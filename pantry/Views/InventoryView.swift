@@ -27,36 +27,42 @@ struct InventoryView: View {
     var body: some View {
 
         VStack {
-            Text("Inventory").font(.title)
             StatusMessageView()
-            List {
-                ForEach(products) { product in
-                    HStack {
 
-                        self.photo(product)
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: 64, height: 64)
-                            .clipShape(Circle())
+            if products.isEmpty {
+                Text("No items in inventory.")
+            } else {
+                List {
+                    ForEach(products) { product in
+                        HStack {
 
-                        VStack {
-                            HStack {
-                                Spacer()
+                            self.photo(product)
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: 64, height: 64)
+                                .clipShape(Circle())
+
+                            VStack {
+                                HStack {
+                                    Spacer()
+                                }
+                                Text(self.expiryText(product))
                             }
-                            Text(self.expiryText(product))
+
+                            Spacer()
+
+                            self.archiveButton(product, newState: "consumed", successMessage: "Product consumed.", icon: "checkmark.circle")
+                            .foregroundColor(Color.green)
+
+                            self.archiveButton(product, newState: "discarded", successMessage: "Product discarded.", icon: "trash.circle")
+                            .foregroundColor(Color.red)
                         }
+                        .buttonStyle(BorderlessButtonStyle()) // Else, entire list item becomes button
 
-                        Spacer()
-
-                        self.archiveButton(product, newState: "consumed", successMessage: "Product consumed.", icon: "checkmark.circle")
-                        .foregroundColor(Color.green)
-
-                        self.archiveButton(product, newState: "discarded", successMessage: "Product discarded.", icon: "trash.circle")
-                        .foregroundColor(Color.red)
                     }
-                    .buttonStyle(BorderlessButtonStyle()) // Else, entire list item becomes button
-
                 }
+
+                Spacer()
             }
         }
     }
@@ -109,6 +115,9 @@ struct InventoryView: View {
             self.statusMessage.error(error.localizedDescription)
         }
     }
+
+
+
 }
 
 struct InventoryView_Previews: PreviewProvider {

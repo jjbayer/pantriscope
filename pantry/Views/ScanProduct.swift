@@ -23,6 +23,7 @@ struct ScanProduct: View {
         ZStack {
             CameraView()
                 .scaledToFill()
+                .layoutPriority(-1) // https://stackoverflow.com/questions/58290963/clip-image-to-square-in-swiftui
             VStack {
                 StatusMessageView()
 
@@ -36,14 +37,6 @@ struct ScanProduct: View {
             }
         }
     }
-
-    private func saveSnapshot() {
-//        scanProductMode = .scanExpiryDate
-//        if let sed = self.scanExpiryDate {
-//            self.cameraView.takeSnapshot(delegate: sed.captureHandler)
-//        }
-    }
-    
 }
 
 struct ScanProduct_Previews: PreviewProvider {
