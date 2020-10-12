@@ -20,10 +20,12 @@ class CaptureHandler: NSObject, AVCapturePhotoCaptureDelegate {
 
 class VideoHandler: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
 
-    var callback = {}
+    var callback: ((CMSampleBuffer) -> ())? = nil
 
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-        callback()
+        if let fun = callback {
+            fun(sampleBuffer)
+        }
     }
 }
 
@@ -99,12 +101,12 @@ struct Camera {
         )
     }
 
-    func onFrame(handler: @escaping () -> ()) {
+    func onFrame(handler: @escaping (CMSampleBuffer) -> ()) {
         videoHandler.callback = handler
     }
 
     func clearFrameHandler() {
-        videoHandler.callback = {}
+        videoHandler.callback = nil
     }
     
     private func getDevice() -> AVCaptureDevice {

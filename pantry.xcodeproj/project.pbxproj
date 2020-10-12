@@ -3,10 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04D4C0A699DC544FE036D70D /* libPods-pantry.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB4797EF2DA6A6FBB21FC53F /* libPods-pantry.a */; };
+		A971B73825348F2700E18DCE /* Vision.swift in Sources */ = {isa = PBXBuildFile; fileRef = A971B73725348F2700E18DCE /* Vision.swift */; };
 		A98414E62530B6720025811E /* TakeSnapshotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98414E52530B6720025811E /* TakeSnapshotView.swift */; };
 		A9A47AB32530C54F00E0A812 /* ScanExpiryDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A47AB22530C54F00E0A812 /* ScanExpiryDate.swift */; };
 		A9A72C5624FBA70F00BD7F2D /* StatusMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A72C5524FBA70F00BD7F2D /* StatusMessage.swift */; };
@@ -24,6 +26,7 @@
 		A9F456CB24F2A0FA00481833 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F456CA24F2A0FA00481833 /* Camera.swift */; };
 		A9F456D424F93AD500481833 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A9F456D224F93AD500481833 /* DataModel.xcdatamodeld */; };
 		A9F4573824FA8F7200481833 /* InventoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F4573724FA8F7200481833 /* InventoryView.swift */; };
+		C96ED13A80DE6D28CEC8E806 /* libPods-pantryTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5338E644E84EB0531029E103 /* libPods-pantryTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +40,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5338E644E84EB0531029E103 /* libPods-pantryTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-pantryTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6DDF027C9086692215926334 /* Pods-pantry.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pantry.debug.xcconfig"; path = "Target Support Files/Pods-pantry/Pods-pantry.debug.xcconfig"; sourceTree = "<group>"; };
+		A971B73725348F2700E18DCE /* Vision.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vision.swift; sourceTree = "<group>"; };
 		A98414E52530B6720025811E /* TakeSnapshotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TakeSnapshotView.swift; sourceTree = "<group>"; };
 		A9A47AB22530C54F00E0A812 /* ScanExpiryDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanExpiryDate.swift; sourceTree = "<group>"; };
 		A9A72C5524FBA70F00BD7F2D /* StatusMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusMessage.swift; sourceTree = "<group>"; };
@@ -58,6 +64,10 @@
 		A9F456CA24F2A0FA00481833 /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		A9F456D324F93AD500481833 /* Product.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Product.xcdatamodel; sourceTree = "<group>"; };
 		A9F4573724FA8F7200481833 /* InventoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryView.swift; sourceTree = "<group>"; };
+		AB4797EF2DA6A6FBB21FC53F /* libPods-pantry.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-pantry.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C8AE38ECC5955D2CCDC597DD /* Pods-pantry.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pantry.release.xcconfig"; path = "Target Support Files/Pods-pantry/Pods-pantry.release.xcconfig"; sourceTree = "<group>"; };
+		E06ABC227FCCDD6CC3A8D174 /* Pods-pantryTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pantryTests.debug.xcconfig"; path = "Target Support Files/Pods-pantryTests/Pods-pantryTests.debug.xcconfig"; sourceTree = "<group>"; };
+		EC603360B51A791A54178074 /* Pods-pantryTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pantryTests.release.xcconfig"; path = "Target Support Files/Pods-pantryTests/Pods-pantryTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04D4C0A699DC544FE036D70D /* libPods-pantry.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,6 +83,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C96ED13A80DE6D28CEC8E806 /* libPods-pantryTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -105,6 +117,7 @@
 				A9F456C824F2A0EA00481833 /* CameraUIView.swift */,
 				A9A72C5524FBA70F00BD7F2D /* StatusMessage.swift */,
 				A9F456CA24F2A0FA00481833 /* Camera.swift */,
+				A971B73725348F2700E18DCE /* Vision.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -116,6 +129,8 @@
 				A9F4569B24EDB19B00481833 /* pantry */,
 				A9F456B224EDB19E00481833 /* pantryTests */,
 				A9F4569A24EDB19B00481833 /* Products */,
+				C807BD80AC66FAB9E9C1BF27 /* Pods */,
+				F736A1EBCD5C10F7FE36864D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -161,6 +176,26 @@
 			path = pantryTests;
 			sourceTree = "<group>";
 		};
+		C807BD80AC66FAB9E9C1BF27 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6DDF027C9086692215926334 /* Pods-pantry.debug.xcconfig */,
+				C8AE38ECC5955D2CCDC597DD /* Pods-pantry.release.xcconfig */,
+				E06ABC227FCCDD6CC3A8D174 /* Pods-pantryTests.debug.xcconfig */,
+				EC603360B51A791A54178074 /* Pods-pantryTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		F736A1EBCD5C10F7FE36864D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AB4797EF2DA6A6FBB21FC53F /* libPods-pantry.a */,
+				5338E644E84EB0531029E103 /* libPods-pantryTests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -168,9 +203,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A9F456B824EDB19E00481833 /* Build configuration list for PBXNativeTarget "pantry" */;
 			buildPhases = (
+				B97A887E28C4A83259D5B7D9 /* [CP] Check Pods Manifest.lock */,
 				A9F4569524EDB19B00481833 /* Sources */,
 				A9F4569624EDB19B00481833 /* Frameworks */,
 				A9F4569724EDB19B00481833 /* Resources */,
+				F33CA0E101BD754ABF17D6E6 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -185,6 +222,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A9F456BB24EDB19E00481833 /* Build configuration list for PBXNativeTarget "pantryTests" */;
 			buildPhases = (
+				2596CED22912CD657F7FEC7E /* [CP] Check Pods Manifest.lock */,
 				A9F456AB24EDB19E00481833 /* Sources */,
 				A9F456AC24EDB19E00481833 /* Frameworks */,
 				A9F456AD24EDB19E00481833 /* Resources */,
@@ -257,12 +295,77 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2596CED22912CD657F7FEC7E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-pantryTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B97A887E28C4A83259D5B7D9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-pantry-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F33CA0E101BD754ABF17D6E6 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-pantry/Pods-pantry-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-pantry/Pods-pantry-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-pantry/Pods-pantry-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		A9F4569524EDB19B00481833 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				A9F4569D24EDB19B00481833 /* AppDelegate.swift in Sources */,
+				A971B73825348F2700E18DCE /* Vision.swift in Sources */,
 				A9F4573824FA8F7200481833 /* InventoryView.swift in Sources */,
 				A9F4569F24EDB19B00481833 /* SceneDelegate.swift in Sources */,
 				A9A47AB32530C54F00E0A812 /* ScanExpiryDate.swift in Sources */,
@@ -359,7 +462,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -414,7 +517,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -426,22 +529,20 @@
 		};
 		A9F456B924EDB19E00481833 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6DDF027C9086692215926334 /* Pods-pantry.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"pantry/Preview Content\"";
 				DEVELOPMENT_TEAM = 3VVCAYK524;
-				ENABLE_PREVIEWS = YES;
+				ENABLE_PREVIEWS = NO;
 				INFOPLIST_FILE = pantry/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.jorisbayer.pantry;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				STRIP_INSTALLED_PRODUCT = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -449,19 +550,16 @@
 		};
 		A9F456BA24EDB19E00481833 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C8AE38ECC5955D2CCDC597DD /* Pods-pantry.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"pantry/Preview Content\"";
 				DEVELOPMENT_TEAM = 3VVCAYK524;
-				ENABLE_PREVIEWS = YES;
+				ENABLE_PREVIEWS = NO;
 				INFOPLIST_FILE = pantry/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.jorisbayer.pantry;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -472,18 +570,14 @@
 		};
 		A9F456BC24EDB19E00481833 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E06ABC227FCCDD6CC3A8D174 /* Pods-pantryTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3VVCAYK524;
 				INFOPLIST_FILE = pantryTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jorisbayer.pantryTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -494,18 +588,14 @@
 		};
 		A9F456BD24EDB19E00481833 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EC603360B51A791A54178074 /* Pods-pantryTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3VVCAYK524;
 				INFOPLIST_FILE = pantryTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jorisbayer.pantryTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

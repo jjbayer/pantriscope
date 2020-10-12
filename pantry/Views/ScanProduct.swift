@@ -35,9 +35,7 @@ struct ScanProduct: View {
                     ScanExpiryDate(scanProductMode: $scanProductMode)
                         .onAppear {
                             print("expdate appear")
-                            Camera.instance.onFrame {
-                                print("Got frame")
-                            }
+                            Camera.instance.onFrame(handler: detectExpiryDate)
                         }
                         .onDisappear {
                             print("expdate gone")
