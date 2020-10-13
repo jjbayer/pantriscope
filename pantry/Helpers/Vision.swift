@@ -7,14 +7,15 @@
 //
 import AVFoundation
 import MLKit
+//import UIUtilities
 
 
 func detectExpiryDate(sampleBuffer: CMSampleBuffer) {
     let visionImage = VisionImage(buffer: sampleBuffer)
+    
+    visionImage.orientation = .right // FIXME hard-coded orientation
 
-    let textRecognizer = TextRecognizer.textRecognizer()
-
-    textRecognizer.process(visionImage) { result, error in
+    TextRecognizer.textRecognizer().process(visionImage) { result, error in
         guard error == nil, let result = result else {
             print("Failed to get text recognition data")
             return

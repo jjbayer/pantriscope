@@ -69,7 +69,14 @@ struct Camera {
             return
         }
 
-        videoOutput.setSampleBufferDelegate(videoHandler, queue: DispatchQueue.main)
+        // begin settings from MLKit's vision example
+        videoOutput.videoSettings = [
+          (kCVPixelBufferPixelFormatTypeKey as String): kCVPixelFormatType_32BGRA,
+        ]
+        videoOutput.alwaysDiscardsLateVideoFrames = true
+        let outputQueue = DispatchQueue(label: "video")
+        // end
+        videoOutput.setSampleBufferDelegate(videoHandler, queue: outputQueue)
         captureSession.addOutput(videoOutput)
 
 
