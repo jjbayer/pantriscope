@@ -12,7 +12,7 @@ import MLKit
 
 func detectExpiryDate(sampleBuffer: CMSampleBuffer) {
     let visionImage = VisionImage(buffer: sampleBuffer)
-    
+
     visionImage.orientation = .right // FIXME hard-coded orientation
 
     TextRecognizer.textRecognizer().process(visionImage) { result, error in
@@ -21,7 +21,11 @@ func detectExpiryDate(sampleBuffer: CMSampleBuffer) {
             return
         }
         if !result.text.isEmpty {
-            print("Detected text: \(result.text)")
+            print("Detected text: '\(result.text)'")
+            let parsed = ExpiryDateParser().parse(text: result.text)
+            if parsed.confidence > 0.0 {
+                print("Parsed date \(parsed.date) with confidence \(parsed.confidence).")
+            }
         }
     }
 
