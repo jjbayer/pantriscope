@@ -21,6 +21,8 @@ struct ScanExpiryDate: View {
     @EnvironmentObject var statusMessage: StatusMessage
     @Binding var scanProductMode: ScanProductMode
 
+    @State private var currentConfidence = 0.0  // Parser confidence
+
     var body: some View {
         VStack {
 
@@ -40,9 +42,11 @@ struct ScanExpiryDate: View {
             Spacer()
 
             if hasExpiryDate {
+                // TODO: set confidence to 2.0 when user selects date
                 DatePicker("Expiry Date", selection: $expiryDate, displayedComponents: .date)
                 .labelsHidden()
                     .background(Color.white)
+
             }
 
 
@@ -80,6 +84,23 @@ struct ScanExpiryDate: View {
             .cornerRadius(20)
             .padding()
         }
+        .onAppear {
+            print("expdate appear")
+            Camera.instance.onFrame { frame in
+                detectExpiryDate(sampleBuffer: frame, onSuccess: { parsed in
+                    if parsed.confidence > currentConfidence {
+                        print("set parsed date \(parsed.date) with confidence \(parsed.confidence)")
+                        expiryDate = parsed.date
+                        currentConfidence = parsed.confidence
+                    }
+                })
+            }
+        }
+        .onDisappear {
+            print("expdate gone")
+            Camera.instance.clearFrameHandler()
+        }
     }
+
 }
 

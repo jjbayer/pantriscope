@@ -10,7 +10,8 @@ import MLKit
 //import UIUtilities
 
 
-func detectExpiryDate(sampleBuffer: CMSampleBuffer) {
+func detectExpiryDate(sampleBuffer: CMSampleBuffer, onSuccess: @escaping (ParsedExpiryDate) -> ()) {
+
     let visionImage = VisionImage(buffer: sampleBuffer)
 
     visionImage.orientation = .right // FIXME hard-coded orientation
@@ -21,12 +22,8 @@ func detectExpiryDate(sampleBuffer: CMSampleBuffer) {
             return
         }
         if !result.text.isEmpty {
-            print("Detected text: '\(result.text)'")
-            let parsed = ExpiryDateParser().parse(text: result.text)
-            if parsed.confidence > 0.0 {
-                print("Parsed date \(parsed.date) with confidence \(parsed.confidence).")
-            }
+            let result = ExpiryDateParser().parse(text: result.text)
+            onSuccess(result)
         }
     }
-
 }

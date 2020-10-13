@@ -33,14 +33,7 @@ struct ScanProduct: View {
                     TakeSnapshotView(scanProductMode: $scanProductMode)
                 } else {
                     ScanExpiryDate(scanProductMode: $scanProductMode)
-                        .onAppear {
-                            print("expdate appear")
-                            Camera.instance.onFrame(handler: detectExpiryDate)
-                        }
-                        .onDisappear {
-                            print("expdate gone")
-                            Camera.instance.clearFrameHandler()
-                        }
+                        
                 }
             }
         }

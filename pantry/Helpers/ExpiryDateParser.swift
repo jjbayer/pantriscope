@@ -40,17 +40,22 @@ struct ExpiryDateParser {
                 let formatter = DateFormatter()
                 formatter.dateFormat = format
                 formatter.timeZone = TimeZone.current
-                
-                print("dateString: \(dateString), format: \(format)")
-                if let parsedDate = formatter.date(from: dateString) {
+
+                if var date = formatter.date(from: dateString) {
+
+                    if !format.contains("d") {
+                        // If only month given, use  last day of month:
+                        let oneMonth = DateComponents(month: 1, day: -1)
+                        if let alteredDate = Calendar.current.date(byAdding: oneMonth, to: date) {
+                            date = alteredDate
+                        } else {
+                            print("Error pushing date to end of month: \(date)")
+                        }
+                    }
 
                     // Confidences are descending, so we can return immediately.
-                    return ParsedExpiryDate(date: parsedDate, confidence: confidence)
-
-                } else {
-                    print("Cannot parse date from '\(dateString)' with format '\(format)'")
+                    return ParsedExpiryDate(date: date, confidence: confidence)
                 }
-
             }
         }
 
