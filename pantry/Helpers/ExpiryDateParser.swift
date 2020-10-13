@@ -21,9 +21,9 @@ struct ExpiryDateParser {
         (#"(\d{2}\.\d{2}\.\d{4})"#, "dd.MM.yyyy", 1.0),
         (#"(\d{2}-\d{2}-\d{4})"#, "dd-MM-yyyy", 1.0),
         (#"(\d{2}/\d{2}/\d{4})"#, "dd/MM/yyyy", 1.0),
-        (#"(\d{2}\.d{2}\.\d{2})"#, "dd.MM.yyyy", 0.9),
-        (#"(\d{2}-\d{2}-\d{2})"#, "dd-MM-yyyy", 0.9),
-        (#"(\d{2}/\d{2}/\d{2})"#, "dd/MM/yyyy", 0.9),
+        (#"(\d{2}\.\d{2}\.\d{2})"#, "dd.MM.yy", 0.9),
+        (#"(\d{2}-\d{2}-\d{2})"#, "dd-MM-yy", 0.9),
+        (#"(\d{2}/\d{2}/\d{2})"#, "dd/MM/yy", 0.9),
         (#"(\d{2}/\d{4})"#, "MM/yyyy", 0.6),
         (#"(\d{2}-\d{4})"#, "MM-yyyy", 0.6),
         (#"(\d{2}\.\d{4})"#, "MM.yyyy", 0.6),
@@ -42,6 +42,8 @@ struct ExpiryDateParser {
                 formatter.timeZone = TimeZone.current
 
                 if var date = formatter.date(from: dateString) {
+
+                    print("Parsed date \(date) (confidence: \(confidence))")
 
                     if !format.contains("d") {
                         // If only month given, use  last day of month:

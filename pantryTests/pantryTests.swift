@@ -19,16 +19,27 @@ class pantryTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testExpiryDateParser() throws {
+
+        XCTAssertEqual(
+            ExpiryDateParser().parse(text: "17.10.20").date,
+            makeDate(2020, 10, 17)
+        )
+
+        XCTAssertEqual(
+            ExpiryDateParser().parse(text: "010158").confidence, 0.0
+        )
+
+        XCTAssertEqual(
+            ExpiryDateParser().parse(text: "31.12.5158").confidence, 0.0
+        )
     }
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    private func makeDate(_ year: Int, _ month: Int, _ day: Int) -> Date {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyyMMdd"
+
+        return formatter.date(from: "\(year)\(month)\(day)")!
     }
 
 }
