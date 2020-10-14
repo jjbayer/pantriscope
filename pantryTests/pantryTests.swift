@@ -22,17 +22,28 @@ class pantryTests: XCTestCase {
     func testExpiryDateParser() throws {
 
         XCTAssertEqual(
+            ExpiryDateParser().parse(text: "31.12.2021").date,
+            makeDate(2021, 12, 31)
+        )
+
+        XCTAssertEqual(
             ExpiryDateParser().parse(text: "17.10.20").date,
             makeDate(2020, 10, 17)
         )
 
+        XCTAssertEqual(ExpiryDateParser().parse(text: "0010").confidence, 0.0)
+        // Do not accept expiry dates from the previous century
+        XCTAssertEqual(
+            ExpiryDateParser().parse(text: "31.12.1999").confidence,
+            0.0
+        )
         XCTAssertEqual(
             ExpiryDateParser().parse(text: "010158").confidence, 0.0
         )
-
         XCTAssertEqual(
             ExpiryDateParser().parse(text: "31.12.5158").confidence, 0.0
         )
+
     }
 
     private func makeDate(_ year: Int, _ month: Int, _ day: Int) -> Date {

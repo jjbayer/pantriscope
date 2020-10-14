@@ -39,8 +39,8 @@ struct InventoryView: View {
                             self.photo(product)
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
-                                .frame(width: 64, height: 64)
-                                .clipShape(Circle())
+                                .frame(width: 92, height: 92)
+                                .clipped()
 
                             VStack {
                                 HStack {

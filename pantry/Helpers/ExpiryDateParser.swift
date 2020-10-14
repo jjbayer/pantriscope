@@ -15,20 +15,28 @@ struct ParsedExpiryDate {
 
 struct ExpiryDateParser {
 
+    static let day = #"(([012]\d)|(3(0|1)))"#
+    static let month = #"((0[1-9])|(1[0-2]))"#
+    static let year = #"(20\d{2})"#
+    static let yearShort = #"(\d{2})"#
+
     // TODO: localize date patterns. These are for common Austrian products
     // Make sure confidences descend
     static let datePatterns = [
-        (#"(\d{2}\.\d{2}\.\d{4})"#, "dd.MM.yyyy", 1.0),
-        (#"(\d{2}-\d{2}-\d{4})"#, "dd-MM-yyyy", 1.0),
-        (#"(\d{2}/\d{2}/\d{4})"#, "dd/MM/yyyy", 1.0),
-        (#"(\d{2}\.\d{2}\.\d{2})"#, "dd.MM.yy", 0.9),
-        (#"(\d{2}-\d{2}-\d{2})"#, "dd-MM-yy", 0.9),
-        (#"(\d{2}/\d{2}/\d{2})"#, "dd/MM/yy", 0.9),
-        (#"(\d{2}/\d{4})"#, "MM/yyyy", 0.6),
-        (#"(\d{2}-\d{4})"#, "MM-yyyy", 0.6),
-        (#"(\d{2}\.\d{4})"#, "MM.yyyy", 0.6),
-        (#"(\d{8})"#, "ddMMyyyy", 0.55),
-        (#"(\d{6})"#, "ddMMyy", 0.5),
+        ("\(day)\\.\(month)\\.\(year)", "dd.MM.yyyy", 1.0),
+        ("\(day)-\(month)-\(year)", "dd-MM-yyyy", 1.0),
+        ("\(day)/\(month)/\(year)", "dd/MM/yyyy", 1.0),
+
+        ("\(day)\\.\(month)\\.\(yearShort)", "dd.MM.yy", 0.9),
+        ("\(day)-\(month)-\(yearShort)", "dd-MM-yy", 0.9),
+        ("\(day)/\(month)/\(yearShort)", "dd/MM/yy", 0.9),
+
+        ("\(month)\\.\(year)", "MM.yyyy", 0.6),
+        ("\(month)-\(year)", "MM-yyyy", 0.6),
+        ("\(month)/\(year)", "MM/yyyy", 0.6),
+
+        ("\(day)\(month)\(year)", "ddMMyyyy", 0.5),
+        ("\(day)\(month)\(yearShort)", "ddMMyy", 0.4),
     ]
 
     func parse(text: String) -> ParsedExpiryDate {
