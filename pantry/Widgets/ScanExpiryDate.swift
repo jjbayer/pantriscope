@@ -61,6 +61,17 @@ struct ScanExpiryDate: View {
                 product.id = UUID()
                 if let data = Camera.instance.captureHandler.data {
                     product.photo = data
+                    detectText(imageData: data, onSuccess: { text in
+                        product.detectedText = text
+
+                        // Save, because async
+                        do {
+                            try self.managedObjectContext.save()
+                            self.statusMessage.info("Product saved.")
+                        } catch {
+                            self.statusMessage.error(error.localizedDescription)
+                        }
+                    })
                 }
                 if self.hasExpiryDate {
                     product.expiryDate = self.expiryDate
@@ -71,7 +82,7 @@ struct ScanExpiryDate: View {
                     self.statusMessage.info("Product saved.")
                 } catch {
                     self.statusMessage.error(error.localizedDescription)
-                    }
+                }
                 scanProductMode = .takeSnapshot
             }) {
                 HStack {

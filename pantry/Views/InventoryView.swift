@@ -45,10 +45,10 @@ struct InventoryView: View {
                                 .clipped()
 
                             VStack {
-                                HStack {
-                                    Spacer()
-                                }
                                 Text(self.expiryText(product))
+                                if let detectedText = product.detectedText {
+                                    Text(detectedText).font(.footnote)
+                                }
                             }
 
                             Spacer()

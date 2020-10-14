@@ -27,3 +27,23 @@ func detectExpiryDate(sampleBuffer: CMSampleBuffer, onSuccess: @escaping (Parsed
         }
     }
 }
+
+
+func detectText(imageData: Data, onSuccess: @escaping (String) -> ()) {
+    if let image = UIImage(data: imageData) {
+        let visionImage = VisionImage(image: image)
+        visionImage.orientation = .right // FIXME hard-coded orientation
+
+        TextRecognizer.textRecognizer().process(visionImage) { result, error in
+            guard error == nil, let result = result else {
+                print("Failed to get text recognition data")
+                return
+            }
+            if !result.text.isEmpty {
+                onSuccess(result.text)
+            }
+        }
+    } else {
+        print("Unable to create image from image data")
+    }
+}

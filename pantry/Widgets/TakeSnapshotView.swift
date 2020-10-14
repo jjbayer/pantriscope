@@ -30,7 +30,6 @@ struct TakeSnapshotView: View {
                 scanProductMode = .scanExpiryDate
             }
         )
-    //                    self.cameraView.takeSnapshot(delegate: self.scanExpiryDate.captureHandler)
 
             Spacer()
         }
