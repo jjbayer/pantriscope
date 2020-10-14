@@ -42,7 +42,9 @@ struct InventoryView: View {
                     Text("No items in inventory.")
                 } else {
 
-                    TextField("Search", text: $searchString).textFieldStyle(RoundedBorderTextFieldStyle()).padding()
+                    TextField("Search", text: $searchString)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .padding()
 
                     List {
                         ForEach(products.filter {
@@ -56,15 +58,18 @@ struct InventoryView: View {
                                     .frame(width: 92, height: 92)
                                     .clipped()
 
-                                Text(self.expiryText(product))
+                                VStack {
+                                    HStack { self.expiryText(product); Spacer() }
+                                    HStack { Text("on \(formatDate(product.expiryDate))").font(.footnote).foregroundColor(Color.gray); Spacer() }
+                                }
 
                                 Spacer()
 
-                                self.archiveButton(product, newState: "consumed", successMessage: "Product consumed.", icon: "checkmark.circle")
-                                .foregroundColor(Color.green)
-
-                                self.archiveButton(product, newState: "discarded", successMessage: "Product discarded.", icon: "trash.circle")
-                                .foregroundColor(Color.red)
+//                                self.archiveButton(product, newState: "consumed", successMessage: "Product consumed.", icon: "checkmark.circle")
+//                                .foregroundColor(Color.green)
+//
+//                                self.archiveButton(product, newState: "discarded", successMessage: "Product discarded.", icon: "trash.circle")
+//                                .foregroundColor(Color.red)
                             }
                             .buttonStyle(BorderlessButtonStyle()) // Else, entire list item becomes button
 
@@ -91,17 +96,51 @@ struct InventoryView: View {
         return Image(systemName: "photo")
     }
 
-    private func expiryText(_ product: Product) -> String {
+    private func expiryText(_ product: Product) -> Text {
         if let expiryDate = product.expiryDate {
 
-            let fmt = DateFormatter()
-            fmt.dateStyle = .medium
+            let formatter = RelativeDateTimeFormatter()
+            formatter.unitsStyle = .full
+            formatter.dateTimeStyle = .named
 
-            return fmt.string(from: expiryDate)
+            let today = Calendar.current.startOfDay(for: Date())
+            let expiryDay = Calendar.current.startOfDay(for: expiryDate)
+            let relativePart = formatter.localizedString(for: expiryDay, relativeTo: today)
+
+
+            let deltaInDays = today.distance(to: expiryDay) / 3600 / 24
+
+            var color = Color.black
+            var text = "expires \(relativePart)"
+            if deltaInDays < 0 {
+                color = Color.red
+                text = "expired \(relativePart)"
+            } else if deltaInDays == 0 {
+                color = Color.red
+                text = "expires today"
+            } else if deltaInDays < 4 {
+                color = Color.yellow
+            }
+
+            return Text(text).foregroundColor(color)
+
         } else {
 
-            return "no expiry date"
+            return Text("no expiry date").foregroundColor(Color.gray)
         }
+    }
+
+    private func formatDate(_ date: Date?) -> String {
+
+        if let date = date {
+
+            let df = DateFormatter()
+            df.dateFormat = "yyyy-MM-dd"
+
+            return df.string(from: date)
+        }
+
+        return ""
     }
 
     private func archiveButton(_ product: Product, newState: String, successMessage: String, icon: String) -> some View {
