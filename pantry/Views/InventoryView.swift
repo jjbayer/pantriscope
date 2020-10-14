@@ -65,13 +65,16 @@ struct InventoryView: View {
 
                                 Spacer()
 
-//                                self.archiveButton(product, newState: "consumed", successMessage: "Product consumed.", icon: "checkmark.circle")
-//                                .foregroundColor(Color.green)
-//
-//                                self.archiveButton(product, newState: "discarded", successMessage: "Product discarded.", icon: "trash.circle")
-//                                .foregroundColor(Color.red)
+                                VStack {
+                                    self.archiveButton(product, newState: "consumed", successMessage: "Product consumed.", icon: "checkmark.circle")
+                                    .foregroundColor(Color.green)
+
+                                    self.archiveButton(product, newState: "discarded", successMessage: "Product discarded.", icon: "trash.circle")
+                                    .foregroundColor(Color.red)
+                                }
                             }
                             .buttonStyle(BorderlessButtonStyle()) // Else, entire list item becomes button
+                            .modifier(SwipeModifier())
 
                         }
                     }
