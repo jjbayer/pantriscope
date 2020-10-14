@@ -17,11 +17,12 @@ struct ScanExpiryDate: View {
     // out how to handle optional bindings yet
     @State private var hasExpiryDate = true
     @State private var expiryDate = Date()
-    @Environment(\.managedObjectContext) var managedObjectContext
-    @EnvironmentObject var statusMessage: StatusMessage
-    @Binding var scanProductMode: ScanProductMode
-
     @State private var currentConfidence = 0.0  // Parser confidence
+
+    @Binding var scanProductMode: ScanProductMode
+    @Binding var statusMessage: StatusMessage
+
+    @Environment(\.managedObjectContext) var managedObjectContext
 
     var body: some View {
         VStack {

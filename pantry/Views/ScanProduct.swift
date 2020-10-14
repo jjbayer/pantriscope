@@ -16,6 +16,7 @@ enum ScanProductMode {
 struct ScanProduct: View {
     
     @State private var image = UIImage()
+    @State private var statusMessage = StatusMessage()
 
     @State var scanProductMode = ScanProductMode.takeSnapshot
 
@@ -25,14 +26,15 @@ struct ScanProduct: View {
                 .scaledToFill()
                 .layoutPriority(-1) // https://stackoverflow.com/questions/58290963/clip-image-to-square-in-swiftui
             VStack {
-                StatusMessageView()
+
+                StatusMessageView(statusMessage: $statusMessage)
 
                 Spacer()
 
                 if scanProductMode == .takeSnapshot {
                     TakeSnapshotView(scanProductMode: $scanProductMode)
                 } else {
-                    ScanExpiryDate(scanProductMode: $scanProductMode)
+                    ScanExpiryDate(scanProductMode: $scanProductMode, statusMessage: $statusMessage)
                         
                 }
             }

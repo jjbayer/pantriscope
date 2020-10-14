@@ -7,7 +7,7 @@
 //
 import SwiftUI
 
-class StatusMessage: ObservableObject {
+struct StatusMessage {
 
     enum StatusType {
         case debug
@@ -18,19 +18,19 @@ class StatusMessage: ObservableObject {
 
     typealias UndoAction = ()->Void
 
-    @Published var text: String?
-    @Published var status: StatusType = .info
+    var text: String?
+    var status: StatusType = .info
 
     var undoAction: UndoAction?
 
-    func info(_ message: String, undoAction: UndoAction? = nil) {
+    mutating func info(_ message: String, undoAction: UndoAction? = nil) {
         status = .info
         text = message
         self.undoAction = undoAction
     }
-    func error(_ message: String) { status = .error; text = message; self.undoAction = nil }
+    mutating func error(_ message: String) { status = .error; text = message; self.undoAction = nil }
 
-    func clear() {
+    mutating func clear() {
         text = nil
         undoAction = nil
     }

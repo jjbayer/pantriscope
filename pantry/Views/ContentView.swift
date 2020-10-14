@@ -10,8 +10,6 @@ import SwiftUI
 
 struct ContentView: View {
 
-    @EnvironmentObject var statusMessage: StatusMessage
-
     var body: some View {
         TabView {
 
@@ -22,7 +20,6 @@ struct ContentView: View {
                 }
                 .tag(0)
                 .onAppear {
-                    statusMessage.clear()
                     Camera.instance.start()
                 }
                 .onDisappear {
@@ -35,9 +32,6 @@ struct ContentView: View {
                     Text("Inventory")
                 }
                 .tag(1)
-                .onAppear {
-                    statusMessage.clear()
-                }
         }
     }
 }

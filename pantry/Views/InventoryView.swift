@@ -10,8 +10,10 @@ import SwiftUI
 
 struct InventoryView: View {
 
+
     @Environment(\.managedObjectContext) var managedObjectContext
-    @EnvironmentObject var statusMessage: StatusMessage
+
+    @State private var statusMessage = StatusMessage()
 
     @FetchRequest(
         entity: Product.entity(),
@@ -27,7 +29,7 @@ struct InventoryView: View {
     var body: some View {
 
         VStack {
-            StatusMessageView()
+            StatusMessageView(statusMessage: $statusMessage)
 
             if products.isEmpty {
                 Text("No items in inventory.")
@@ -64,6 +66,9 @@ struct InventoryView: View {
 
                 Spacer()
             }
+        }
+        .onDisappear {
+            statusMessage.clear()
         }
     }
 

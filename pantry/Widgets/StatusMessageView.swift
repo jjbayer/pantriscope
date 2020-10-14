@@ -10,7 +10,7 @@ import SwiftUI
 
 struct StatusMessageView: View {
 
-    @EnvironmentObject var statusMessage: StatusMessage
+    @Binding var statusMessage: StatusMessage
 
     var body: some View {
         HStack {
@@ -53,11 +53,5 @@ struct StatusMessageView: View {
             case .warning: return Color.yellow
             case .error: return Color.red
         }
-    }
-}
-
-struct StatusMessageView_Previews: PreviewProvider {
-    static var previews: some View {
-        StatusMessageView()
     }
 }
