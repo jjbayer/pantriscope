@@ -15,6 +15,8 @@ struct InventoryView: View {
 
     @State private var statusMessage = StatusMessage()
 
+    @State private var searchString = ""
+
     @FetchRequest(
         entity: Product.entity(),
         sortDescriptors: [
@@ -29,42 +31,48 @@ struct InventoryView: View {
     var body: some View {
 
         VStack {
+
             StatusMessageView(statusMessage: $statusMessage)
 
-            if products.isEmpty {
-                Text("No items in inventory.")
-            } else {
-                List {
-                    ForEach(products) { product in
-                        HStack {
+            Group {
 
-                            self.photo(product)
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                                .frame(width: 92, height: 92)
-                                .clipped()
+                HStack { Text("Inventory").font(.title); Spacer() }.padding()
 
-                            VStack {
+                if products.isEmpty {
+                    Text("No items in inventory.")
+                } else {
+
+                    TextField("Search", text: $searchString).textFieldStyle(RoundedBorderTextFieldStyle()).padding()
+
+                    List {
+                        ForEach(products.filter {
+                            searchString.isEmpty || $0.detectedText?.lowercased().contains(searchString) ?? false
+                        }) { product in
+                            HStack {
+
+                                self.photo(product)
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fill)
+                                    .frame(width: 92, height: 92)
+                                    .clipped()
+
                                 Text(self.expiryText(product))
-                                if let detectedText = product.detectedText {
-                                    Text(detectedText).font(.footnote)
-                                }
+
+                                Spacer()
+
+                                self.archiveButton(product, newState: "consumed", successMessage: "Product consumed.", icon: "checkmark.circle")
+                                .foregroundColor(Color.green)
+
+                                self.archiveButton(product, newState: "discarded", successMessage: "Product discarded.", icon: "trash.circle")
+                                .foregroundColor(Color.red)
                             }
+                            .buttonStyle(BorderlessButtonStyle()) // Else, entire list item becomes button
 
-                            Spacer()
-
-                            self.archiveButton(product, newState: "consumed", successMessage: "Product consumed.", icon: "checkmark.circle")
-                            .foregroundColor(Color.green)
-
-                            self.archiveButton(product, newState: "discarded", successMessage: "Product discarded.", icon: "trash.circle")
-                            .foregroundColor(Color.red)
                         }
-                        .buttonStyle(BorderlessButtonStyle()) // Else, entire list item becomes button
-
                     }
-                }
 
-                Spacer()
+                    Spacer()
+                }
             }
         }
         .onDisappear {

@@ -34,7 +34,6 @@ struct ScanExpiryDate: View {
                     Text("< back")
                 }
                 .background(Color.white)
-                .padding()
                 Spacer()
             }
 
@@ -54,7 +53,6 @@ struct ScanExpiryDate: View {
             Toggle(isOn: $hasExpiryDate) {
                 Text("product has expiry date")
             }
-            .padding()
 
             Button(action: {
                 let product = Product(context: self.managedObjectContext)
@@ -94,8 +92,8 @@ struct ScanExpiryDate: View {
             .foregroundColor(.white)
             .background(Color.green)
             .cornerRadius(20)
-            .padding()
         }
+        .padding()
         .onAppear {
             print("expdate appear")
             Camera.instance.onFrame { frame in

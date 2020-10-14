@@ -27,8 +27,6 @@ struct StatusMessageView: View {
                 minHeight: 32)
             .background(color())
             .foregroundColor(.white)
-            .cornerRadius(10)
-            .padding()
 
     }
 
