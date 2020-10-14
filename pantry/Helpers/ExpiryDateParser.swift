@@ -39,6 +39,9 @@ struct ExpiryDateParser {
         ("\(day)\(month)\(yearShort)", "ddMMyy", 0.4),
     ]
 
+    static let minDate = Date().addingTimeInterval(-5*365*24*3600)
+    static let maxDate = Date().addingTimeInterval(20*365*24*3600)
+
     func parse(text: String) -> ParsedExpiryDate {
 
         for (pattern, format, confidence) in ExpiryDateParser.datePatterns {
@@ -61,6 +64,12 @@ struct ExpiryDateParser {
                         } else {
                             print("Error pushing date to end of month: \(date)")
                         }
+                    }
+
+                    // Sanity check:
+                    if date < ExpiryDateParser.minDate || date > ExpiryDateParser.maxDate {
+
+                        return ParsedExpiryDate()
                     }
 
                     // Confidences are descending, so we can return immediately.
