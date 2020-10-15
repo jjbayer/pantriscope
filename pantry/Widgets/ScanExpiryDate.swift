@@ -26,10 +26,11 @@ struct ScanExpiryDate: View {
 
     var body: some View {
         VStack {
-            backButton.padding(EdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5))
+            menu
             Spacer()
             controlPanel
         }
+        .padding()
         .onAppear {
             print("expdate appear")
             Camera.instance.onFrame { frame in
@@ -48,23 +49,36 @@ struct ScanExpiryDate: View {
         }
     }
 
-    var backButton: some View {
+    var menu: some View {
         HStack {
             Button(action: {
                 scanProductMode = .takeSnapshot
             }) {
-                HStack { Image(systemName: "chevron.left"); Text("Back") }.padding()
+                HStack { Image(systemName: "chevron.left"); Text("Back") }
             }
             Spacer()
+
         }
     }
 
     var controlPanel: some View {
         VStack {
+            fastForward
             datePanel
             saveButton
         }
-        .padding()
+    }
+
+    var fastForward: some View {
+        HStack {
+            Spacer()
+            Button(action: { self.save(useExpiryDate: false) }) {
+                HStack {
+                    Text("Save without expiry date ")
+                    Image(systemName: "chevron.forward.2")
+                }
+            }
+        }.padding(EdgeInsets(top: 0, leading: 0, bottom: 5, trailing: 0))
     }
 
     var labelText: String {
@@ -82,7 +96,6 @@ struct ScanExpiryDate: View {
                     confidence = 0.0
                 }
                 .onChange(of: expiryDate, perform: { _ in
-                    print("date changed ")
                     dateWasSelected = true
                 })
                 .padding()
@@ -92,34 +105,7 @@ struct ScanExpiryDate: View {
     }
 
     var saveButton: some View {
-        // TODO: disable button when not detected
-        Button(action: {
-            let product = Product(context: self.managedObjectContext)
-            product.id = UUID()
-            if let data = Camera.instance.captureHandler.data {
-                product.photo = data
-                detectText(imageData: data, onSuccess: { text in
-                    product.detectedText = text
-
-                    // Save, because async
-                    do {
-                        try self.managedObjectContext.save()
-                        self.statusMessage.info("Product saved.")
-                    } catch {
-                        self.statusMessage.error(error.localizedDescription)
-                    }
-                })
-            }
-            product.expiryDate = self.expiryDate
-
-            do {
-                try self.managedObjectContext.save()
-                self.statusMessage.info("Product saved.")
-            } catch {
-                self.statusMessage.error(error.localizedDescription)
-            }
-            scanProductMode = .takeSnapshot
-        }) {
+        Button(action: { self.save(useExpiryDate: true) }) {
             HStack {
                 Image(systemName: "plus.circle")
                 Text("Add Product")
@@ -130,6 +116,36 @@ struct ScanExpiryDate: View {
         .foregroundColor(.white)
         .background(dateWasSelected ? Color.green : Color.gray)
         .cornerRadius(cornerRadius)
+    }
+
+    private func save(useExpiryDate: Bool) {
+        let product = Product(context: self.managedObjectContext)
+        product.id = UUID()
+        if let data = Camera.instance.captureHandler.data {
+            product.photo = data
+            detectText(imageData: data, onSuccess: { text in
+                product.detectedText = text
+
+                // Save, because async
+                do {
+                    try self.managedObjectContext.save()
+                    self.statusMessage.info("Product saved.")
+                } catch {
+                    self.statusMessage.error(error.localizedDescription)
+                }
+            })
+        }
+        if useExpiryDate {
+            product.expiryDate = self.expiryDate
+        }
+
+        do {
+            try self.managedObjectContext.save()
+            self.statusMessage.info("Product saved.")
+        } catch {
+            self.statusMessage.error(error.localizedDescription)
+        }
+        scanProductMode = .takeSnapshot
     }
 }
 

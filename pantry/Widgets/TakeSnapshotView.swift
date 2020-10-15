@@ -13,17 +13,16 @@ struct TakeSnapshotView: View {
     @Binding var scanProductMode: ScanProductMode
 
     var body: some View {
-        HStack {
-            Spacer()
+        
             HStack {
-                Image(systemName: "photo")
-                Text("Take Snapshot")
+                Image(systemName: "viewfinder")
+                Text("Scan Product")
             }
 
             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 50)
             .foregroundColor(.white)
             .background(Color.blue)
-            .cornerRadius(20)
+            .cornerRadius(10)
             .padding()
             .simultaneousGesture(TapGesture().onEnded {
                 Camera.instance.takeSnapshot()
@@ -31,8 +30,7 @@ struct TakeSnapshotView: View {
             }
         )
 
-            Spacer()
-        }
+
         //                }
     }
 }
