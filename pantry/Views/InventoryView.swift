@@ -40,11 +40,11 @@ struct InventoryView: View {
                 Text("No items in inventory.")
             } else {
 
-                TextField("Search", text: $searchString)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .padding()
-
                 List {
+
+                    TextField("Search", text: $searchString)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+
                     ForEach(products.filter {
                         searchString.isEmpty || $0.detectedText?.lowercased().contains(searchString) ?? false
                     }) { product in
@@ -52,6 +52,7 @@ struct InventoryView: View {
                     }
                     .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 1, trailing: 0))
                 }
+                .listStyle(PlainListStyle())
                 Spacer()
             }
 

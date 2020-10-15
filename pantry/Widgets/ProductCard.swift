@@ -25,11 +25,13 @@ struct ProductCard: View {
                 .padding()
 
             VStack {
-                HStack { self.expiryText(product); Spacer() }
-                HStack { Text("on \(formatDate(product.expiryDate))").font(.footnote).foregroundColor(Color.gray); Spacer() }
-            }
+                self.expiryText
+                Text("on \(formatDate(product.expiryDate))").font(.footnote).foregroundColor(Color.gray)
+            }.frame(alignment: .leading)
 
             Spacer()
+
+            Image(systemName: "circle").foregroundColor(self.warningColor).padding()
         }
         .modifier(
             SwipeModifier(
@@ -50,7 +52,7 @@ struct ProductCard: View {
         return Image(systemName: "photo")
     }
 
-    private func expiryText(_ product: Product) -> Text {
+    private var delta: (String, TimeInterval)? {
         if let expiryDate = product.expiryDate {
 
             let formatter = RelativeDateTimeFormatter()
@@ -61,27 +63,40 @@ struct ProductCard: View {
             let expiryDay = Calendar.current.startOfDay(for: expiryDate)
             let relativePart = formatter.localizedString(for: expiryDay, relativeTo: today)
 
+            return (relativePart, today.distance(to: expiryDay) / 3600 / 24)
 
-            let deltaInDays = today.distance(to: expiryDay) / 3600 / 24
 
-            var color = Color.black
+
+        }
+
+        return nil
+    }
+
+    private var expiryText: Text {
+        if let (relativePart, deltaInDays) = delta {
             var text = "expires \(relativePart)"
             if deltaInDays < 0 {
-                color = Color.red
                 text = "expired \(relativePart)"
             } else if deltaInDays == 0 {
-                color = Color.red
                 text = "expires today"
-            } else if deltaInDays < 4 {
-                color = Color.yellow
             }
 
-            return Text(text).foregroundColor(color)
-
-        } else {
-
-            return Text("no expiry date").foregroundColor(Color.gray)
+            return Text(text)
         }
+
+        return Text("no expiry date").foregroundColor(Color.gray)
+    }
+
+    private var warningColor: Color {
+        if let (_, deltaInDays) = delta {
+            if deltaInDays < 0 {
+                return Color.red
+            } else if deltaInDays < 4 {
+                return Color.yellow
+            }
+        }
+
+        return Color.white
     }
 
     private func formatDate(_ date: Date?) -> String {
