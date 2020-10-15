@@ -10,6 +10,7 @@
 		04D4C0A699DC544FE036D70D /* libPods-pantry.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB4797EF2DA6A6FBB21FC53F /* libPods-pantry.a */; };
 		A90CB7DC2535986900852E1D /* ExpiryDateParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90CB7DB2535986900852E1D /* ExpiryDateParser.swift */; };
 		A94A34A225377F69006C4FD6 /* SwipeModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94A34A125377F69006C4FD6 /* SwipeModifier.swift */; };
+		A94A34A625383BA8006C4FD6 /* ProductCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94A34A525383BA8006C4FD6 /* ProductCard.swift */; };
 		A971B73825348F2700E18DCE /* Vision.swift in Sources */ = {isa = PBXBuildFile; fileRef = A971B73725348F2700E18DCE /* Vision.swift */; };
 		A98414E62530B6720025811E /* TakeSnapshotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98414E52530B6720025811E /* TakeSnapshotView.swift */; };
 		A9A47AB32530C54F00E0A812 /* ScanExpiryDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A47AB22530C54F00E0A812 /* ScanExpiryDate.swift */; };
@@ -46,6 +47,7 @@
 		6DDF027C9086692215926334 /* Pods-pantry.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pantry.debug.xcconfig"; path = "Target Support Files/Pods-pantry/Pods-pantry.debug.xcconfig"; sourceTree = "<group>"; };
 		A90CB7DB2535986900852E1D /* ExpiryDateParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpiryDateParser.swift; sourceTree = "<group>"; };
 		A94A34A125377F69006C4FD6 /* SwipeModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeModifier.swift; sourceTree = "<group>"; };
+		A94A34A525383BA8006C4FD6 /* ProductCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCard.swift; sourceTree = "<group>"; };
 		A971B73725348F2700E18DCE /* Vision.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vision.swift; sourceTree = "<group>"; };
 		A98414E52530B6720025811E /* TakeSnapshotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TakeSnapshotView.swift; sourceTree = "<group>"; };
 		A9A47AB22530C54F00E0A812 /* ScanExpiryDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanExpiryDate.swift; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 				A9A72C5724FBA9FC00BD7F2D /* StatusMessageView.swift */,
 				A98414E52530B6720025811E /* TakeSnapshotView.swift */,
 				A9A47AB22530C54F00E0A812 /* ScanExpiryDate.swift */,
+				A94A34A525383BA8006C4FD6 /* ProductCard.swift */,
 			);
 			path = Widgets;
 			sourceTree = "<group>";
@@ -372,6 +375,7 @@
 			files = (
 				A9F4569D24EDB19B00481833 /* AppDelegate.swift in Sources */,
 				A971B73825348F2700E18DCE /* Vision.swift in Sources */,
+				A94A34A625383BA8006C4FD6 /* ProductCard.swift in Sources */,
 				A9F4573824FA8F7200481833 /* InventoryView.swift in Sources */,
 				A9F4569F24EDB19B00481833 /* SceneDelegate.swift in Sources */,
 				A9A47AB32530C54F00E0A812 /* ScanExpiryDate.swift in Sources */,
