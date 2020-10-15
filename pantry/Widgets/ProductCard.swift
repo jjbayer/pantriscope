@@ -20,7 +20,7 @@ struct ProductCard: View {
             self.photo(product)
                 .resizable()
                 .aspectRatio(contentMode: .fill)
-                .frame(width: 80, height: 80)
+                .frame(width: 60, height: 60)
                 .clipShape(Capsule())
                 .padding()
 
@@ -31,7 +31,6 @@ struct ProductCard: View {
 
             Spacer()
         }
-        .buttonStyle(BorderlessButtonStyle()) // Else, entire list item becomes button
         .modifier(
             SwipeModifier(
                 leftAction: { self.archive(newState: "discarded", successMessage: "Product discarded.")},

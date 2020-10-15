@@ -39,6 +39,7 @@ struct SwipeModifier: AnimatableModifier {
                 .background(Color.white)
                 .offset(self.contentOffset)
         }
+        .onTapGesture {} // Makes scrolling in list possible
         .gesture(gesture)
 
     }
