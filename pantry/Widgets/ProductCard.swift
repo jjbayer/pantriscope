@@ -26,8 +26,14 @@ struct ProductCard: View {
 
             VStack {
                 self.expiryText
-                Text("on \(formatDate(product.expiryDate))").font(.footnote).foregroundColor(Color.gray)
-            }.frame(alignment: .leading)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                if let date = product.expiryDate {
+                    Text("on \(formatDate(date))")
+                        .font(.footnote)
+                        .foregroundColor(Color.gray)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                }
+            }
 
             Spacer()
 

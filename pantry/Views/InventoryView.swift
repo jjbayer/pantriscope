@@ -55,10 +55,6 @@ struct InventoryView: View {
                 .listStyle(PlainListStyle())
                 Spacer()
             }
-
-        }
-        .onDisappear {
-            statusMessage.clear()
         }
     }
 }

@@ -22,11 +22,14 @@ struct StatusMessageView: View {
             }
         }
 
-            .frame(
-                minWidth: 0, maxWidth: .infinity,
-                minHeight: 32)
-            .background(color())
-            .foregroundColor(.white)
+        .frame(
+            minWidth: 0, maxWidth: .infinity,
+            minHeight: 32)
+        .background(color())
+        .foregroundColor(.white)
+        .onAppear {
+            statusMessage.clear()
+        }
 
     }
 
