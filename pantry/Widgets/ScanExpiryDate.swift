@@ -121,6 +121,7 @@ struct ScanExpiryDate: View {
     private func save(useExpiryDate: Bool) {
         let product = Product(context: self.managedObjectContext)
         product.id = UUID()
+        product.dateAdded = Date()
         if let data = Camera.instance.captureHandler.data {
             product.photo = data
             detectText(imageData: data, onSuccess: { text in
@@ -131,7 +132,7 @@ struct ScanExpiryDate: View {
                     try self.managedObjectContext.save()
                     self.statusMessage.info("Product saved.")
                 } catch {
-                    self.statusMessage.error(error.localizedDescription)
+                    print("Error saving detected text")
                 }
             })
         }
@@ -143,7 +144,7 @@ struct ScanExpiryDate: View {
             try self.managedObjectContext.save()
             self.statusMessage.info("Product saved.")
         } catch {
-            self.statusMessage.error(error.localizedDescription)
+            self.statusMessage.error("Error saving product") // TODO: report
         }
         scanProductMode = .takeSnapshot
     }

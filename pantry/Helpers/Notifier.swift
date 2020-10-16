@@ -7,14 +7,63 @@
 //
 
 import UIKit
+import BackgroundTasks
+import CoreData
 
 
 struct Notifier {
+
+    static let taskId = "com.jorisbayer.pantry.notifier"
 
     static let minRelativeLifespan = 2.0
     static let reminderTimes = [0, 1, 7, 30].map { 1.0 * $0 * 24 * 3600 }
 
     static let instance = Notifier()
+
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.newBackgroundContext()
+
+    func setup() {
+        BGTaskScheduler.shared.register(forTaskWithIdentifier: Notifier.taskId, using: nil) { task in
+            self.sendOutReminders()
+        }
+    }
+
+    func schedule() {
+
+        print("Scheduling reminder background task...")
+
+        BGTaskScheduler.shared.cancel(taskRequestWithIdentifier: Notifier.taskId)
+        let request = BGAppRefreshTaskRequest(identifier: Notifier.taskId)
+        request.earliestBeginDate = Date()
+        do {
+            try BGTaskScheduler.shared.submit(request)
+        } catch {
+            print("Could not schedule reminder task: \(error)")
+        }
+    }
+
+    func sendOutReminders() {
+        print("Sending out reminders...")
+        schedule() // Run next
+
+        sendNotification(title: "Running scheduled background task", body: "Test body")
+
+        let request = NSFetchRequest<Product>()
+        request.entity = Product.entity()
+        request.predicate = NSPredicate(format: "state like 'available'")
+        var products: [Product]
+        do {
+            try products = context.fetch(request)
+        } catch {
+            print("Failed to fetch products for reminders")
+
+            return
+        }
+
+        for product in products {
+            scheduleRemindersForProduct(product: product)
+        }
+    }
 
     func requestAuthorization() {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
@@ -38,7 +87,7 @@ struct Notifier {
         }
     }
 
-    func scheduleReminders(product: Product) {
+    func scheduleRemindersForProduct(product: Product) {
 
         if let lifespan = product.lifespan, let timeUntilExpiry = product.timeUntilExpiry {
             for reminderTime in Notifier.reminderTimes {
