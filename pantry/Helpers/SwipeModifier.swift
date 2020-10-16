@@ -30,9 +30,9 @@ struct SwipeModifier: AnimatableModifier {
         ZStack {
 
             if direction == .left2right {
-                SwipeField(alignment: .leading, text: "eat", color: .green, icon: Image(systemName: "mouth"), isActive: $isActive)
+                SwipeField(alignment: .leading, text: "consumed", color: .green, icon: Image(systemName: "leaf.arrow.triangle.circlepath"), isActive: $isActive)
             } else {
-                SwipeField(alignment: .trailing, text: "throw away", color: .red, icon: Image(systemName: "trash"), isActive: $isActive)
+                SwipeField(alignment: .trailing, text: "discarded", color: .red, icon: Image(systemName: "trash"), isActive: $isActive)
             }
 
             content
@@ -47,13 +47,11 @@ struct SwipeModifier: AnimatableModifier {
     private var gesture: some Gesture {
         DragGesture()
             .onChanged { value in
-                print("dragging...")
                 self.contentOffset.width = value.translation.width
                 self.direction = value.translation.width > 0 ? .left2right : .right2left
                 isActive = abs(value.translation.width) > SwipeModifier.minSwipe
             }
             .onEnded { _ in
-                print("stop dragging")
                 withAnimation {
                     self.contentOffset.width = 0
                 }
@@ -83,7 +81,7 @@ struct SwipeField: View {
     var body: some View {
         VStack {
             icon
-            Text(text).bold()
+            Text(text)
         }
         .padding()
         .foregroundColor(Color.white)
