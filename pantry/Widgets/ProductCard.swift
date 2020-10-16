@@ -15,6 +15,8 @@ struct ProductCard: View {
 
     @Environment(\.managedObjectContext) var managedObjectContext
 
+    @State private var delta: (String, TimeInterval)?
+
     var body: some View {
         HStack {
             self.photo(product)
@@ -45,6 +47,10 @@ struct ProductCard: View {
                 rightAction: { self.archive(newState: "consumed", successMessage: "Product consumed.")}
             )
         )
+        .onAppear {
+            // Make sure relative dates are fresh:
+            self.delta = computeDelta()
+        }
     }
 
     private func photo(_ product: Product) -> Image {
@@ -58,36 +64,21 @@ struct ProductCard: View {
         return Image(systemName: "photo")
     }
 
-    private var delta: (String, TimeInterval)? {
+    private func computeDelta() -> (String, TimeInterval)? {
         if let expiryDate = product.expiryDate {
 
-            let formatter = RelativeDateTimeFormatter()
-            formatter.unitsStyle = .full
-            formatter.dateTimeStyle = .named
-
-            let today = Calendar.current.startOfDay(for: Date())
-            let expiryDay = Calendar.current.startOfDay(for: expiryDate)
-            let relativePart = formatter.localizedString(for: expiryDay, relativeTo: today)
-
-            return (relativePart, today.distance(to: expiryDay) / 3600 / 24)
-
-
-
+            return (
+                relativeDateDescription(expiryDate),
+                today().distance(to: normalize(expiryDate)) / 3600 / 24)
         }
 
         return nil
     }
 
     private var expiryText: Text {
-        if let (relativePart, deltaInDays) = delta {
-            var text = "expires \(relativePart)"
-            if deltaInDays < 0 {
-                text = "expired \(relativePart)"
-            } else if deltaInDays == 0 {
-                text = "expires today"
-            }
+        if let expiryString = product.expiryString {
 
-            return Text(text)
+            return Text(expiryString)
         }
 
         return Text("no expiry date").foregroundColor(Color.gray)
@@ -132,6 +123,9 @@ struct ProductCard: View {
         do {
             try self.managedObjectContext.save()
             self.statusMessage.info(successMessage, undoAction: undoAction)
+
+            Notifier.instance.requestAuthorization()
+
         } catch {
             self.statusMessage.error(error.localizedDescription)
         }

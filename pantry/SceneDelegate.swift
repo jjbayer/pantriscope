@@ -21,7 +21,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Get the managed object context from the shared persistent container.
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
-
         // Create the SwiftUI view that provides the window contents.
         let contentView = ContentView()
             .environment(\.managedObjectContext, context)

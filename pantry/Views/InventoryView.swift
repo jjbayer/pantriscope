@@ -34,7 +34,7 @@ struct InventoryView: View {
 
             StatusMessageView(statusMessage: $statusMessage)
 
-            HStack { Text("Inventory").font(.title); Spacer() }.padding()
+            Text("Inventory").font(.title).padding()
 
             if products.isEmpty {
                 Text("No items in inventory.")

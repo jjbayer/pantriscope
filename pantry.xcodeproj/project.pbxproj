@@ -16,6 +16,9 @@
 		A9A47AB32530C54F00E0A812 /* ScanExpiryDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A47AB22530C54F00E0A812 /* ScanExpiryDate.swift */; };
 		A9A72C5624FBA70F00BD7F2D /* StatusMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A72C5524FBA70F00BD7F2D /* StatusMessage.swift */; };
 		A9A72C5824FBA9FC00BD7F2D /* StatusMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A72C5724FBA9FC00BD7F2D /* StatusMessageView.swift */; };
+		A9AA7CDF2539961E0044BB3C /* Notifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AA7CDE2539961E0044BB3C /* Notifier.swift */; };
+		A9AA7CE32539B3C60044BB3C /* DataModelExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AA7CE22539B3C60044BB3C /* DataModelExtensions.swift */; };
+		A9AA7CE72539B4660044BB3C /* Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AA7CE62539B4660044BB3C /* Time.swift */; };
 		A9F4569D24EDB19B00481833 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F4569C24EDB19B00481833 /* AppDelegate.swift */; };
 		A9F4569F24EDB19B00481833 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F4569E24EDB19B00481833 /* SceneDelegate.swift */; };
 		A9F456A124EDB19B00481833 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F456A024EDB19B00481833 /* ContentView.swift */; };
@@ -53,6 +56,9 @@
 		A9A47AB22530C54F00E0A812 /* ScanExpiryDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanExpiryDate.swift; sourceTree = "<group>"; };
 		A9A72C5524FBA70F00BD7F2D /* StatusMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusMessage.swift; sourceTree = "<group>"; };
 		A9A72C5724FBA9FC00BD7F2D /* StatusMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusMessageView.swift; sourceTree = "<group>"; };
+		A9AA7CDE2539961E0044BB3C /* Notifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifier.swift; sourceTree = "<group>"; };
+		A9AA7CE22539B3C60044BB3C /* DataModelExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModelExtensions.swift; sourceTree = "<group>"; };
+		A9AA7CE62539B4660044BB3C /* Time.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Time.swift; sourceTree = "<group>"; };
 		A9F4569924EDB19B00481833 /* pantry.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pantry.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9F4569C24EDB19B00481833 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A9F4569E24EDB19B00481833 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -127,6 +133,9 @@
 				A971B73725348F2700E18DCE /* Vision.swift */,
 				A90CB7DB2535986900852E1D /* ExpiryDateParser.swift */,
 				A94A34A125377F69006C4FD6 /* SwipeModifier.swift */,
+				A9AA7CDE2539961E0044BB3C /* Notifier.swift */,
+				A9AA7CE22539B3C60044BB3C /* DataModelExtensions.swift */,
+				A9AA7CE62539B4660044BB3C /* Time.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -380,9 +389,12 @@
 				A9F4569F24EDB19B00481833 /* SceneDelegate.swift in Sources */,
 				A9A47AB32530C54F00E0A812 /* ScanExpiryDate.swift in Sources */,
 				A94A34A225377F69006C4FD6 /* SwipeModifier.swift in Sources */,
+				A9AA7CDF2539961E0044BB3C /* Notifier.swift in Sources */,
 				A9F456D424F93AD500481833 /* DataModel.xcdatamodeld in Sources */,
 				A9A72C5624FBA70F00BD7F2D /* StatusMessage.swift in Sources */,
 				A9F456A124EDB19B00481833 /* ContentView.swift in Sources */,
+				A9AA7CE32539B3C60044BB3C /* DataModelExtensions.swift in Sources */,
+				A9AA7CE72539B4660044BB3C /* Time.swift in Sources */,
 				A9F456C924F2A0EA00481833 /* CameraUIView.swift in Sources */,
 				A90CB7DC2535986900852E1D /* ExpiryDateParser.swift in Sources */,
 				A9F456C724F2A0DB00481833 /* CameraView.swift in Sources */,
