@@ -49,10 +49,10 @@ struct StatusMessageView: View {
         }
 
         switch statusMessage.status {
-            case .debug: return Color.gray
-            case .info: return Color.blue
-            case .warning: return Color.yellow
-            case .error: return Color.red
+            case .debug: return App.Colors.note
+            case .info: return App.Colors.info
+            case .warning: return App.Colors.warning
+            case .error: return App.Colors.error
         }
     }
 }

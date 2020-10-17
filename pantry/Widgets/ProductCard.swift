@@ -32,7 +32,7 @@ struct ProductCard: View {
                 if let date = product.expiryDate {
                     Text("on \(formatDate(date))")
                         .font(.footnote)
-                        .foregroundColor(Color.gray)
+                        .foregroundColor(App.Colors.note)
                         .frame(maxWidth: .infinity, alignment: .leading)
                 }
             }
@@ -81,15 +81,15 @@ struct ProductCard: View {
             return Text(expiryString)
         }
 
-        return Text("no expiry date").foregroundColor(Color.gray)
+        return Text("no expiry date").foregroundColor(App.Colors.note)
     }
 
     private var warningColor: Color {
         if let (_, deltaInDays) = delta {
             if deltaInDays < 0 {
-                return Color.red
+                return App.Colors.error
             } else if deltaInDays < 4 {
-                return Color.yellow
+                return App.Colors.warning
             }
         }
 

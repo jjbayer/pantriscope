@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		04D4C0A699DC544FE036D70D /* libPods-pantry.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB4797EF2DA6A6FBB21FC53F /* libPods-pantry.a */; };
 		A90CB7DC2535986900852E1D /* ExpiryDateParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90CB7DB2535986900852E1D /* ExpiryDateParser.swift */; };
+		A917893B253B52F500D2C826 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = A917893A253B52F400D2C826 /* App.swift */; };
 		A94A34A225377F69006C4FD6 /* SwipeModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94A34A125377F69006C4FD6 /* SwipeModifier.swift */; };
 		A94A34A625383BA8006C4FD6 /* ProductCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94A34A525383BA8006C4FD6 /* ProductCard.swift */; };
 		A971B73825348F2700E18DCE /* Vision.swift in Sources */ = {isa = PBXBuildFile; fileRef = A971B73725348F2700E18DCE /* Vision.swift */; };
@@ -49,6 +50,7 @@
 		5338E644E84EB0531029E103 /* libPods-pantryTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-pantryTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DDF027C9086692215926334 /* Pods-pantry.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pantry.debug.xcconfig"; path = "Target Support Files/Pods-pantry/Pods-pantry.debug.xcconfig"; sourceTree = "<group>"; };
 		A90CB7DB2535986900852E1D /* ExpiryDateParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpiryDateParser.swift; sourceTree = "<group>"; };
+		A917893A253B52F400D2C826 /* App.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		A94A34A125377F69006C4FD6 /* SwipeModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeModifier.swift; sourceTree = "<group>"; };
 		A94A34A525383BA8006C4FD6 /* ProductCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCard.swift; sourceTree = "<group>"; };
 		A971B73725348F2700E18DCE /* Vision.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vision.swift; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 		A9A72C5C24FBD5AD00BD7F2D /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				A917893A253B52F400D2C826 /* App.swift */,
 				A9F456C824F2A0EA00481833 /* CameraUIView.swift */,
 				A9A72C5524FBA70F00BD7F2D /* StatusMessage.swift */,
 				A9F456CA24F2A0FA00481833 /* Camera.swift */,
@@ -394,6 +397,7 @@
 				A9A72C5624FBA70F00BD7F2D /* StatusMessage.swift in Sources */,
 				A9F456A124EDB19B00481833 /* ContentView.swift in Sources */,
 				A9AA7CE32539B3C60044BB3C /* DataModelExtensions.swift in Sources */,
+				A917893B253B52F500D2C826 /* App.swift in Sources */,
 				A9AA7CE72539B4660044BB3C /* Time.swift in Sources */,
 				A9F456C924F2A0EA00481833 /* CameraUIView.swift in Sources */,
 				A90CB7DC2535986900852E1D /* ExpiryDateParser.swift in Sources */,

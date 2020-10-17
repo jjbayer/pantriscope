@@ -30,9 +30,9 @@ struct SwipeModifier: AnimatableModifier {
         ZStack {
 
             if direction == .left2right {
-                SwipeField(alignment: .leading, text: "consumed", color: .green, icon: Image(systemName: "leaf.arrow.triangle.circlepath"), isActive: $isActive)
+                SwipeField(alignment: .leading, text: "consumed", color: App.Colors.success, icon: Image(systemName: "leaf.arrow.triangle.circlepath"), isActive: $isActive)
             } else {
-                SwipeField(alignment: .trailing, text: "discarded", color: .red, icon: Image(systemName: "trash"), isActive: $isActive)
+                SwipeField(alignment: .trailing, text: "discarded", color: App.Colors.error, icon: Image(systemName: "trash"), isActive: $isActive)
             }
 
             content
@@ -86,7 +86,7 @@ struct SwipeField: View {
         .padding()
         .foregroundColor(Color.white)
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: alignment)
-        .background(isActive ? color : Color.gray)
+        .background(isActive ? color : App.Colors.note)
     }
 
 }
