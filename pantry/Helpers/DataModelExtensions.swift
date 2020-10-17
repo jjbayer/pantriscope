@@ -35,10 +35,13 @@ extension Product {
 
     /// ATTN: Does not save the managed object context
     func addReminder(_ reminderTime: TimeInterval) {
-        let reminder = Reminder()
-        reminder.product = self
-        reminder.timeBeforeExpiry = reminderTime
-        self.addToReminder(reminder)
+        if let context = self.managedObjectContext {
+            let reminder = Reminder(context: context)
+            reminder.product = self
+            self.addToReminder(reminder)
+        } else {
+            print("Cannot add reminder to product without context")
+        }
     }
 
     func hasReminder(_ reminderTime: TimeInterval) -> Bool {
