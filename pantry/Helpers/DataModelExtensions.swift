@@ -33,8 +33,24 @@ extension Product {
         return normalize(dateAdded!).distance(to: today())
     }
 
+    /// ATTN: Does not save the managed object context
+    func addReminder(_ reminderTime: TimeInterval) {
+        let reminder = Reminder()
+        reminder.product = self
+        reminder.timeBeforeExpiry = reminderTime
+        self.addToReminder(reminder)
+    }
+
     func hasReminder(_ reminderTime: TimeInterval) -> Bool {
-        // FIXME: check database here
+        if let reminders = self.reminder {
+            print("Product \(String(describing: self.id)) has reminders")
+            let predicate = NSPredicate(format: "timeBeforeExpiry == \(reminderTime)")  // TODO: float comparison
+
+            let hasIt = !(reminders.filtered(using: predicate).isEmpty)
+            print("  Product has this reminder: \(hasIt)")
+
+            return hasIt
+        }
 
         return false
     }

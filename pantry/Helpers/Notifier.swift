@@ -7,8 +7,8 @@
 //
 
 import UIKit
-import BackgroundTasks
 import CoreData
+import BackgroundTasks
 
 
 struct Notifier {
@@ -23,8 +23,9 @@ struct Notifier {
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.newBackgroundContext()
 
     func setup() {
+
         BGTaskScheduler.shared.register(forTaskWithIdentifier: Notifier.taskId, using: nil) { task in
-            self.sendOutReminders()
+            self.sendOutReminders(task: task as! BGAppRefreshTask)
         }
     }
 
@@ -42,7 +43,7 @@ struct Notifier {
         }
     }
 
-    func sendOutReminders() {
+    func sendOutReminders(task: BGAppRefreshTask) {
         print("Sending out reminders...")
         schedule() // Run next
 
@@ -63,6 +64,15 @@ struct Notifier {
         for product in products {
             scheduleRemindersForProduct(product: product)
         }
+
+        // Save all the added reminders
+        do {
+            try context.save()
+        } catch {
+            print("Failed to save after reminders")
+        }
+
+        task.setTaskCompleted(success: true)
     }
 
     func requestAuthorization() {

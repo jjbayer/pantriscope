@@ -27,7 +27,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         Notifier.instance.setup()
 
-        // Override point for customization after application launch.
         return true
     }
 
