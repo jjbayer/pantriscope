@@ -47,8 +47,6 @@ struct Notifier {
         print("Sending out reminders...")
         schedule() // Run next
 
-        sendNotification(title: "Running scheduled background task", body: "Test body")
-
         let request = NSFetchRequest<Product>()
         request.entity = Product.entity()
         request.predicate = NSPredicate(format: "state like 'available'")
