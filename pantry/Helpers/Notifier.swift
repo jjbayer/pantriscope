@@ -11,6 +11,17 @@ import CoreData
 import BackgroundTasks
 
 
+class ResponseReceiver: NSObject, UNUserNotificationCenterDelegate {
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                didReceive response: UNNotificationResponse,
+                withCompletionHandler completionHandler:
+                   @escaping () -> Void) {
+
+        completionHandler()
+    }
+}
+
+
 struct Notifier {
 
     static let taskId = "com.jorisbayer.pantry.notifier"
@@ -22,11 +33,15 @@ struct Notifier {
 
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.newBackgroundContext()
 
+    let receiver = ResponseReceiver()
+
     func setup() {
 
         BGTaskScheduler.shared.register(forTaskWithIdentifier: Notifier.taskId, using: nil) { task in
             self.runBackgroundTask(task: task as! BGAppRefreshTask)
         }
+
+        UNUserNotificationCenter.current().delegate = receiver
     }
 
     func scheduleBackgroundTask() {
