@@ -40,7 +40,7 @@ struct InventoryView: View {
                 Text("No items in inventory.")
             } else {
 
-                List {
+                ScrollView {
 
                     TextField("Search", text: $searchString)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -52,7 +52,6 @@ struct InventoryView: View {
                     }
                     .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 1, trailing: 0))
                 }
-                .listStyle(PlainListStyle())
                 Spacer()
             }
         }

@@ -39,7 +39,6 @@ struct SwipeModifier: AnimatableModifier {
                 .background(Color.white)
                 .offset(self.contentOffset)
         }
-        .onTapGesture {} // Makes scrolling in list possible
         .gesture(gesture)
 
     }
@@ -89,4 +88,16 @@ struct SwipeField: View {
         .background(color)
     }
 
+}
+
+struct SwipeModifier_Previews: PreviewProvider {
+    static var previews: some View {
+        ScrollView {
+            ForEach(0..<20) { i in
+                Text("Item \(i)")
+                    .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/,maxHeight: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
+                    .modifier(SwipeModifier(leftAction: {}, rightAction: {}))
+            }
+        }
+    }
 }
