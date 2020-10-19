@@ -22,7 +22,7 @@ struct ContentView: View {
 
             ScanProduct()
                 .tabItem {
-                    Image(systemName: "photo")
+                    Image(systemName: "camera")
                     Text("Scan")
                 }
                 .tag(TabID.takeSnapshot)
