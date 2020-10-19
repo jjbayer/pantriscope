@@ -90,7 +90,7 @@ struct Notifier {
 
         let uuidString = UUID().uuidString
         let request = UNNotificationRequest(identifier: uuidString,
-                                            content: content, trigger: UNTimeIntervalNotificationTrigger(timeInterval: 10, repeats: false))
+                                            content: content, trigger: UNTimeIntervalNotificationTrigger(timeInterval: 3, repeats: false))
 
         let notificationCenter = UNUserNotificationCenter.current()
         notificationCenter.add(request) { (error) in
@@ -110,7 +110,7 @@ struct Notifier {
 
                 if lifespan > reminderTime * Notifier.minRelativeLifespan && timeUntilExpiry <= reminderTime {
 
-                    scheduleReminder(product, reminderTime)
+                    scheduleReminder(product)
 
                     break // one reminder is enough
                 }
@@ -118,7 +118,8 @@ struct Notifier {
         }
     }
 
-    func scheduleReminder(_ product: Product, _ reminderTime: TimeInterval) {
+    func scheduleReminder(_ product: Product) {
+        print("Schedule reminder for product \(String(describing: product.id))")
         if let expiryString = product.expiryStringLong {
             sendNotification(
                 title: expiryString,

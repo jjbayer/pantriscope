@@ -39,7 +39,10 @@ struct ProductCard: View {
 
             Spacer()
 
-            Image(systemName: "circle").foregroundColor(self.warningColor).padding()
+            Image(systemName: "exclamationmark.circle").foregroundColor(self.warningColor).padding()
+            Button(action: {
+                Notifier.instance.scheduleReminder(product)
+            }) { Image(systemName: "paperplane").foregroundColor(App.Colors.note) }.padding() // for debugging
         }
         .modifier(
             SwipeModifier(
