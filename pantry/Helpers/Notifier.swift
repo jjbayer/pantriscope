@@ -81,12 +81,17 @@ struct Notifier {
 
     func sendNotification(title: String, body: String) {
         print("Sending notification...")
+
+        // TODO: localize
         let content = UNMutableNotificationContent()
         content.title = title
         content.body = body
+        content.sound = UNNotificationSound.default
+
         let uuidString = UUID().uuidString
         let request = UNNotificationRequest(identifier: uuidString,
                                             content: content, trigger: UNTimeIntervalNotificationTrigger(timeInterval: 10, repeats: false))
+
         let notificationCenter = UNUserNotificationCenter.current()
         notificationCenter.add(request) { (error) in
            if error != nil {
