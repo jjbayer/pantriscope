@@ -10,15 +10,22 @@ import SwiftUI
 
 struct ContentView: View {
 
+    enum TabID {
+        case takeSnapshot
+        case inventory
+    }
+
+    @EnvironmentObject var navigator: Navigator
+
     var body: some View {
-        TabView {
+        TabView(selection: $navigator.selectedTabItem) {
 
             ScanProduct()
                 .tabItem {
                     Image(systemName: "photo")
                     Text("Scan")
                 }
-                .tag(0)
+                .tag(TabID.takeSnapshot)
                 .onAppear {
                     Camera.instance.start()
                 }
@@ -31,7 +38,7 @@ struct ContentView: View {
                     Image(systemName: "list.bullet")
                     Text("Inventory")
                 }
-                .tag(1)
+                .tag(TabID.inventory)
         }
         .accentColor(App.Colors.info)
     }

@@ -17,6 +17,11 @@ class ResponseReceiver: NSObject, UNUserNotificationCenterDelegate {
                 withCompletionHandler completionHandler:
                    @escaping () -> Void) {
 
+        if let id = response.notification.request.content.userInfo["PRODUCT_ID"] as? String {
+            // TODO: when we have inventories, go to the correct inventory
+            Navigator.instance.selectedTabItem = .inventory
+            Navigator.instance.selectedProductID = id
+        }
         completionHandler()
     }
 }
@@ -101,7 +106,7 @@ struct Notifier {
         }
     }
 
-    func sendNotification(title: String, body: String, fileURL: URL?) {
+    func sendNotification(title: String, body: String, fileURL: URL?, userInfo: [AnyHashable : Any]) {
         print("Sending notification...")
 
         // TODO: localize
@@ -109,6 +114,7 @@ struct Notifier {
         content.title = title
         content.body = body
         content.sound = UNNotificationSound.default
+        content.userInfo = userInfo
 
         if let url = fileURL {
             var attachment: UNNotificationAttachment
@@ -126,8 +132,8 @@ struct Notifier {
 
         let notificationCenter = UNUserNotificationCenter.current()
         notificationCenter.add(request) { (error) in
-           if error != nil {
-              print("Failed to notify")
+           if let error = error {
+              print("Failed to notify: \(error.localizedDescription)")
            }
         }
     }
@@ -168,7 +174,8 @@ struct Notifier {
             sendNotification(
                 title: expiryString,
                 body: product.addedStringLong,
-                fileURL: imageURL
+                fileURL: imageURL,
+                userInfo: ["PRODUCT_ID": id.uuidString]
             )
         } else {
             print("ERROR: Scheduling reminder for product without expiry date")

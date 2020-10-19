@@ -15,6 +15,8 @@ struct ProductCard: View {
 
     @Environment(\.managedObjectContext) var managedObjectContext
 
+    @EnvironmentObject var navigator: Navigator
+
     @State private var delta: (String, TimeInterval)?
 
     var body: some View {
@@ -44,6 +46,7 @@ struct ProductCard: View {
                 Notifier.instance.scheduleReminder(product)
             }) { Image(systemName: "paperplane").foregroundColor(App.Colors.note) }.padding() // for debugging
         }
+        .background(backgroundColor)
         .modifier(
             SwipeModifier(
                 leftAction: { self.archive(newState: "discarded", successMessage: "Product discarded.")},
@@ -54,6 +57,16 @@ struct ProductCard: View {
             // Make sure relative dates are fresh:
             self.delta = computeDelta()
         }
+    }
+
+    private var backgroundColor: Color {
+
+        if navigator.selectedProductID == product.id?.uuidString {
+
+            return App.Colors.background
+        }
+
+        return Color.white
     }
 
     private func photo(_ product: Product) -> Image {
@@ -96,7 +109,7 @@ struct ProductCard: View {
             }
         }
 
-        return Color.white
+        return Color(white: 1, opacity: 0)
     }
 
     private func formatDate(_ date: Date?) -> String {

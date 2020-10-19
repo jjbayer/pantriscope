@@ -36,7 +36,6 @@ struct SwipeModifier: AnimatableModifier {
             }
 
             content
-                .background(Color.white)
                 .offset(self.contentOffset)
         }
         .gesture(gesture)
