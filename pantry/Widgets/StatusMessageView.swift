@@ -49,7 +49,7 @@ struct StatusMessageView: View {
         }
 
         switch statusMessage.status {
-            case .debug: return App.Colors.note
+            case .debug: return App.Colors.background
             case .info: return App.Colors.info
             case .warning: return App.Colors.warning
             case .error: return App.Colors.error

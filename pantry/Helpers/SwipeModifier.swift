@@ -86,7 +86,7 @@ struct SwipeField: View {
         .padding()
         .foregroundColor(Color.white)
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: alignment)
-        .background(isActive ? color : App.Colors.note)
+        .background(color)
     }
 
 }

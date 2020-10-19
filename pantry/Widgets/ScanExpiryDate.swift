@@ -114,7 +114,7 @@ struct ScanExpiryDate: View {
         .disabled(!dateWasSelected)
         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 50)
         .foregroundColor(.white)
-        .background(dateWasSelected ? App.Colors.success : App.Colors.note)
+        .background(dateWasSelected ? App.Colors.success : App.Colors.background)
         .cornerRadius(cornerRadius)
     }
 

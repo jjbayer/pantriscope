@@ -81,7 +81,7 @@ struct ProductCard: View {
             return Text(expiryString)
         }
 
-        return Text("no expiry date").foregroundColor(App.Colors.note)
+        return Text("no expiry date")
     }
 
     private var warningColor: Color {

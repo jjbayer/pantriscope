@@ -33,18 +33,33 @@ struct ContentView: View {
                 }
                 .tag(1)
         }
+        .accentColor(App.Colors.info)
     }
 }
 
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        // Get the managed object context from the shared persistent container.
-        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        return TabView {
 
-        // Create the SwiftUI view that provides the window contents.
-        let contentView = ContentView().environment(\.managedObjectContext, context)
+            Text("Scan Product")
+                .tabItem {
+                    Image(systemName: "photo")
+                    Text("Scan")
+                }
+                .background(App.Colors.background)
+                .foregroundColor(App.Colors.info)
+                .tag(0)
 
-        return contentView
+            Text("Inventory")
+                .tabItem {
+                    Image(systemName: "list.bullet")
+                    Text("Inventory")
+                }
+                .tag(1)
+        }
+        .accentColor(App.Colors.info)
+        .foregroundColor(App.Colors.note)
+        .background(App.Colors.background)
     }
 }
