@@ -79,7 +79,7 @@ struct Notifier {
         }
     }
 
-    func sendNotification(title: String, body: String) {
+    func sendNotification(title: String, body: String, fileURL: URL?) {
         print("Sending notification...")
 
         // TODO: localize
@@ -87,6 +87,16 @@ struct Notifier {
         content.title = title
         content.body = body
         content.sound = UNNotificationSound.default
+
+        if let url = fileURL {
+            var attachment: UNNotificationAttachment
+            do {
+                try attachment = UNNotificationAttachment(identifier: "productImage", url: url)
+                content.attachments.append(attachment)
+            } catch {
+                print("Unable to create attachment: \(error.localizedDescription)")
+            }
+        }
 
         let uuidString = UUID().uuidString
         let request = UNNotificationRequest(identifier: uuidString,
@@ -120,10 +130,23 @@ struct Notifier {
 
     func scheduleReminder(_ product: Product) {
         print("Schedule reminder for product \(String(describing: product.id))")
-        if let expiryString = product.expiryStringLong {
+        if let expiryString = product.expiryStringLong, let id = product.id {
+
+            var imageURL: URL? = nil
+            if let imageData = product.photo {
+                let imagePath = FileManager.default.temporaryDirectory.appendingPathComponent("image-\(id).jpg")
+                do {
+                    try imageData.write(to: imagePath)
+                    imageURL = imagePath
+                } catch {
+                    print("Unable to write image")
+                }
+            }
+
             sendNotification(
                 title: expiryString,
-                body: product.addedStringLong
+                body: product.addedStringLong,
+                fileURL: imageURL
             )
         } else {
             print("ERROR: Scheduling reminder for product without expiry date")

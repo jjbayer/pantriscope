@@ -15,7 +15,7 @@
         <attribute name="detectedText" optional="YES" attributeType="String"/>
         <attribute name="expiryDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
-        <attribute name="photo" attributeType="Binary"/>
+        <attribute name="photo" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
         <attribute name="state" attributeType="String" defaultValueString="available"/>
         <relationship name="inventory" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Inventory" inverseName="product" inverseEntity="Inventory"/>
         <relationship name="reminder" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Reminder" inverseName="product" inverseEntity="Reminder"/>

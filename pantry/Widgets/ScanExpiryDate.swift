@@ -141,6 +141,7 @@ struct ScanExpiryDate: View {
         }
 
         do {
+
             try self.managedObjectContext.save()
             self.statusMessage.info("Product saved.")
         } catch {
