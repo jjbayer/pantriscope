@@ -25,11 +25,11 @@ struct Notifier {
     func setup() {
 
         BGTaskScheduler.shared.register(forTaskWithIdentifier: Notifier.taskId, using: nil) { task in
-            self.sendOutReminders(task: task as! BGAppRefreshTask)
+            self.runBackgroundTask(task: task as! BGAppRefreshTask)
         }
     }
 
-    func schedule() {
+    func scheduleBackgroundTask() {
 
         print("Scheduling reminder background task...")
 
@@ -43,9 +43,17 @@ struct Notifier {
         }
     }
 
-    func sendOutReminders(task: BGAppRefreshTask) {
+    func runBackgroundTask(task: BGAppRefreshTask) {
+
+        scheduleBackgroundTask() // Run next
+
+        sendOutReminders()
+
+        task.setTaskCompleted(success: true)
+    }
+
+    func sendOutReminders() {
         print("Sending out reminders...")
-        schedule() // Run next
 
         let request = NSFetchRequest<Product>()
         request.entity = Product.entity()
@@ -70,7 +78,6 @@ struct Notifier {
             print("Failed to save after reminders")
         }
 
-        task.setTaskCompleted(success: true)
     }
 
     func requestAuthorization() {
