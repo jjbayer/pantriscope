@@ -57,6 +57,7 @@ struct ProductCard: View {
             // Make sure relative dates are fresh:
             self.delta = computeDelta()
         }
+        .id(product.id?.uuidString)
     }
 
     private var backgroundColor: Color {

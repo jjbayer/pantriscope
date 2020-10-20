@@ -15,4 +15,6 @@ class Navigator: ObservableObject {
     @Published var selectedTabItem: ContentView.TabID = .takeSnapshot
 
     @Published var selectedProductID: String = ""
+
+    @Published var dummy = false
 }

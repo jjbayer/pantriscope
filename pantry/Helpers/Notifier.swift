@@ -19,8 +19,10 @@ class ResponseReceiver: NSObject, UNUserNotificationCenterDelegate {
 
         if let id = response.notification.request.content.userInfo["PRODUCT_ID"] as? String {
             // TODO: when we have inventories, go to the correct inventory
+            print("Set product ID for navigation")
             Navigator.instance.selectedTabItem = .inventory
             Navigator.instance.selectedProductID = id
+            Navigator.instance.dummy = true // HACK to make InventoryView scroll to correct product
         }
         completionHandler()
     }

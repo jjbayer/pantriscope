@@ -39,6 +39,10 @@ struct ContentView: View {
                     Text("Inventory")
                 }
                 .tag(TabID.inventory)
+                .onDisappear {
+                    // No need to show it anymore
+                    navigator.selectedProductID = ""
+                }
         }
         .accentColor(App.Colors.info)
     }

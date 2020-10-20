@@ -13,6 +13,8 @@ struct InventoryView: View {
 
     @Environment(\.managedObjectContext) var managedObjectContext
 
+    @EnvironmentObject var navigator: Navigator
+
     @State private var statusMessage = StatusMessage()
 
     @State private var searchString = ""
@@ -40,18 +42,28 @@ struct InventoryView: View {
                 Text("No items in inventory.")
             } else {
 
-                List {
+                ScrollViewReader { proxy in
+                    List {
 
-                    TextField("Search", text: $searchString)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        TextField("Search", text: $searchString)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
 
-                    ForEach(products.filter {
-                        searchString.isEmpty || $0.detectedText?.lowercased().contains(searchString) ?? false
-                    }) { product in
-                        ProductCard(product: product, statusMessage: $statusMessage)
+                        ForEach(products.filter {
+                            searchString.isEmpty || $0.detectedText?.lowercased().contains(searchString) ?? false
+                        }) { product in
+                            ProductCard(product: product, statusMessage: $statusMessage)
+                        }
+                        .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 1, trailing: 0))
                     }
-                    .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 1, trailing: 0))
+                    .onReceive(navigator.objectWillChange) {
+                        let productID = Navigator.instance.selectedProductID
+                        print("navigator will change, productID = '\(productID)'")
+                        if !productID.isEmpty {
+                            proxy.scrollTo(productID)
+                        }
+                    }
                 }
+
                 Spacer()
             }
         }
