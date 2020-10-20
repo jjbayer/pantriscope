@@ -19,40 +19,50 @@ struct ProductCard: View {
 
     @State private var delta: (String, TimeInterval)?
 
+
+    @Binding var detail: Product?
+
     var body: some View {
-        HStack {
-            self.photo(product)
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .frame(width: 60, height: 60)
-                .clipShape(Capsule())
-                .padding()
 
-            VStack {
-                self.expiryText
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                if let date = product.expiryDate {
-                    Text("on \(formatDate(date))")
-                        .font(.footnote)
-                        .foregroundColor(App.Colors.note)
+        VStack {
+            HStack {
+
+                self.photo(product)
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 60, height: 60)
+                    .clipShape(Capsule())
+                    .padding()
+                    .onTapGesture {
+                        detail = self.product
+                    }
+
+                VStack {
+                    self.expiryText
                         .frame(maxWidth: .infinity, alignment: .leading)
+                    if let date = product.expiryDate {
+                        Text("on \(formatDate(date))")
+                            .font(.footnote)
+                            .foregroundColor(App.Colors.note)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                    }
                 }
+
+                Spacer()
+
+                Image(systemName: "exclamationmark.circle").foregroundColor(self.warningColor).padding()
+                Button(action: {
+                    Notifier.instance.scheduleReminder(product)
+                }) { Image(systemName: "paperplane").foregroundColor(App.Colors.note) }.padding() // for debugging
             }
-
-            Spacer()
-
-            Image(systemName: "exclamationmark.circle").foregroundColor(self.warningColor).padding()
-            Button(action: {
-                Notifier.instance.scheduleReminder(product)
-            }) { Image(systemName: "paperplane").foregroundColor(App.Colors.note) }.padding() // for debugging
-        }
-        .background(backgroundColor)
-        .modifier(
-            SwipeModifier(
-                leftAction: { self.archive(newState: "discarded", successMessage: "Product discarded.")},
-                rightAction: { self.archive(newState: "consumed", successMessage: "Product consumed.")}
+            .background(backgroundColor)
+            .modifier(
+                SwipeModifier(
+                    leftAction: { self.archive(newState: "discarded", successMessage: "Product discarded.")},
+                    rightAction: { self.archive(newState: "consumed", successMessage: "Product consumed.")}
+                )
             )
-        )
+        }
         .onAppear {
             // Make sure relative dates are fresh:
             self.delta = computeDelta()
@@ -146,14 +156,5 @@ struct ProductCard: View {
         } catch {
             self.statusMessage.error(error.localizedDescription)
         }
-    }
-}
-
-struct ProductCard_Previews: PreviewProvider {
-
-    static let product = Product()
-
-    static var previews: some View {
-        ProductCard(product: product, statusMessage: .constant(StatusMessage()))
     }
 }

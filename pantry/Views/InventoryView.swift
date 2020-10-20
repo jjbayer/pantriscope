@@ -19,6 +19,8 @@ struct InventoryView: View {
 
     @State private var searchString = ""
 
+    @State private var detail: Product? = nil
+
     @FetchRequest(
         entity: Product.entity(),
         sortDescriptors: [
@@ -31,6 +33,14 @@ struct InventoryView: View {
     let currentDate = Date()
 
     var body: some View {
+        if let product = detail {
+            ProductView(product: product, detail: $detail)
+        } else {
+            listView
+        }
+    }
+
+    var listView: some View {
 
         VStack {
 
@@ -41,7 +51,6 @@ struct InventoryView: View {
             if products.isEmpty {
                 Text("No items in inventory.")
             } else {
-
                 ScrollViewReader { proxy in
                     List {
 
@@ -51,7 +60,7 @@ struct InventoryView: View {
                         ForEach(products.filter {
                             searchString.isEmpty || $0.detectedText?.lowercased().contains(searchString) ?? false
                         }) { product in
-                            ProductCard(product: product, statusMessage: $statusMessage)
+                            ProductCard(product: product, statusMessage: $statusMessage, detail: $detail)
                         }
                         .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 1, trailing: 0))
                     }
@@ -63,7 +72,6 @@ struct InventoryView: View {
                         }
                     }
                 }
-
                 Spacer()
             }
         }

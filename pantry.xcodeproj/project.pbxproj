@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -21,6 +21,7 @@
 		A9AA7CDF2539961E0044BB3C /* Notifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AA7CDE2539961E0044BB3C /* Notifier.swift */; };
 		A9AA7CE32539B3C60044BB3C /* DataModelExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AA7CE22539B3C60044BB3C /* DataModelExtensions.swift */; };
 		A9AA7CE72539B4660044BB3C /* Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AA7CE62539B4660044BB3C /* Time.swift */; };
+		A9ECA6E6253F1578004A1473 /* ProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ECA6E5253F1578004A1473 /* ProductView.swift */; };
 		A9F4569D24EDB19B00481833 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F4569C24EDB19B00481833 /* AppDelegate.swift */; };
 		A9F4569F24EDB19B00481833 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F4569E24EDB19B00481833 /* SceneDelegate.swift */; };
 		A9F456A124EDB19B00481833 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F456A024EDB19B00481833 /* ContentView.swift */; };
@@ -63,6 +64,8 @@
 		A9AA7CDE2539961E0044BB3C /* Notifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifier.swift; sourceTree = "<group>"; };
 		A9AA7CE22539B3C60044BB3C /* DataModelExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModelExtensions.swift; sourceTree = "<group>"; };
 		A9AA7CE62539B4660044BB3C /* Time.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Time.swift; sourceTree = "<group>"; };
+		A9ECA6E5253F1578004A1473 /* ProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductView.swift; sourceTree = "<group>"; };
+		A9EFAAB0253F03A6005C9587 /* pantry.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = pantry.entitlements; sourceTree = "<group>"; };
 		A9F4569924EDB19B00481833 /* pantry.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pantry.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9F4569C24EDB19B00481833 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A9F4569E24EDB19B00481833 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -112,6 +115,7 @@
 				A9F456BE24F0207400481833 /* ScanProduct.swift */,
 				A9F4573724FA8F7200481833 /* InventoryView.swift */,
 				A9F456A024EDB19B00481833 /* ContentView.swift */,
+				A9ECA6E5253F1578004A1473 /* ProductView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -170,6 +174,7 @@
 		A9F4569B24EDB19B00481833 /* pantry */ = {
 			isa = PBXGroup;
 			children = (
+				A9EFAAB0253F03A6005C9587 /* pantry.entitlements */,
 				A9A72C5C24FBD5AD00BD7F2D /* Helpers */,
 				A9A72C5B24FBD57300BD7F2D /* Widgets */,
 				A9A72C5A24FBD54300BD7F2D /* Views */,
@@ -281,7 +286,7 @@
 				};
 			};
 			buildConfigurationList = A9F4569424EDB19B00481833 /* Build configuration list for PBXProject "pantry" */;
-			compatibilityVersion = "Xcode 9.3";
+			compatibilityVersion = "Xcode 12.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -399,6 +404,7 @@
 				A9AA7CDF2539961E0044BB3C /* Notifier.swift in Sources */,
 				A9F456D424F93AD500481833 /* DataModel.xcdatamodeld in Sources */,
 				A9A72C5624FBA70F00BD7F2D /* StatusMessage.swift in Sources */,
+				A9ECA6E6253F1578004A1473 /* ProductView.swift in Sources */,
 				A9F456A124EDB19B00481833 /* ContentView.swift in Sources */,
 				A9AA7CE32539B3C60044BB3C /* DataModelExtensions.swift in Sources */,
 				A917893B253B52F500D2C826 /* App.swift in Sources */,
@@ -564,6 +570,7 @@
 			baseConfigurationReference = 6DDF027C9086692215926334 /* Pods-pantry.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = pantry/pantry.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"pantry/Preview Content\"";
@@ -585,6 +592,7 @@
 			baseConfigurationReference = C8AE38ECC5955D2CCDC597DD /* Pods-pantry.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = pantry/pantry.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"pantry/Preview Content\"";
