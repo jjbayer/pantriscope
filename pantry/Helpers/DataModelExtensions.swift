@@ -33,12 +33,13 @@ extension Product {
         return normalize(dateAdded!).distance(to: today())
     }
 
-    /// ATTN: Does not save the managed object context
     func addReminder(_ reminderTime: TimeInterval) {
         if let context = self.managedObjectContext {
             let reminder = Reminder(context: context)
             reminder.product = self
+            print("Adding reminder for \(String(describing: self.id))")
             self.addToReminder(reminder)
+            do { try context.save() } catch { print("Unable to save reminder: \(error)")}
         } else {
             print("Cannot add reminder to product without context")
         }

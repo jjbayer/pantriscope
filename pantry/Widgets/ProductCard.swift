@@ -51,9 +51,6 @@ struct ProductCard: View {
                 Spacer()
 
                 Image(systemName: "exclamationmark.circle").foregroundColor(self.warningColor).padding()
-                Button(action: {
-                    Notifier.instance.scheduleReminder(product)
-                }) { Image(systemName: "paperplane").foregroundColor(App.Colors.note) }.padding() // for debugging
             }
             .background(backgroundColor)
             .modifier(

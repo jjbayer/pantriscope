@@ -42,7 +42,7 @@ struct SwipeModifier: AnimatableModifier {
     }
 
     private var gesture: some Gesture {
-        DragGesture(minimumDistance: 20, coordinateSpace: .local)
+        DragGesture(minimumDistance: 50, coordinateSpace: .local)
             .onChanged { value in
                 print("changed")
                 self.contentOffset.width = value.translation.width

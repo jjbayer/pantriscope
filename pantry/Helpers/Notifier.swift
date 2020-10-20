@@ -92,14 +92,6 @@ struct Notifier {
         for product in products {
             scheduleRemindersForProduct(product: product)
         }
-
-        // Save all the added reminders
-        do {
-            try context.save()
-        } catch {
-            print("Failed to save after reminders")
-        }
-
     }
 
     func requestAuthorization() {
@@ -108,7 +100,7 @@ struct Notifier {
         }
     }
 
-    func sendNotification(title: String, body: String, fileURL: URL?, userInfo: [AnyHashable : Any]) {
+    func sendNotification(title: String, body: String, fileURL: URL?, userInfo: [AnyHashable : Any], successFn: @escaping () -> ()) {
         print("Sending notification...")
 
         // TODO: localize
@@ -134,9 +126,11 @@ struct Notifier {
 
         let notificationCenter = UNUserNotificationCenter.current()
         notificationCenter.add(request) { (error) in
-           if let error = error {
-              print("Failed to notify: \(error.localizedDescription)")
-           }
+            if let error = error {
+                print("Failed to notify: \(error.localizedDescription)")
+            } else {
+                successFn()
+            }
         }
     }
 
@@ -150,7 +144,7 @@ struct Notifier {
 
                 if lifespan >= reminderTime * Notifier.minRelativeLifespan && timeUntilExpiry <= reminderTime {
 
-                    scheduleReminder(product)
+                    scheduleReminder(product, reminderTime)
 
                     break // one reminder is enough
                 }
@@ -158,7 +152,7 @@ struct Notifier {
         }
     }
 
-    func scheduleReminder(_ product: Product) {
+    func scheduleReminder(_ product: Product, _ reminderTime: TimeInterval) {
         print("Schedule reminder for product \(String(describing: product.id))")
         if let expiryString = product.expiryStringLong, let id = product.id {
 
@@ -177,7 +171,10 @@ struct Notifier {
                 title: expiryString,
                 body: product.addedStringLong,
                 fileURL: imageURL,
-                userInfo: ["PRODUCT_ID": id.uuidString]
+                userInfo: ["PRODUCT_ID": id.uuidString],
+                successFn: {
+                    product.addReminder(reminderTime)
+                }
             )
         } else {
             print("ERROR: Scheduling reminder for product without expiry date")
