@@ -146,7 +146,7 @@ struct Notifier {
                 // No notification has to be scheduled if reminder time already exists
                 if product.hasReminder(reminderTime) { break }
 
-                if lifespan > reminderTime * Notifier.minRelativeLifespan && timeUntilExpiry <= reminderTime {
+                if lifespan >= reminderTime * Notifier.minRelativeLifespan && timeUntilExpiry <= reminderTime {
 
                     scheduleReminder(product)
 
