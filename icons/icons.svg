@@ -54,11 +54,11 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="3.4448442"
-     inkscape:cx="476.78487"
-     inkscape:cy="488.06826"
+     inkscape:zoom="2.2510314"
+     inkscape:cx="479.50919"
+     inkscape:cy="479.51552"
      inkscape:document-units="mm"
-     inkscape:current-layer="g961"
+     inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
      showgrid="true"
      inkscape:window-width="1440"
@@ -95,8 +95,9 @@
     <g
        id="g101"
        style="fill:#e2f3f2;fill-opacity:1"
-       inkscape:export-xdpi="138.24004"
-       inkscape:export-ydpi="138.24004">
+       inkscape:export-xdpi="786.43219"
+       inkscape:export-ydpi="786.43219"
+       inkscape:export-filename="/Users/joris/dev/pantry/pantry/Assets.xcassets/AppIcon.appiconset/1024x1024.png">
       <rect
          style="fill:#e2f3f2;fill-opacity:1;stroke:none;stroke-width:0.184022"
          id="rect942"
@@ -108,9 +109,10 @@
     </g>
     <g
        id="g961"
-       transform="translate(-0.04236507,-0.66146946)"
-       inkscape:export-xdpi="138.24004"
-       inkscape:export-ydpi="138.24004">
+       transform="matrix(0.95454589,0,0,0.95454589,5.3413753,5.0510709)"
+       inkscape:export-xdpi="786.43219"
+       inkscape:export-ydpi="786.43219"
+       inkscape:export-filename="/Users/joris/dev/pantry/pantry/Assets.xcassets/AppIcon.appiconset/1024x1024.png">
       <rect
          style="fill:#48a9a6;fill-opacity:1;stroke:none;stroke-width:0.258694"
          id="rect66"
@@ -118,15 +120,21 @@
          height="22.489595"
          x="107.241"
          y="117.73957"
-         ry="2.6458435" />
+         ry="2.6458435"
+         inkscape:export-xdpi="138.24001"
+         inkscape:export-ydpi="138.24001" />
       <path
          id="rect68"
          style="fill:url(#linearGradient932);fill-opacity:1;stroke:none;stroke-width:0.237234"
          d="m 109.80209,111.125 h 17.19792 v 5.29167 h -17.19792 z"
-         sodipodi:nodetypes="ccccc" />
+         sodipodi:nodetypes="ccccc"
+         inkscape:export-xdpi="138.24001"
+         inkscape:export-ydpi="138.24001" />
       <g
          id="g951"
-         style="stroke:none;stroke-opacity:0;fill:#e2f3f2;fill-opacity:1">
+         style="fill:#e2f3f2;fill-opacity:1;stroke:none;stroke-opacity:0"
+         inkscape:export-xdpi="138.24001"
+         inkscape:export-ydpi="138.24001">
         <g
            id="g946"
            style="fill:#e2f3f2;fill-opacity:1;stroke:none;stroke-opacity:0"
