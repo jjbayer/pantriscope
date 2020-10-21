@@ -36,7 +36,7 @@ struct InventoryView: View {
         ZStack {
             listView
             if let product = detail {
-                ProductView(product: product, detail: $detail)
+                ProductView(product: product, detail: $detail, statusMessage: $statusMessage)
             }
         }
     }
