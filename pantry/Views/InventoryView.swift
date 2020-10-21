@@ -33,10 +33,11 @@ struct InventoryView: View {
     let currentDate = Date()
 
     var body: some View {
-        if let product = detail {
-            ProductView(product: product, detail: $detail)
-        } else {
+        ZStack {
             listView
+            if let product = detail {
+                ProductView(product: product, detail: $detail)
+            }
         }
     }
 
