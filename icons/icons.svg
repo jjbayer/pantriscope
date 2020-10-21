@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg8"
+   sodipodi:docname="icons.svg"
+   inkscape:version="1.0.1 (c497b03c, 2020-09-10)">
+  <defs
+     id="defs2">
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient930">
+      <stop
+         style="stop-color:#008080;stop-opacity:1;"
+         offset="0"
+         id="stop926" />
+      <stop
+         style="stop-color:#008080;stop-opacity:0;"
+         offset="1"
+         id="stop928" />
+    </linearGradient>
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="-10.583333 : 205.95238 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="134.40476 : 346.55953 : 1"
+       inkscape:persp3d-origin="105 : 99 : 1"
+       id="perspective30" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient930"
+       id="linearGradient932"
+       x1="109.80208"
+       y1="112.44791"
+       x2="140.22917"
+       y2="112.44791"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(5.086263e-6,1.3229167)" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="3.4448442"
+     inkscape:cx="476.78487"
+     inkscape:cy="488.06826"
+     inkscape:document-units="mm"
+     inkscape:current-layer="g961"
+     inkscape:document-rotation="0"
+     showgrid="true"
+     inkscape:window-width="1440"
+     inkscape:window-height="855"
+     inkscape:window-x="0"
+     inkscape:window-y="23"
+     inkscape:window-maximized="1">
+    <inkscape:grid
+       type="xygrid"
+       id="grid71" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:none;fill-rule:evenodd;stroke-width:0.264583"
+       id="rect10"
+       width="47.625"
+       height="49.892857"
+       x="89.202377"
+       y="148.16667" />
+    <g
+       id="g101"
+       style="fill:#e2f3f2;fill-opacity:1"
+       inkscape:export-xdpi="138.24004"
+       inkscape:export-ydpi="138.24004">
+      <rect
+         style="fill:#e2f3f2;fill-opacity:1;stroke:none;stroke-width:0.184022"
+         id="rect942"
+         width="33.07291"
+         height="33.072914"
+         x="101.86459"
+         y="108.47916"
+         ry="7.4797981e-06" />
+    </g>
+    <g
+       id="g961"
+       transform="translate(-0.04236507,-0.66146946)"
+       inkscape:export-xdpi="138.24004"
+       inkscape:export-ydpi="138.24004">
+      <rect
+         style="fill:#48a9a6;fill-opacity:1;stroke:none;stroke-width:0.258694"
+         id="rect66"
+         width="22.404833"
+         height="22.489595"
+         x="107.241"
+         y="117.73957"
+         ry="2.6458435" />
+      <path
+         id="rect68"
+         style="fill:url(#linearGradient932);fill-opacity:1;stroke:none;stroke-width:0.237234"
+         d="m 109.80209,111.125 h 17.19792 v 5.29167 h -17.19792 z"
+         sodipodi:nodetypes="ccccc" />
+      <g
+         id="g951"
+         style="stroke:none;stroke-opacity:0;fill:#e2f3f2;fill-opacity:1">
+        <g
+           id="g946"
+           style="fill:#e2f3f2;fill-opacity:1;stroke:none;stroke-opacity:0"
+           transform="translate(5.086263e-6,1.3229167)">
+          <circle
+             style="fill:#e2f3f2;fill-opacity:1;stroke:none;stroke-width:0.180539;stroke-opacity:0"
+             id="path73"
+             cx="118.40104"
+             cy="127.66145"
+             r="5.867506" />
+          <path
+             id="path77"
+             style="fill:#e2f3f2;fill-opacity:1;stroke:none;stroke-width:0.0465253;stroke-opacity:0"
+             d="M 124.35417,119.06251 H 127 v 1.32291 h -2.64583 z" />
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
