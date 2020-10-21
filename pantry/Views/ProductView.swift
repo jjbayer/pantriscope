@@ -15,6 +15,7 @@ struct ProductView: View {
     @Binding var statusMessage: StatusMessage
 
     @State private var productState: String
+    @State private var hasExpiryDate: Bool
     @State private var expiryDate: Date
 
     @Environment(\.managedObjectContext) var managedObjectContext
@@ -44,7 +45,10 @@ struct ProductView: View {
                     Text("discarded").tag("discarded")
                     Text("consumed").tag("consumed")
                 }
-                DatePicker("expiry date", selection: $expiryDate, displayedComponents: .date)
+                Toggle("has expiry date", isOn: $hasExpiryDate)
+                if hasExpiryDate {
+                    DatePicker("expiry date", selection: $expiryDate, displayedComponents: .date)
+                }
             }
 
             Section {
@@ -62,7 +66,11 @@ struct ProductView: View {
                 }
                 Button(action: {
                     print("Saving...")
-                    product.expiryDate = expiryDate
+                    if hasExpiryDate {
+                        product.expiryDate = expiryDate
+                    } else {
+                        product.expiryDate = nil
+                    }
                     product.state = productState
                     if let _ = try? managedObjectContext.save() {
                         detail = nil
@@ -85,8 +93,9 @@ extension ProductView {
     init(product: Product, detail: Binding<Product?>, statusMessage: Binding<StatusMessage>) {
         let productState = product.state ?? "available"
         let expiryDate = product.expiryDate ?? Date()
+        let hasExpiryDate = product.expiryDate != nil
 
-        self.init(product: product, detail: detail, statusMessage: statusMessage, productState: productState, expiryDate: expiryDate)
+        self.init(product: product, detail: detail, statusMessage: statusMessage, productState: productState, hasExpiryDate: hasExpiryDate, expiryDate: expiryDate)
     }
 }
 
