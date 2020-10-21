@@ -33,9 +33,7 @@ struct ProductCard: View {
                     .frame(width: 60, height: 60)
                     .clipShape(Capsule())
                     .padding()
-                    .onTapGesture {
-                        detail = self.product
-                    }
+
 
                 VStack {
                     self.expiryText
@@ -59,6 +57,9 @@ struct ProductCard: View {
                     rightAction: { self.archive(newState: "consumed", successMessage: "Product consumed.")}
                 )
             )
+            .onTapGesture {
+                detail = self.product
+            }
         }
         .onAppear {
             // Make sure relative dates are fresh:
