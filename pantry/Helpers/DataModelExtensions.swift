@@ -94,6 +94,10 @@ extension Product {
     }
 
     var addedStringLong: String {
-        return "Added \(relativeDateDescription(dateAdded!))."
+        if let added = dateAdded {
+            return "Added \(relativeDateDescription(added))."
+        } else {
+            return "<no added date>"
+        }
     }
 }
