@@ -22,8 +22,8 @@ struct ContentView: View {
 
             ScanProduct()
                 .tabItem {
-                    Image(systemName: "camera")
-                    Text("Scan")
+                    Image(systemName: "viewfinder")
+                    Text("Add products")
                 }
                 .tag(TabID.takeSnapshot)
                 .onAppear {
@@ -55,8 +55,8 @@ struct ContentView_Previews: PreviewProvider {
 
             Text("Scan Product")
                 .tabItem {
-                    Image(systemName: "photo")
-                    Text("Scan")
+                    Image(systemName: "viewfinder")
+                    Text("Add products")
                 }
                 .background(App.Colors.background)
                 .foregroundColor(App.Colors.primary)

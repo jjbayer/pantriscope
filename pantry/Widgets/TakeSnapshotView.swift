@@ -14,15 +14,10 @@ struct TakeSnapshotView: View {
 
     var body: some View {
         
-            HStack {
-                Image(systemName: "viewfinder")
-                Text("Scan Product")
-            }
-
-            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 50)
-            .foregroundColor(.white)
-            .background(App.Colors.primary)
-            .cornerRadius(10)
+        Image(systemName: "largecircle.fill.circle")
+            .resizable()
+            .frame(maxWidth: 80, maxHeight: 80)
+            .foregroundColor(App.Colors.primary)
             .padding()
             .simultaneousGesture(TapGesture().onEnded {
                 Camera.instance.takeSnapshot()

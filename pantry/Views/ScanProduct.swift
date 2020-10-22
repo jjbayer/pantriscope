@@ -29,11 +29,15 @@ struct ScanProduct: View {
                     .scaledToFill()
                     .layoutPriority(-1) // https://stackoverflow.com/questions/58290963/clip-image-to-square-in-swiftui
 
-                RoundedRectangle(cornerRadius: 10)
-                    .stroke(App.Colors.note, lineWidth: 4)
-                    .frame(
-                        width: relViewFinderWidth * geometry.size.width,
-                        height: relViewFinderHeight * geometry.size.width, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                VStack {
+                    RoundedRectangle(cornerRadius: 10)
+                        .stroke(App.Colors.note, lineWidth: 4)
+                        .frame(
+                            width: relViewFinderWidth * geometry.size.width,
+                            height: relViewFinderHeight * geometry.size.width, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                    Text(scanProductMode == .takeSnapshot ? "Product photo" : "Scan expiry date")
+                        .foregroundColor(App.Colors.note)
+                }
 
                 VStack {
 
@@ -65,16 +69,23 @@ struct ScanProduct_Previews: PreviewProvider {
 
                 Rectangle().scaledToFill().layoutPriority(-1) // represents camera
 
-                RoundedRectangle(cornerRadius: 20)
-                    .stroke(App.Colors.note, lineWidth: 4)
-                    .frame(width: 0.9 * geometry.size.width, height: 0.3 * geometry.size.width, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                VStack {
+                    RoundedRectangle(cornerRadius: 20)
+                        .stroke(App.Colors.note, lineWidth: 4)
+                        .frame(width: 0.9 * geometry.size.width, height: 0.3 * geometry.size.width, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                    Text("Product photo").foregroundColor(App.Colors.note)
+                }
 
                 VStack {
                     StatusMessageView(statusMessage: .constant(StatusMessage()))
                     Spacer()
 
 
-                    Text("Bottom content").foregroundColor(.pink)
+                    Image(systemName: "largecircle.fill.circle")
+                        .resizable()
+                        .frame(maxWidth: 80, maxHeight: 80)
+                        .foregroundColor(App.Colors.primary)
+                        .padding()
                 }
 
             }
