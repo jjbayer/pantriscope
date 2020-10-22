@@ -11,7 +11,6 @@ import SwiftUI
 struct ProductView: View {
 
     var product: Product
-    @Binding var detail: Product?
     @Binding var statusMessage: StatusMessage
 
     @State private var productState: String
@@ -19,6 +18,7 @@ struct ProductView: View {
     @State private var expiryDate: Date
 
     @Environment(\.managedObjectContext) var managedObjectContext
+    @EnvironmentObject var navigator: Navigator
 
     var body: some View {
 
@@ -26,9 +26,8 @@ struct ProductView: View {
 
         Form {
 
-            Button(action: { detail = nil }) { HStack { Image(systemName: "chevron.backward"); Text("Back") } }
-
             Section {
+                Button(action: { navigator.productDetail = nil }) { HStack { Image(systemName: "chevron.backward"); Text("Back") } }
                 if let photoData = product.photo {
                     if let uiImage = UIImage(data: photoData) {
                         Image(uiImage: uiImage)
@@ -51,12 +50,24 @@ struct ProductView: View {
                 }
             }
 
+            #if DEBUG
             Section {
+                Button(action: { Notifier.instance.scheduleReminder(product, 0)}) {
+                    HStack {
+                        Image(systemName: "paperplane")
+                        Text("Send test notification")
+                    }
+                }.foregroundColor(App.Colors.note)
+            }
+            #endif
+
+            Section {
+
                 Button(action: {
                     print("Deleting...")
                     managedObjectContext.delete(product)
                     if let _ = try? managedObjectContext.save() {
-                        detail = nil
+                        navigator.productDetail = nil
                         statusMessage.info("Product deleted.")
                     } else {
                         statusMessage.error("Product could not be deleted.")
@@ -64,6 +75,8 @@ struct ProductView: View {
                 }) {
                     Text("Delete forever").foregroundColor(App.Colors.error)
                 }
+                .frame(maxWidth: .infinity, alignment: .center)
+
                 Button(action: {
                     print("Saving...")
                     if hasExpiryDate {
@@ -73,7 +86,7 @@ struct ProductView: View {
                     }
                     product.state = productState
                     if let _ = try? managedObjectContext.save() {
-                        detail = nil
+                        navigator.productDetail = nil
                         statusMessage.info("Product saved.")
                     } else {
                         statusMessage.error("Product could not be saved.")
@@ -81,7 +94,7 @@ struct ProductView: View {
                 }) {
                     Text("Save").foregroundColor(App.Colors.success)
                 }
-
+                .frame(maxWidth: .infinity, alignment: .center)
 
             }
         }
@@ -90,12 +103,12 @@ struct ProductView: View {
 
 extension ProductView {
     // init calling default constructor must be in extension, see https://docs.swift.org/swift-book/LanguageGuide/Initialization.html
-    init(product: Product, detail: Binding<Product?>, statusMessage: Binding<StatusMessage>) {
+    init(product: Product, statusMessage: Binding<StatusMessage>) {
         let productState = product.state ?? "available"
         let expiryDate = product.expiryDate ?? Date()
         let hasExpiryDate = product.expiryDate != nil
 
-        self.init(product: product, detail: detail, statusMessage: statusMessage, productState: productState, hasExpiryDate: hasExpiryDate, expiryDate: expiryDate)
+        self.init(product: product, statusMessage: statusMessage, productState: productState, hasExpiryDate: hasExpiryDate, expiryDate: expiryDate)
     }
 }
 
@@ -109,6 +122,6 @@ struct ProductView_Previews: PreviewProvider {
         product.dateAdded = DateFormatter().date(from: "2020-09-31")
         product.expiryDate = DateFormatter().date(from: "2020-10-31")
 
-        return ProductView(product: product, detail: .constant(nil), statusMessage: .constant(StatusMessage()))
+        return ProductView(product: product, statusMessage: .constant(StatusMessage()))
     }
 }

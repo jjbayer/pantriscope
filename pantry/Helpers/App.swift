@@ -25,14 +25,6 @@ extension Color {
 
 struct App {
 
-//    struct Colors {
-//        static let warning = Color(hex: 0xDBD56E)
-//        static let success = Color(hex: 0x87AA74)
-//        static let info    = Color(hex: 0x2D93AD)
-//        static let note    = Color(hex: 0x7D7C84)
-//        static let error   = Color(hex: 0xDE8F6E)
-//    }
-
     struct Colors {
         // https://coolors.co/48a9a6-4281a4-93b0bf-e4dfda-d4b483-c1666b
         static let warning = Color(hex: 0xD4B483)

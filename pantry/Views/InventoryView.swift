@@ -19,8 +19,6 @@ struct InventoryView: View {
 
     @State private var searchString = ""
 
-    @State private var detail: Product? = nil
-
     @FetchRequest(
         entity: Product.entity(),
         sortDescriptors: [
@@ -35,8 +33,8 @@ struct InventoryView: View {
     var body: some View {
         ZStack {
             listView
-            if let product = detail {
-                ProductView(product: product, detail: $detail, statusMessage: $statusMessage)
+            if let product = navigator.productDetail {
+                ProductView(product: product, statusMessage: $statusMessage)
             }
         }
     }
@@ -61,7 +59,7 @@ struct InventoryView: View {
                         ForEach(products.filter {
                             searchString.isEmpty || $0.detectedText?.lowercased().contains(searchString) ?? false
                         }) { product in
-                            ProductCard(product: product, statusMessage: $statusMessage, detail: $detail)
+                            ProductCard(product: product, statusMessage: $statusMessage)
                         }
                         .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 1, trailing: 0))
                     }
@@ -81,6 +79,9 @@ struct InventoryView: View {
 
 struct InventoryView_Previews: PreviewProvider {
     static var previews: some View {
-        InventoryView()
+        VStack {
+            Text("placeholder").frame(maxWidth: .infinity, minHeight: 100)
+            Text("placeholder").frame(maxWidth: .infinity, minHeight: 100).background(App.Colors.background)
+        }
     }
 }

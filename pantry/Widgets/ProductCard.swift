@@ -19,9 +19,6 @@ struct ProductCard: View {
 
     @State private var delta: (String, TimeInterval)?
 
-
-    @Binding var detail: Product?
-
     var body: some View {
 
         VStack {
@@ -58,7 +55,7 @@ struct ProductCard: View {
                 )
             )
             .onTapGesture {
-                detail = self.product
+                navigator.productDetail = self.product
             }
         }
         .onAppear {
