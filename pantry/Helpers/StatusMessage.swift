@@ -11,7 +11,7 @@ struct StatusMessage {
 
     enum StatusType {
         case debug
-        case info
+        case success
         case warning
         case error
     }
@@ -19,12 +19,12 @@ struct StatusMessage {
     typealias UndoAction = ()->Void
 
     var text: String?
-    var status: StatusType = .info
+    var status: StatusType = .success
 
     var undoAction: UndoAction?
 
-    mutating func info(_ message: String, undoAction: UndoAction? = nil) {
-        status = .info
+    mutating func success(_ message: String, undoAction: UndoAction? = nil) {
+        status = .success
         text = message
         self.undoAction = undoAction
     }

@@ -44,7 +44,7 @@ struct ContentView: View {
                     navigator.selectedProductID = ""
                 }
         }
-        .accentColor(App.Colors.info)
+        .accentColor(App.Colors.primary)
     }
 }
 
@@ -59,7 +59,7 @@ struct ContentView_Previews: PreviewProvider {
                     Text("Scan")
                 }
                 .background(App.Colors.background)
-                .foregroundColor(App.Colors.info)
+                .foregroundColor(App.Colors.primary)
                 .tag(0)
 
             Text("Inventory")
@@ -69,7 +69,7 @@ struct ContentView_Previews: PreviewProvider {
                 }
                 .tag(1)
         }
-        .accentColor(App.Colors.info)
+        .accentColor(App.Colors.primary)
         .foregroundColor(App.Colors.note)
         .background(App.Colors.background)
     }

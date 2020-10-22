@@ -64,7 +64,7 @@ struct InventoryView: View {
                         .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 1, trailing: 0))
                     }
                     .onReceive(navigator.objectWillChange) {
-                        let productID = Navigator.instance.selectedProductID
+                        let productID = navigator.selectedProductID
                         print("navigator will change, productID = '\(productID)'")
                         if !productID.isEmpty {
                             proxy.scrollTo(productID)
@@ -79,9 +79,14 @@ struct InventoryView: View {
 
 struct InventoryView_Previews: PreviewProvider {
     static var previews: some View {
-        VStack {
-            Text("placeholder").frame(maxWidth: .infinity, minHeight: 100)
-            Text("placeholder").frame(maxWidth: .infinity, minHeight: 100).background(App.Colors.background)
+        LazyVStack {
+
+            ForEach(0..<2) { i in
+                Text("placeholder")
+                    .frame(maxWidth: .infinity, minHeight: 100)
+                Divider().background(Color.red)
+            }
         }
+        Spacer()
     }
 }

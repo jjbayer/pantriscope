@@ -68,7 +68,7 @@ struct ProductView: View {
                     managedObjectContext.delete(product)
                     if let _ = try? managedObjectContext.save() {
                         navigator.productDetail = nil
-                        statusMessage.info("Product deleted.")
+                        statusMessage.success("Product deleted.")
                     } else {
                         statusMessage.error("Product could not be deleted.")
                     }
@@ -87,12 +87,12 @@ struct ProductView: View {
                     product.state = productState
                     if let _ = try? managedObjectContext.save() {
                         navigator.productDetail = nil
-                        statusMessage.info("Product saved.")
+                        statusMessage.success("Product saved.")
                     } else {
                         statusMessage.error("Product could not be saved.")
                     }
                 }) {
-                    Text("Save").foregroundColor(App.Colors.success)
+                    Text("Save").foregroundColor(App.Colors.primary)
                 }
                 .frame(maxWidth: .infinity, alignment: .center)
 

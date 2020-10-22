@@ -144,7 +144,7 @@ struct ProductCard: View {
     private func save(successMessage: String, undoAction: StatusMessage.UndoAction? = nil) {
         do {
             try self.managedObjectContext.save()
-            self.statusMessage.info(successMessage, undoAction: undoAction)
+            self.statusMessage.success(successMessage, undoAction: undoAction)
 
             Notifier.instance.requestAuthorization()
 

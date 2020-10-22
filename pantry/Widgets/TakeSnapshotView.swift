@@ -21,7 +21,7 @@ struct TakeSnapshotView: View {
 
             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 50)
             .foregroundColor(.white)
-            .background(App.Colors.info)
+            .background(App.Colors.primary)
             .cornerRadius(10)
             .padding()
             .simultaneousGesture(TapGesture().onEnded {

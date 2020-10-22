@@ -114,7 +114,7 @@ struct ScanExpiryDate: View {
         .disabled(!dateWasSelected)
         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 50)
         .foregroundColor(.white)
-        .background(dateWasSelected ? App.Colors.success : App.Colors.background)
+        .background(dateWasSelected ? App.Colors.primary : App.Colors.note)
         .cornerRadius(cornerRadius)
     }
 
@@ -130,7 +130,7 @@ struct ScanExpiryDate: View {
                 // Save, because async
                 do {
                     try self.managedObjectContext.save()
-                    self.statusMessage.info("Product saved.")
+                    self.statusMessage.success("Product saved.")
                 } catch {
                     print("Error saving detected text")
                 }
@@ -143,7 +143,7 @@ struct ScanExpiryDate: View {
         do {
 
             try self.managedObjectContext.save()
-            self.statusMessage.info("Product saved.")
+            self.statusMessage.success("Product saved.")
         } catch {
             self.statusMessage.error("Error saving product") // TODO: report
         }
