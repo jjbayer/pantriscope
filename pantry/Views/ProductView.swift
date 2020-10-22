@@ -44,7 +44,7 @@ struct ProductView: View {
                     Text("available").tag("available")
                     Text("discarded").tag("discarded")
                     Text("consumed").tag("consumed")
-                }
+                }.pickerStyle(SegmentedPickerStyle())
                 Toggle("has expiry date", isOn: $hasExpiryDate)
                 if hasExpiryDate {
                     DatePicker("expiry date", selection: $expiryDate, displayedComponents: .date)
