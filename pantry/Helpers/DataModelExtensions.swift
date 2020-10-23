@@ -65,11 +65,13 @@ extension Product {
 
         if let delta = timeUntilExpiry, let date = expiryDate {
             if delta < 0 {
-                result = "expired \(relativeDateDescription(date))"
+                let format = NSLocalizedString("expired %@", comment: "e.g. expired last week")
+                result = String(format: format, relativeDateDescription(date))
             } else if delta == 0 {
-                result = "expires today"
+                result = NSLocalizedString("expires today", comment: "")
             } else {
-                result = "expires \(relativeDateDescription(date))"
+                let format = NSLocalizedString("expires %@", comment: "e.g. expires in two days")
+                result = String(format: format, relativeDateDescription(date))
             }
         }
 
@@ -82,11 +84,13 @@ extension Product {
 
         if let delta = timeUntilExpiry, let date = expiryDate {
             if delta < 0 {
-                result = "Product expired \(relativeDateDescription(date))."
+                let format = NSLocalizedString("Product expired %@.", comment: "e.g. Product expired last week.")
+                result = String(format: format, relativeDateDescription(date))
             } else if delta == 0 {
-                result = "Product expires today."
+                result = NSLocalizedString("Product expires today.", comment: "")
             } else {
-                result = "Product expires \(relativeDateDescription(date))."
+                let format = NSLocalizedString("Product expires %@.", comment: "e.g. Product expires in two days.")
+                result = String(format: format, relativeDateDescription(date))
             }
         }
 
@@ -94,10 +98,17 @@ extension Product {
     }
 
     var addedStringLong: String {
+
         if let added = dateAdded {
-            return "Added \(relativeDateDescription(added))."
+
+            if added == today() {
+                return NSLocalizedString("Added today.", comment: "")
+            }
+
+            let format = NSLocalizedString("Added %@.", comment: "e.g. Added two weeks ago.")
+            return String(format: format, relativeDateDescription(added))
         } else {
-            return "<no added date>"
+            return NSLocalizedString("<no added date>", comment: "Should never happen")
         }
     }
 }

@@ -50,8 +50,13 @@ struct ProductCard: View {
             .background(backgroundColor)
             .modifier(
                 SwipeModifier(
-                    leftAction: { self.archive(newState: "discarded", successMessage: "Product discarded.")},
-                    rightAction: { self.archive(newState: "consumed", successMessage: "Product consumed.")}
+                    leftAction: {
+                        self.archive(
+                            newState: "discarded",
+                            successMessage: NSLocalizedString("Product discarded.", comment: "")
+                        )
+                    },
+                    rightAction: { self.archive(newState: "consumed", successMessage: NSLocalizedString("Product consumed.", comment: ""))}
                 )
             )
             .onTapGesture {
@@ -138,7 +143,7 @@ struct ProductCard: View {
 
     private func restore(_ product: Product) {
         product.state = "available"
-        save(successMessage: "Product restored.")
+        save(successMessage: NSLocalizedString("Product restored.", comment: "when moved back from archive to available products"))
     }
 
     private func save(successMessage: String, undoAction: StatusMessage.UndoAction? = nil) {

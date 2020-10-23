@@ -62,5 +62,35 @@
 "Send test notification" = "Testbenachrichtigung schicken";
 
 /* No comment provided by engineer. */
-"Undo" = "rückgängig";
+"Undo" = "Rückgängig";
+
+
+
+/* Added by hand */
+
+"Scan expiry date" = "Ablaufdatum scannen";
+"Detecting expiry date..." = "Ablaufdatum wird erkannt...";
+"Expiry date:" = "Ablaufdatum";
+"Product saved." = "Produkt gespeichert.";
+"Product could not be saved." = "Produkt konnte nicht gespeichert werden.";
+"Product restored." = "Produkt wiederhergestellt.";
+"Product discarded." = "Produkt entsorgt.";
+"Product consumed." = "Produkt verwertet.";
+"Product deleted." = "Produkt gelöscht.";
+"Product could not be deleted." = "Produkt konnte nicht gelöscht werden.";
+
+"expired %@" = "%@ abgelaufen";
+"expires today" = "läuft heute ab";
+"expires %@" = "läuft %@ ab";
+
+"Product expired %@." = "Produkt ist %@ abgelaufen.";
+"Product expires today." = "Produkt läuft heute ab.";
+"Product expires %@" = "Produkt läuft %@ ab.";
+
+"Added %@." = "%@ hinzugefügt.";
+"<no added date>" = "<Hinzufügungsdatum unbekannt>";
+
+"has expiry date" = "hat ein Ablaufdatum";
+"exiry date" = "Ablaufdatum";
+
 

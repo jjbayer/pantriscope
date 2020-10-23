@@ -83,9 +83,9 @@ struct ScanExpiryDate: View {
 
     var labelText: String {
         if dateWasSelected {
-            return "Expiry date:"
+            return NSLocalizedString("Expiry date:", comment: "")
         } else {
-            return "Detecting expiry date..."
+            return NSLocalizedString("Detecting expiry date...", comment: "")
         }
     }
 
@@ -130,7 +130,7 @@ struct ScanExpiryDate: View {
                 // Save, because async
                 do {
                     try self.managedObjectContext.save()
-                    self.statusMessage.success("Product saved.")
+                    self.statusMessage.success(NSLocalizedString("Product saved.", comment: ""))
                 } catch {
                     print("Error saving detected text")
                 }
@@ -143,9 +143,9 @@ struct ScanExpiryDate: View {
         do {
 
             try self.managedObjectContext.save()
-            self.statusMessage.success("Product saved.")
+            self.statusMessage.success(NSLocalizedString("Product saved.", comment: ""))
         } catch {
-            self.statusMessage.error("Error saving product") // TODO: report
+            self.statusMessage.error(NSLocalizedString("Error saving product", comment: "")) // TODO: report
         }
         scanProductMode = .takeSnapshot
     }

@@ -46,7 +46,8 @@ struct ProductView: View {
                 }.pickerStyle(SegmentedPickerStyle())
                 Toggle("has expiry date", isOn: $hasExpiryDate)
                 if hasExpiryDate {
-                    DatePicker("expiry date", selection: $expiryDate, displayedComponents: .date)
+                    let label = NSLocalizedString("expiry date", comment: "")
+                    DatePicker(label, selection: $expiryDate, displayedComponents: .date)
                 }
             }
 
@@ -68,9 +69,11 @@ struct ProductView: View {
                     managedObjectContext.delete(product)
                     if let _ = try? managedObjectContext.save() {
                         navigator.productDetail = nil
-                        statusMessage.success("Product deleted.")
+                        statusMessage.success(
+                            NSLocalizedString("Product deleted.", comment: ""))
                     } else {
-                        statusMessage.error("Product could not be deleted.")
+                        statusMessage.error(
+                            NSLocalizedString("Product could not be deleted.", comment: ""))
                     }
                 }) {
                     Text("Delete forever").foregroundColor(App.Colors.error)
@@ -87,9 +90,13 @@ struct ProductView: View {
                     product.state = productState
                     if let _ = try? managedObjectContext.save() {
                         navigator.productDetail = nil
-                        statusMessage.success("Product saved.")
+                        statusMessage.success(
+                            NSLocalizedString("Product saved.", comment: "")
+                        )
                     } else {
-                        statusMessage.error("Product could not be saved.")
+                        statusMessage.error(
+                            NSLocalizedString("Product could not be saved.", comment: "")
+                        )
                     }
                 }) {
                     Text("Save").foregroundColor(App.Colors.primary)
