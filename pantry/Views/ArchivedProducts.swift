@@ -34,15 +34,38 @@ struct ArchivedProducts: View {
                             Text(product.addedStringLong)
                         }
                     }
+                    .isDetailLink(true)
                 }
+                .listRowInsets(.none)
             }
         }
-        .navigationBarTitle(Text("Archived products"))
+        .navigationBarTitle(Text("Archived products"), displayMode: .inline)
     }
 }
 
 struct ArchivedProducts_Previews: PreviewProvider {
     static var previews: some View {
-        ArchivedProducts()
+        NavigationView {
+            List {
+                ForEach(0..<5) { i in
+                    NavigationLink(destination: Text("placeholder")) {
+                        HStack {
+                            Image(systemName: "circle")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(maxWidth: 50)
+                                .background(Color.blue)
+                            Text("Placeholder")
+                        }
+                    }.isDetailLink(true)
+                }
+                .listRowInsets(.none)
+            }
+
+
+            .navigationBarTitle(Text("Title"), displayMode: .inline)
+            .navigationBarItems(trailing: Image(systemName: "gear"))
+        }
+
     }
 }
