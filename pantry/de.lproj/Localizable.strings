@@ -85,7 +85,7 @@
 
 "Product expired %@." = "Produkt ist %@ abgelaufen.";
 "Product expires today." = "Produkt läuft heute ab.";
-"Product expires %@" = "Produkt läuft %@ ab.";
+"Product expires %@." = "Produkt läuft %@ ab.";
 
 "Added %@." = "%@ hinzugefügt.";
 "<no added date>" = "<Hinzufügungsdatum unbekannt>";
@@ -93,4 +93,6 @@
 "has expiry date" = "hat ein Ablaufdatum";
 "exiry date" = "Ablaufdatum";
 
-
+"Settings" = "Einstellungen";
+"View archived products" = "Archivierte Produkte ansehen";
+"Archived products" = "Archivierte Produkte";

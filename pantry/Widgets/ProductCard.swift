@@ -24,13 +24,7 @@ struct ProductCard: View {
         VStack {
             HStack {
 
-                self.photo(product)
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: 60, height: 60)
-                    .clipShape(Capsule())
-                    .padding()
-
+                ProductThumbnail(product: product)
 
                 VStack {
                     self.expiryText
@@ -78,17 +72,6 @@ struct ProductCard: View {
         }
 
         return Color.white
-    }
-
-    private func photo(_ product: Product) -> Image {
-        if let photoData = product.photo {
-            if let uiImage = UIImage(data: photoData) {
-
-                return Image(uiImage: uiImage)
-            }
-        }
-
-        return Image(systemName: "photo")
     }
 
     private func computeDelta() -> (String, TimeInterval)? {

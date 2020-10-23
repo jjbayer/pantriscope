@@ -71,7 +71,7 @@ struct SwipeModifier: AnimatableModifier {
 struct SwipeField: View {
 
     let alignment: Alignment
-    let text: String
+    let text: Text
     let color: Color
     let icon: Image
 
