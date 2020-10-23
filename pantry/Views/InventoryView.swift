@@ -78,6 +78,9 @@ struct InventoryView: View {
 }
 
 struct InventoryView_Previews: PreviewProvider {
+
+
+
     static var previews: some View {
         LazyVStack {
 
@@ -87,6 +90,7 @@ struct InventoryView_Previews: PreviewProvider {
                 Divider().background(Color.red)
             }
         }
+        .environment(\.locale, .init(identifier: "de"))
         Spacer()
     }
 }

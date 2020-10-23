@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
+  <file original="pantry/en.lproj/InfoPlist.strings" datatype="plaintext" source-language="en" target-language="de">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="12.1" build-num="12A7403"/>
+    </header>
+    <body>
+      <trans-unit id="CFBundleDisplayName" xml:space="preserve">
+        <source/>
+        <note>Bundle display name</note>
+      </trans-unit>
+      <trans-unit id="CFBundleGetInfoString" xml:space="preserve">
+        <source/>
+        <note>Get Info string</note>
+      </trans-unit>
+      <trans-unit id="CFBundleName" xml:space="preserve">
+        <source>pantry</source>
+        <target state="translated">Speisekammer</target>
+        <note>Bundle name</note>
+      </trans-unit>
+      <trans-unit id="NSCameraUsageDescription" xml:space="preserve">
+        <source>Take pictures of products for identification and expiry date detection</source>
+        <target state="translated">Fotos von Produkten, automatische Erkennung des Ablaufdatums.</target>
+        <note>Privacy - Camera Usage Description</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="pantry/en.lproj/Localizable.strings" datatype="plaintext" source-language="en" target-language="de">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="12.1" build-num="12A7403"/>
+    </header>
+    <body>
+      <trans-unit id="Add Product" xml:space="preserve">
+        <source>Add Product</source>
+        <target state="translated">Produkt hinzufügen</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Add products" xml:space="preserve">
+        <source>Add products</source>
+        <target state="translated">Produkte hinzufügen</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Back" xml:space="preserve">
+        <source>Back</source>
+        <target state="translated">Zurück</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Delete forever" xml:space="preserve">
+        <source>Delete forever</source>
+        <target state="translated">Für immer löschen</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Edit" xml:space="preserve">
+        <source>Edit</source>
+        <target state="translated">Anpassen</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Hello, World!" xml:space="preserve">
+        <source>Hello, World!</source>
+        <target state="translated">Hallo, Welt!</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Inventory" xml:space="preserve">
+        <source>Inventory</source>
+        <target state="needs-l10n">Inventar</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Item %@" xml:space="preserve">
+        <source>Item %@</source>
+        <target state="translated">Object %@</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="No items in inventory." xml:space="preserve">
+        <source>No items in inventory.</source>
+        <target state="translated">Inventar ist leer.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Product photo" xml:space="preserve">
+        <source>Product photo</source>
+        <target state="translated">Produktfoto</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Save" xml:space="preserve">
+        <source>Save</source>
+        <target state="translated">Speichern</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Save without expiry date " xml:space="preserve">
+        <source>Save without expiry date </source>
+        <target state="translated">Speichern ohne Ablaufdatum</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Scan Product" xml:space="preserve">
+        <source>Scan Product</source>
+        <target state="translated">Produkt scannen</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Search" xml:space="preserve">
+        <source>Search</source>
+        <target state="translated">Suchen</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Send test notification" xml:space="preserve">
+        <source>Send test notification</source>
+        <target state="translated">Testbenachrichtigung schicken</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Undo" xml:space="preserve">
+        <source>Undo</source>
+        <target state="translated">rückgängig</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="available" xml:space="preserve">
+        <source>available</source>
+        <target state="translated">vorhanden</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="consumed" xml:space="preserve">
+        <source>consumed</source>
+        <target state="translated">verwertet</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="discarded" xml:space="preserve">
+        <source>discarded</source>
+        <target state="translated">entsorgt</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="no expiry date" xml:space="preserve">
+        <source>no expiry date</source>
+        <target state="translated">kein Ablaufdatum</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="on %@" xml:space="preserve">
+        <source>on %@</source>
+        <target state="translated">am %@</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="placeholder" xml:space="preserve">
+        <source>placeholder</source>
+        <target state="translated">Platzhalter</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

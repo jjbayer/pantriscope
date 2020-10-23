@@ -1,0 +1,6 @@
+/* Bundle name */
+"CFBundleName" = "Speisekammer";
+
+/* Privacy - Camera Usage Description */
+"NSCameraUsageDescription" = "Fotos von Produkten, automatische Erkennung des Ablaufdatums.";
+

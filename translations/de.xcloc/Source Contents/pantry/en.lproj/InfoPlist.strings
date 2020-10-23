@@ -1,0 +1,8 @@
+/* Bundle display name */
+"CFBundleDisplayName" = "";
+/* Get Info string */
+"CFBundleGetInfoString" = "";
+/* Bundle name */
+"CFBundleName" = "pantry";
+/* Privacy - Camera Usage Description */
+"NSCameraUsageDescription" = "Take pictures of products for identification and expiry date detection";
