@@ -30,9 +30,9 @@ struct SwipeModifier: AnimatableModifier {
         ZStack {
 
             if direction == .left2right {
-                SwipeField(alignment: .leading, text: Text("consumed"), color: App.Colors.primary, icon: Image(systemName: "leaf.arrow.triangle.circlepath"), isActive: $isActive)
+                SwipeField(alignment: .leading, text: Text("consumed"), color: App.Colors.primary, icon: Image(systemName: "leaf.arrow.triangle.circlepath"), isActive: $isActive, contentOffset: $contentOffset).opacity(contentOffset.width == 0 ? 0.0: 1.0)
             } else {
-                SwipeField(alignment: .trailing, text: Text("discarded"), color: App.Colors.warning, icon: Image(systemName: "trash"), isActive: $isActive)
+                SwipeField(alignment: .trailing, text: Text("discarded"), color: App.Colors.warning, icon: Image(systemName: "trash"), isActive: $isActive, contentOffset: $contentOffset).opacity(contentOffset.width == 0 ? 0.0: 1.0)
             }
 
             content
@@ -76,16 +76,28 @@ struct SwipeField: View {
     let icon: Image
 
     @Binding var isActive: Bool
+    @Binding var contentOffset: CGSize
 
     var body: some View {
-        VStack {
-            icon
-            text
+        HStack {
+
+            if contentOffset.width < 0 { Spacer() }
+
+            VStack {
+                if abs(contentOffset.width) > SwipeModifier.minSwipe {
+                    icon
+                    text
+                } else {
+                    EmptyView()
+                }
+            }
+            .frame(maxWidth: abs(contentOffset.width), maxHeight: .infinity)
+            .background(color)
+
+            if contentOffset.width > 0 { Spacer() }
         }
-        .padding()
         .foregroundColor(Color.white)
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: alignment)
-        .background(color)
     }
 
 }
@@ -95,7 +107,7 @@ struct SwipeModifier_Previews: PreviewProvider {
         ScrollView {
             ForEach(0..<20) { i in
                 Text("Item \(i)")
-                    .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/,maxHeight: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
+                    .frame(maxWidth: .infinity,maxHeight: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
                     .modifier(SwipeModifier(leftAction: {}, rightAction: {}))
             }
         }

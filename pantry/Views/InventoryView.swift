@@ -101,7 +101,6 @@ struct InventoryView_Previews: PreviewProvider {
                                     .foregroundColor(App.Colors.warning)
                             }
                         }
-                        .background(Color.white)
                         .modifier(SwipeModifier(leftAction: {}, rightAction: {}))
 
                     }
