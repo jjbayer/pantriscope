@@ -12,6 +12,7 @@ class Navigator: ObservableObject {
 
     static var instance = Navigator()
 
+
     // Show either camera view or inventory view
     @Published var selectedTabItem: ContentView.TabID = .takeSnapshot
 

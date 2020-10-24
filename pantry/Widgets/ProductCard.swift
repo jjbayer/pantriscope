@@ -39,11 +39,15 @@ struct ProductCard: View {
                             .foregroundColor(App.Colors.note)
                             .frame(maxWidth: .infinity, alignment: .leading)
                     }
+
+
                 }
 
                 Spacer()
 
-                Image(systemName: "exclamationmark.circle").foregroundColor(self.warningColor).padding()
+                Image(systemName: "exclamationmark.circle")
+                    .foregroundColor(self.warningColor)
+                    .padding()
             }
         }
         .background(backgroundColor)
@@ -59,6 +63,7 @@ struct ProductCard: View {
             )
         )
         .id(product.id?.uuidString)
+        .onAppear { delta = computeDelta() }
     }
 
     private var backgroundColor: Color {

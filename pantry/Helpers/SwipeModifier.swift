@@ -32,7 +32,7 @@ struct SwipeModifier: AnimatableModifier {
             if direction == .left2right {
                 SwipeField(alignment: .leading, text: Text("consumed"), color: App.Colors.primary, icon: Image(systemName: "leaf.arrow.triangle.circlepath"), isActive: $isActive, contentOffset: $contentOffset).opacity(contentOffset.width == 0 ? 0.0: 1.0)
             } else {
-                SwipeField(alignment: .trailing, text: Text("discarded"), color: App.Colors.warning, icon: Image(systemName: "trash"), isActive: $isActive, contentOffset: $contentOffset).opacity(contentOffset.width == 0 ? 0.0: 1.0)
+                SwipeField(alignment: .trailing, text: Text("discarded"), color: App.Colors.error, icon: Image(systemName: "trash"), isActive: $isActive, contentOffset: $contentOffset).opacity(contentOffset.width == 0 ? 0.0: 1.0)
             }
 
             content
@@ -92,11 +92,11 @@ struct SwipeField: View {
                 }
             }
             .frame(maxWidth: abs(contentOffset.width), maxHeight: .infinity)
+            .foregroundColor(Color.white)
             .background(color)
 
             if contentOffset.width > 0 { Spacer() }
         }
-        .foregroundColor(Color.white)
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: alignment)
     }
 
