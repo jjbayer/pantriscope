@@ -31,23 +31,20 @@ struct InventoryView: View {
     let currentDate = Date()
 
     var body: some View {
-        NavigationView {
-            listView
+        VStack {
+            StatusMessageView(statusMessage: $statusMessage)
+            NavigationView {
+                listView
+                .navigationBarTitle(Text("Inventory"))
+            }
         }
-        .navigationBarTitle(Text("Inventory"))
     }
 
     var listView: some View {
 
-        VStack {
-
-            StatusMessageView(statusMessage: $statusMessage)
-
-            Text("Inventory").font(.title).padding()
-
-            if products.isEmpty {
-                Text("No items in inventory.")
-            } else {
+//            if products.isEmpty {
+//                Text("No items in inventory.")
+//            } else {
                 ScrollViewReader { proxy in
                     List {
 
@@ -61,6 +58,7 @@ struct InventoryView: View {
                         }
                         .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 1, trailing: 0))
                     }
+                    .listStyle(PlainListStyle())
                     .onReceive(navigator.objectWillChange) {
                         let productID = navigator.selectedProductID
                         print("navigator will change, productID = '\(productID)'")
@@ -70,8 +68,8 @@ struct InventoryView: View {
                     }
                 }
             }
-        }
-    }
+
+//    }
 }
 
 struct InventoryView_Previews: PreviewProvider {
@@ -82,7 +80,6 @@ struct InventoryView_Previews: PreviewProvider {
 
             NavigationView {
                 List {
-
                     ForEach(0..<2) { i in
 
                         ZStack {

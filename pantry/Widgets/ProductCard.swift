@@ -25,7 +25,7 @@ struct ProductCard: View {
 
             NavigationLink(destination: ProductView(product: product, statusMessage: $statusMessage)) {
                 Rectangle()
-            }.opacity(0.1)
+            }.opacity(0.0)
 
             HStack {
 

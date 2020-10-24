@@ -23,7 +23,6 @@ struct ProductView: View {
     var body: some View {
 
         VStack {
-            StatusMessageView(statusMessage: $statusMessage)
             innerView
         }.navigationBarTitle(Text("Product details"), displayMode: .inline)
     }
