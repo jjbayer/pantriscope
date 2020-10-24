@@ -44,13 +44,6 @@ struct ContentView: View {
                     // No need to show it anymore
                     navigator.selectedProductID = ""
                 }
-
-            Settings()
-                .tabItem {
-                    Image(systemName: "gear")
-                    Text("Settings")
-                }
-                .tag(TabID.settings)
         }
         .accentColor(App.Colors.primary)
     }
