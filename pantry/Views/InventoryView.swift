@@ -31,12 +31,10 @@ struct InventoryView: View {
     let currentDate = Date()
 
     var body: some View {
-        ZStack {
+        NavigationView {
             listView
-            if let product = navigator.productDetail {
-                ProductView(product: product, statusMessage: $statusMessage)
-            }
         }
+        .navigationBarTitle(Text("Inventory"))
     }
 
     var listView: some View {
@@ -71,7 +69,6 @@ struct InventoryView: View {
                         }
                     }
                 }
-                Spacer()
             }
         }
     }
@@ -116,7 +113,6 @@ struct InventoryView_Previews: PreviewProvider {
 
                 .environment(\.locale, .init(identifier: "de"))
                 .navigationBarTitle(Text("Inventory"))
-    //            Spacer()
             }
 
     }

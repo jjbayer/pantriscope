@@ -22,12 +22,17 @@ struct ProductView: View {
 
     var body: some View {
 
-        StatusMessageView(statusMessage: $statusMessage)
+        VStack {
+            StatusMessageView(statusMessage: $statusMessage)
+            innerView
+        }.navigationBarTitle(Text("Product details"), displayMode: .inline)
+    }
+
+    var innerView: some View {
 
         Form {
 
             Section {
-                Button(action: { navigator.productDetail = nil }) { HStack { Image(systemName: "chevron.backward"); Text("Back") } }
                 if let photoData = product.photo {
                     if let uiImage = UIImage(data: photoData) {
                         Image(uiImage: uiImage)

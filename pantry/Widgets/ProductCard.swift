@@ -21,7 +21,12 @@ struct ProductCard: View {
 
     var body: some View {
 
-        VStack {
+        ZStack {
+
+            NavigationLink(destination: ProductView(product: product, statusMessage: $statusMessage)) {
+                Rectangle()
+            }.opacity(0.1)
+
             HStack {
 
                 ProductThumbnail(imageData: product.photo)
@@ -41,26 +46,19 @@ struct ProductCard: View {
 
                 Image(systemName: "exclamationmark.circle").foregroundColor(self.warningColor).padding()
             }
-            .background(backgroundColor)
-            .modifier(
-                SwipeModifier(
-                    leftAction: {
-                        self.archive(
-                            newState: "discarded",
-                            successMessage: NSLocalizedString("Product discarded.", comment: "")
-                        )
-                    },
-                    rightAction: { self.archive(newState: "consumed", successMessage: NSLocalizedString("Product consumed.", comment: ""))}
-                )
+        }
+        .background(backgroundColor)
+        .modifier(
+            SwipeModifier(
+                leftAction: {
+                    self.archive(
+                        newState: "discarded",
+                        successMessage: NSLocalizedString("Product discarded.", comment: "")
+                    )
+                },
+                rightAction: { self.archive(newState: "consumed", successMessage: NSLocalizedString("Product consumed.", comment: ""))}
             )
-            .onTapGesture {
-                navigator.productDetail = self.product
-            }
-        }
-        .onAppear {
-            // Make sure relative dates are fresh:
-            self.delta = computeDelta()
-        }
+        )
         .id(product.id?.uuidString)
     }
 
