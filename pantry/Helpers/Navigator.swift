@@ -18,8 +18,5 @@ class Navigator: ObservableObject {
     // Which product to highlight in the list view
     @Published var selectedProductID: String = ""
 
-    // If tabID == .inventory and productDetail is set, show the view
-    @Published var productDetail: Product? = nil
-
     @Published var dummy = false
 }

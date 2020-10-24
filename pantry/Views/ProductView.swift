@@ -17,6 +17,7 @@ struct ProductView: View {
     @State private var hasExpiryDate: Bool
     @State private var expiryDate: Date
 
+    @Environment(\.presentationMode) var presentationMode
     @Environment(\.managedObjectContext) var managedObjectContext
     @EnvironmentObject var navigator: Navigator
 
@@ -72,7 +73,10 @@ struct ProductView: View {
                     print("Deleting...")
                     managedObjectContext.delete(product)
                     if let _ = try? managedObjectContext.save() {
-                        navigator.productDetail = nil
+
+                        // Back to list view
+                        presentationMode.wrappedValue.dismiss()
+
                         statusMessage.success(
                             NSLocalizedString("Product deleted.", comment: ""))
                     } else {
@@ -93,7 +97,10 @@ struct ProductView: View {
                     }
                     product.state = productState
                     if let _ = try? managedObjectContext.save() {
-                        navigator.productDetail = nil
+
+                        // Back to list view
+                        presentationMode.wrappedValue.dismiss()
+
                         statusMessage.success(
                             NSLocalizedString("Product saved.", comment: "")
                         )

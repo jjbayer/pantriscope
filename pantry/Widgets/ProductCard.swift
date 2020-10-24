@@ -22,7 +22,6 @@ struct ProductCard: View {
     var body: some View {
 
         ZStack {
-
             NavigationLink(destination: ProductView(product: product, statusMessage: $statusMessage)) {
                 Rectangle()
             }.opacity(0.0)
@@ -69,7 +68,7 @@ struct ProductCard: View {
             return App.Colors.background
         }
 
-        return Color.white
+        return Color(white: 1, opacity: 0)
     }
 
     private func computeDelta() -> (String, TimeInterval)? {

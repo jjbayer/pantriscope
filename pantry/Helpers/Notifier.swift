@@ -22,7 +22,6 @@ class ResponseReceiver: NSObject, UNUserNotificationCenterDelegate {
             print("Set product ID for navigation")
             Navigator.instance.selectedTabItem = .inventory
             Navigator.instance.selectedProductID = id
-            Navigator.instance.productDetail = nil
             Navigator.instance.dummy = true // HACK to make InventoryView scroll to correct product
         }
         completionHandler()
