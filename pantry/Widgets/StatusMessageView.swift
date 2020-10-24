@@ -24,7 +24,7 @@ struct StatusMessageView: View {
 
         .frame(
             minWidth: 0, maxWidth: .infinity,
-            minHeight: 32)
+            minHeight: statusMessage.text == nil ? 0 : 32)
         .background(color())
         .foregroundColor(.white)
         .onAppear {
