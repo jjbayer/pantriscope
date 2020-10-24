@@ -30,7 +30,7 @@ struct ArchivedProducts: View {
                 ForEach(products) { product in
                     NavigationLink(destination: ProductView(product: product, statusMessage: $statusMessage)) {
                         HStack {
-                            ProductThumbnail(product: product)
+                            ProductThumbnail(imageData: product.photo)
                             Text(product.addedStringLong)
                         }
                     }

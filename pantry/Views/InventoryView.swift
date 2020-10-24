@@ -82,15 +82,42 @@ struct InventoryView_Previews: PreviewProvider {
 
 
     static var previews: some View {
-        LazyVStack {
 
-            ForEach(0..<2) { i in
-                Text("placeholder")
-                    .frame(maxWidth: .infinity, minHeight: 100)
-                Divider().background(Color.red)
+            NavigationView {
+                List {
+
+                    ForEach(0..<2) { i in
+
+                        ZStack {
+                            NavigationLink(destination: Text("f")) {
+                                Rectangle()
+                            }.opacity(0.0)
+
+
+                            HStack {
+
+                                ProductThumbnail(imageData: nil)
+                                
+                                VStack {
+                                    Text("Expires in \(i) days")
+                                    Text("Added 2020-12-31").font(.footnote)
+                                }
+                                Spacer()
+                                Image(systemName: "circle")
+                                    .foregroundColor(App.Colors.warning)
+                            }
+                        }
+                        .background(Color.white)
+                        .modifier(SwipeModifier(leftAction: {}, rightAction: {}))
+
+                    }
+                    .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 1, trailing: 0))
+                }
+
+                .environment(\.locale, .init(identifier: "de"))
+                .navigationBarTitle(Text("Inventory"))
+    //            Spacer()
             }
-        }
-        .environment(\.locale, .init(identifier: "de"))
-        Spacer()
+
     }
 }

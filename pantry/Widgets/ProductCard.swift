@@ -24,7 +24,7 @@ struct ProductCard: View {
         VStack {
             HStack {
 
-                ProductThumbnail(product: product)
+                ProductThumbnail(imageData: product.photo)
 
                 VStack {
                     self.expiryText

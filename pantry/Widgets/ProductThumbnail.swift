@@ -10,19 +10,20 @@ import SwiftUI
 
 struct ProductThumbnail: View {
 
-    var product: Product
+    var imageData: Data?
 
     var body: some View {
         self.photo
             .resizable()
             .aspectRatio(contentMode: .fill)
-            .frame(width: 60, height: 60)
+            .frame(width: 80, height: 80)
             .clipShape(Capsule())
+            .foregroundColor(App.Colors.note)
             .padding()
     }
 
     private var photo: Image {
-        if let photoData = product.photo {
+        if let photoData = imageData {
             if let uiImage = UIImage(data: photoData) {
 
                 return Image(uiImage: uiImage)
@@ -35,6 +36,6 @@ struct ProductThumbnail: View {
 
 struct ProductThumbnail_Previews: PreviewProvider {
     static var previews: some View {
-        ProductThumbnail(product: Product())
+        ProductThumbnail(imageData: nil)
     }
 }
