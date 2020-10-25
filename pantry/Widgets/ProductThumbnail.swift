@@ -16,10 +16,10 @@ struct ProductThumbnail: View {
         self.photo
             .resizable()
             .aspectRatio(contentMode: .fill)
-            .frame(width: 80, height: 80)
+            .frame(width: 70, height: 70)
             .clipShape(Capsule())
             .foregroundColor(App.Colors.note)
-            .padding()
+            .padding(10)
     }
 
     private var photo: Image {

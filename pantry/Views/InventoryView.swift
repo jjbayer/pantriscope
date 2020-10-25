@@ -77,39 +77,69 @@ struct InventoryView_Previews: PreviewProvider {
 
 
     static var previews: some View {
+        Preview()
+    }
 
+    struct Preview: View {
+        @State var showSearchField = false
+        @State var searchString = ""
+
+        var body: some View {
             NavigationView {
-                List {
-                    ForEach(0..<2) { i in
 
-                        ZStack {
-                            NavigationLink(destination: Text("f")) {
-                                Rectangle()
-                            }.opacity(0.0)
+                VStack {
 
-
-                            HStack {
-
-                                ProductThumbnail(imageData: nil)
-                                
-                                VStack {
-                                    Text("Expires in \(i) days")
-                                    Text("Added 2020-12-31").font(.footnote)
-                                }
-                                Spacer()
-                                Image(systemName: "circle")
-                                    .foregroundColor(App.Colors.warning)
-                            }
-                        }
-                        .modifier(SwipeModifier(leftAction: {}, rightAction: {}))
-
+                    if showSearchField {
+                        TextField("Search", text: $searchString, ).textFieldStyle(RoundedBorderTextFieldStyle()
+                        )
                     }
-                    .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 1, trailing: 0))
+
+                    ScrollViewReader { info in
+                        List {
+                            ForEach(0..<20) { i in
+
+                                ZStack {
+                                    NavigationLink(destination: Text("f")) {
+                                        Rectangle()
+                                    }.opacity(0.0)
+
+
+                                    HStack {
+
+                                        ProductThumbnail(imageData: nil)
+
+                                        VStack {
+                                            Text("Expires in \(i) days")
+                                            Text("Added 2020-12-31").font(.footnote)
+                                        }
+                                        Spacer()
+                                        Image(systemName: "circle")
+                                            .foregroundColor(App.Colors.warning)
+                                    }
+                                }
+                                .modifier(SwipeModifier(leftAction: {}, rightAction: {}))
+
+                            }
+                            .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 1, trailing: 0))
+                        }
+
+                        .listStyle(PlainListStyle())
+                        .environment(\.locale, .init(identifier: "de"))
+                        .navigationBarTitle(Text("Inventory"), displayMode: showSearchField ? .inline : .automatic)
+                    }
+
                 }
+                .navigationBarItems(trailing:
+                                        Button(action: {
+//                                            withAnimation {
+                                                showSearchField = !showSearchField
+//                                            }
 
-                .environment(\.locale, .init(identifier: "de"))
-                .navigationBarTitle(Text("Inventory"))
+                                        }) { Image(systemName: "magnifyingglass")}
+                )
+
+
             }
-
+        }
     }
 }
