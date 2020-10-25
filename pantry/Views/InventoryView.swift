@@ -17,6 +17,7 @@ struct InventoryView: View {
 
     @State private var statusMessage = StatusMessage()
 
+    @State var showSearchField = false
     @State private var searchString = ""
 
     @FetchRequest(
@@ -34,8 +35,14 @@ struct InventoryView: View {
         VStack {
             StatusMessageView(statusMessage: $statusMessage)
             NavigationView {
-                listView
-                .navigationBarTitle(Text("Inventory"))
+                VStack {
+                    TextField("Search", text: $searchString)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+
+                    listView
+
+                }
+                .navigationBarTitle(Text("Inventory"), displayMode: .automatic)
             }
         }
     }
@@ -47,10 +54,6 @@ struct InventoryView: View {
 //            } else {
                 ScrollViewReader { proxy in
                     List {
-
-                        TextField("Search", text: $searchString)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-
                         ForEach(products.filter {
                             searchString.isEmpty || $0.detectedText?.lowercased().contains(searchString) ?? false
                         }) { product in
@@ -81,63 +84,75 @@ struct InventoryView_Previews: PreviewProvider {
     }
 
     struct Preview: View {
-        @State var showSearchField = false
         @State var searchString = ""
 
         var body: some View {
-            NavigationView {
+            ZStack {
+                inner
 
                 VStack {
-
-                    if showSearchField {
-                        TextField("Search", text: $searchString, ).textFieldStyle(RoundedBorderTextFieldStyle()
-                        )
+                    HStack {
+                        Spacer()
+                        Text("score:").font(.footnote).foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
+                        VStack {
+                            ZStack {
+                                Rectangle().foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
+                                Text("100").font(.title).bold().foregroundColor(.white)
+                            }
+                            .frame(maxWidth: 70, maxHeight: 70)
+                            .clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
+                        }
                     }
+                    Spacer()
+                }
+
+                .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 10))
+            }
+
+        }
+
+        var inner: some View {
+            NavigationView {
+                VStack {
+                    TextField("Search", text: $searchString)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
 
                     ScrollViewReader { info in
-                        List {
-                            ForEach(0..<20) { i in
 
-                                ZStack {
-                                    NavigationLink(destination: Text("f")) {
-                                        Rectangle()
-                                    }.opacity(0.0)
+                            List {
 
+                                ForEach(0..<20) { i in
 
-                                    HStack {
+                                    ZStack {
+                                        NavigationLink(destination: Text("f")) {
+                                            Rectangle()
+                                        }.opacity(0.0)
 
-                                        ProductThumbnail(imageData: nil)
+                                            HStack {
 
-                                        VStack {
-                                            Text("Expires in \(i) days")
-                                            Text("Added 2020-12-31").font(.footnote)
-                                        }
-                                        Spacer()
-                                        Image(systemName: "circle")
-                                            .foregroundColor(App.Colors.warning)
+                                                ProductThumbnail(imageData: nil)
+
+                                                VStack {
+                                                    Text("Expires in \(i) days")
+                                                    Text("Added 2020-12-31").font(.footnote)
+
+                                                }
+                                                Spacer()
+                                                Image(systemName: "circle")
+                                                    .foregroundColor(App.Colors.warning)
+                                            }
                                     }
+                                    .modifier(SwipeModifier(leftAction: {}, rightAction: {}))
+
                                 }
-                                .modifier(SwipeModifier(leftAction: {}, rightAction: {}))
-
+                                .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 1, trailing: 0))
                             }
-                            .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 1, trailing: 0))
-                        }
 
-                        .listStyle(PlainListStyle())
-                        .environment(\.locale, .init(identifier: "de"))
-                        .navigationBarTitle(Text("Inventory"), displayMode: showSearchField ? .inline : .automatic)
                     }
-
                 }
-                .navigationBarItems(trailing:
-                                        Button(action: {
-//                                            withAnimation {
-                                                showSearchField = !showSearchField
-//                                            }
-
-                                        }) { Image(systemName: "magnifyingglass")}
-                )
-
+                .listStyle(PlainListStyle())
+                .environment(\.locale, .init(identifier: "de"))
+                .navigationBarTitle(Text("Inventory"), displayMode: .automatic)
 
             }
         }
