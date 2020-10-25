@@ -5,7 +5,7 @@
 //  Created by Joris on 29.08.20.
 //  Copyright © 2020 Joris. All rights reserved.
 //
-
+import CoreData
 import SwiftUI
 
 struct InventoryView: View {
@@ -20,6 +20,8 @@ struct InventoryView: View {
     @State var showSearchField = false
     @State private var searchString = ""
 
+    @State private var consumedRatio: Double? = nil
+
     @FetchRequest(
         entity: Product.entity(),
         sortDescriptors: [
@@ -29,20 +31,40 @@ struct InventoryView: View {
     )
     var products: FetchedResults<Product>
 
+
     let currentDate = Date()
 
     var body: some View {
-        VStack {
-            StatusMessageView(statusMessage: $statusMessage)
-            NavigationView {
-                VStack {
-                    TextField("Search", text: $searchString)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
+        ZStack {
+            VStack {
+                StatusMessageView(statusMessage: $statusMessage)
+                NavigationView {
+                    VStack {
+                        TextField("Search", text: $searchString)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
 
-                    listView
+                        listView
 
+                    }
+                    .navigationBarTitle(Text("Inventory"), displayMode: .automatic)
                 }
-                .navigationBarTitle(Text("Inventory"), displayMode: .automatic)
+            }
+
+            if let ratio = consumedRatio {
+                ScoreBadge(ratio: ratio)
+                    .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 10))
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
+            }
+        }
+        .onAppear {
+            let request = NSFetchRequest<Product>()
+            request.entity = Product.entity()
+            request.predicate = NSPredicate(format: "state = 'consumed'")
+            if let consumedCount = try? managedObjectContext.count(for: request) {
+                request.predicate = NSPredicate(format: "state != 'available'")
+                if let archivedCount = try? managedObjectContext.count(for: request) {
+                    consumedRatio = Double(consumedCount) / Double(archivedCount)
+                }
             }
         }
     }
@@ -90,22 +112,7 @@ struct InventoryView_Previews: PreviewProvider {
             ZStack {
                 inner
 
-                VStack {
-                    HStack {
-                        Spacer()
-                        Text("score:").font(.footnote).foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
-                        VStack {
-                            ZStack {
-                                Rectangle().foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
-                                Text("100").font(.title).bold().foregroundColor(.white)
-                            }
-                            .frame(maxWidth: 70, maxHeight: 70)
-                            .clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
-                        }
-                    }
-                    Spacer()
-                }
-
+                ScoreBadge(ratio: 1.0)
                 .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 10))
             }
 

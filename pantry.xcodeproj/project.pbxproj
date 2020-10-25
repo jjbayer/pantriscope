@@ -17,6 +17,7 @@
 		A98414E62530B6720025811E /* TakeSnapshotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98414E52530B6720025811E /* TakeSnapshotView.swift */; };
 		A98949E62542CDBF00FEC6CD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A98949E42542CDBF00FEC6CD /* InfoPlist.strings */; };
 		A98949E92542CDBF00FEC6CD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A98949E72542CDBF00FEC6CD /* Localizable.strings */; };
+		A99D62212545CAFA00ED276C /* ScoreBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99D62202545CAFA00ED276C /* ScoreBadge.swift */; };
 		A9A47AB32530C54F00E0A812 /* ScanExpiryDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A47AB22530C54F00E0A812 /* ScanExpiryDate.swift */; };
 		A9A72C5624FBA70F00BD7F2D /* StatusMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A72C5524FBA70F00BD7F2D /* StatusMessage.swift */; };
 		A9A72C5824FBA9FC00BD7F2D /* StatusMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A72C5724FBA9FC00BD7F2D /* StatusMessageView.swift */; };
@@ -65,6 +66,7 @@
 		A98414E52530B6720025811E /* TakeSnapshotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TakeSnapshotView.swift; sourceTree = "<group>"; };
 		A98949E52542CDBF00FEC6CD /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A98949E82542CDBF00FEC6CD /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A99D62202545CAFA00ED276C /* ScoreBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreBadge.swift; sourceTree = "<group>"; };
 		A9A47AB22530C54F00E0A812 /* ScanExpiryDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanExpiryDate.swift; sourceTree = "<group>"; };
 		A9A72C5524FBA70F00BD7F2D /* StatusMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusMessage.swift; sourceTree = "<group>"; };
 		A9A72C5724FBA9FC00BD7F2D /* StatusMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusMessageView.swift; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 				A9A47AB22530C54F00E0A812 /* ScanExpiryDate.swift */,
 				A94A34A525383BA8006C4FD6 /* ProductCard.swift */,
 				A9BAE9A1254307E300EB9433 /* ProductThumbnail.swift */,
+				A99D62202545CAFA00ED276C /* ScoreBadge.swift */,
 			);
 			path = Widgets;
 			sourceTree = "<group>";
@@ -425,6 +428,7 @@
 				A9BAE9A2254307E300EB9433 /* ProductThumbnail.swift in Sources */,
 				A9F456D424F93AD500481833 /* DataModel.xcdatamodeld in Sources */,
 				A9A72C5624FBA70F00BD7F2D /* StatusMessage.swift in Sources */,
+				A99D62212545CAFA00ED276C /* ScoreBadge.swift in Sources */,
 				A9ECA6E6253F1578004A1473 /* ProductView.swift in Sources */,
 				A9F456A124EDB19B00481833 /* ContentView.swift in Sources */,
 				A9AA7CE32539B3C60044BB3C /* DataModelExtensions.swift in Sources */,
