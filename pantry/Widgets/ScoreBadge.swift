@@ -10,13 +10,19 @@ import SwiftUI
 
 struct ScoreBadge: View {
 
-    @State var ratio: Double
+    @State var score: Int = 0
+    @State private var shownScore = 0
+
+    init(score: Int) {
+        self.score = score
+        shownScore = score
+    }
 
     var body: some View {
         VStack {
             ZStack {
                 Rectangle().foregroundColor(color)
-                Text("\(Int(100 * ratio))").font(.title).bold().foregroundColor(.white)
+                Text("\(shownScore)").font(.title).bold().foregroundColor(.white)
             }
             .frame(maxWidth: 70, maxHeight: 70)
             .clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
@@ -24,19 +30,31 @@ struct ScoreBadge: View {
             Text("% saved").font(.footnote).foregroundColor(color)
 
         }
+        .onChange(of: score, perform: { value in
+            slowChange()
+        })
+    }
+
+    func slowChange() {
+        if shownScore == score { return }
+        let step = score > shownScore ? 1 : -1
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+            shownScore += step
+            slowChange()
+        }
     }
 
     var color: Color {
-        if ratio < 0.5 {
+        if shownScore < 50 {
 
             return App.Colors.error
         }
-        if ratio < 0.65 {
+        if shownScore < 65 {
 
             return App.Colors.warning
         }
 
-        if ratio < 0.8 {
+        if shownScore < 80 {
 
             return App.Colors.note
         }
@@ -47,9 +65,9 @@ struct ScoreBadge: View {
 
 struct ScoreBadge_Previews: PreviewProvider {
     static var previews: some View {
-        ScoreBadge(ratio: 1.0).previewLayout(.sizeThatFits)
-        ScoreBadge(ratio: 0.65).previewLayout(.sizeThatFits)
-        ScoreBadge(ratio: 0.5).previewLayout(.sizeThatFits)
-        ScoreBadge(ratio: 0.0).previewLayout(.sizeThatFits)
+        ScoreBadge(score: 100).previewLayout(.sizeThatFits)
+        ScoreBadge(score: 65).previewLayout(.sizeThatFits)
+        ScoreBadge(score: 50).previewLayout(.sizeThatFits)
+        ScoreBadge(score: 0).previewLayout(.sizeThatFits)
     }
 }

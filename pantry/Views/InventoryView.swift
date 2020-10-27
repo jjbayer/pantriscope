@@ -50,7 +50,7 @@ struct InventoryView: View {
                     .navigationBarTitle(Text("Inventory"), displayMode: .automatic)
 
                     if let ratio = consumedRatio {
-                        ScoreBadge(ratio: ratio)
+                        ScoreBadge(score: Int(100*ratio))
                             .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 10))
                             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
                             .offset(x: 0, y: -95)
@@ -116,7 +116,7 @@ struct InventoryView_Previews: PreviewProvider {
             ZStack {
                 inner
 
-                ScoreBadge(ratio: 1.0)
+                ScoreBadge(score: 100)
                 .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 10))
             }
 
