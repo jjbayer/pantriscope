@@ -10,33 +10,43 @@ import SwiftUI
 
 struct ScoreBadge: View {
 
-    @Binding var score: Int
+    @Binding var score: Int?
     @State private var shownScore = 0
 
     var body: some View {
-        VStack {
-            ZStack {
-                Rectangle().foregroundColor(color)
-                Text("\(shownScore)").font(.title).bold().foregroundColor(.white)
+        if score == nil {
+            EmptyView()
+        } else {
+            VStack {
+                ZStack {
+                    Rectangle().foregroundColor(color)
+                    Text("\(shownScore)").font(.title).bold().foregroundColor(.white)
+                }
+                .frame(maxWidth: 70, maxHeight: 70)
+                .clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
+
+                Text("% saved").font(.footnote).foregroundColor(color)
+
             }
-            .frame(maxWidth: 70, maxHeight: 70)
-            .clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
-
-            Text("% saved").font(.footnote).foregroundColor(color)
-
+            .onChange(of: score, perform: { value in
+                slowChange()
+            })
+            .onAppear {
+                if let score = score {
+                    shownScore = score
+                }
+            }
         }
-        .onChange(of: score, perform: { value in
-            slowChange()
-        })
-        .onAppear { slowChange() }
     }
 
     func slowChange() {
         if shownScore == score { return }
-        let step = score > shownScore ? 1 : -1
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.025) {
-            shownScore += step
-            slowChange()
+        if let score = score {
+            let step = score > shownScore ? 1 : -1
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.025) {
+                shownScore += step
+                slowChange()
+            }
         }
     }
 

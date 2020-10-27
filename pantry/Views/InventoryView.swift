@@ -20,7 +20,7 @@ struct InventoryView: View {
     @State var showSearchField = false
     @State private var searchString = ""
 
-    @State private var score: Int = 0
+    @State private var score: Int? = nil
 
     @FetchRequest(
         entity: Product.entity(),
@@ -70,7 +70,9 @@ struct InventoryView: View {
         if let consumedCount = try? managedObjectContext.count(for: request) {
             request.predicate = NSPredicate(format: "state != 'available'")
             if let archivedCount = try? managedObjectContext.count(for: request) {
-                if archivedCount != 0 {
+                if archivedCount == 0 {
+                    score = nil
+                } else {
                     score = Int(100*Double(consumedCount) / Double(archivedCount))
                 }
             }
