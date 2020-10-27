@@ -89,7 +89,7 @@ struct InventoryView: View {
                         ForEach(products.filter {
                             searchString.isEmpty || $0.detectedText?.lowercased().contains(searchString) ?? false
                         }) { product in
-                            ProductCard(product: product, statusMessage: $statusMessage)
+                            ProductCard(product: product, statusMessage: $statusMessage, withDemoAnimation: products.count == 1)
                         }
                         .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 1, trailing: 0))
                     }
@@ -159,7 +159,7 @@ struct InventoryView_Previews: PreviewProvider {
                                                     .foregroundColor(App.Colors.warning)
                                             }
                                     }
-                                    .modifier(SwipeModifier(leftAction: {}, rightAction: {}))
+                                    .modifier(SwipeModifier(leftAction: {}, rightAction: {}, withDemoAnimation: false))
 
                                 }
                                 .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 1, trailing: 0))

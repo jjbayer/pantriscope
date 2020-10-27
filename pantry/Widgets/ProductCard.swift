@@ -12,6 +12,7 @@ struct ProductCard: View {
 
     let product: Product
     @Binding var statusMessage: StatusMessage
+    let withDemoAnimation: Bool
 
     @Environment(\.managedObjectContext) var managedObjectContext
 
@@ -59,7 +60,8 @@ struct ProductCard: View {
                         successMessage: NSLocalizedString("Product discarded.", comment: "")
                     )
                 },
-                rightAction: { self.archive(newState: "consumed", successMessage: NSLocalizedString("Product consumed.", comment: ""))}
+                rightAction: { self.archive(newState: "consumed", successMessage: NSLocalizedString("Product consumed.", comment: ""))},
+                withDemoAnimation: withDemoAnimation
             )
         )
         .id(product.id?.uuidString)

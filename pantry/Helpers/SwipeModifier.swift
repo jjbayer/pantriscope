@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct SwipeModifier: AnimatableModifier {
-
     // based on https://github.com/EnesKaraosman/SwipeCell/blob/master/Sources/SwipeCell/SlidableModifier.swift
 
     enum Direction {
@@ -20,6 +19,7 @@ struct SwipeModifier: AnimatableModifier {
 
     var leftAction: () -> ()
     var rightAction: () -> ()
+    var withDemoAnimation: Bool
 
     @State private var contentOffset = CGSize(width: 0, height: 0)
     @State private var direction = Direction.left2right
@@ -38,7 +38,40 @@ struct SwipeModifier: AnimatableModifier {
             content
                 .offset(self.contentOffset)
         }
+        .onAppear {
+            print("Product card appears...")
+            if withDemoAnimation {
+                swipeDemo()
+            }
+        }
         .gesture(gesture)
+    }
+
+    private func swipeDemo() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            withAnimation {
+                contentOffset.width = SwipeModifier.minSwipe
+                self.direction = contentOffset.width > 0 ? .left2right : .right2left
+            }
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+            withAnimation {
+                contentOffset.width = 0
+                self.direction = contentOffset.width > 0 ? .left2right : .right2left
+            }
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            withAnimation {
+                contentOffset.width = -SwipeModifier.minSwipe
+                self.direction = contentOffset.width > 0 ? .left2right : .right2left
+            }
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+            withAnimation {
+                contentOffset.width = 0
+                self.direction = contentOffset.width > 0 ? .left2right : .right2left
+            }
+        }
     }
 
     private var gesture: some Gesture {
@@ -84,7 +117,7 @@ struct SwipeField: View {
             if contentOffset.width < 0 { Spacer() }
 
             VStack {
-                if abs(contentOffset.width) > SwipeModifier.minSwipe {
+                if abs(contentOffset.width) >= SwipeModifier.minSwipe {
                     icon
                     text
                 } else {
@@ -98,6 +131,7 @@ struct SwipeField: View {
             if contentOffset.width > 0 { Spacer() }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: alignment)
+
     }
 
 }
@@ -105,10 +139,10 @@ struct SwipeField: View {
 struct SwipeModifier_Previews: PreviewProvider {
     static var previews: some View {
         ScrollView {
-            ForEach(0..<20) { i in
+            ForEach(0..<2) { i in
                 Text("Item \(i)")
-                    .frame(maxWidth: .infinity,maxHeight: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
-                    .modifier(SwipeModifier(leftAction: {}, rightAction: {}))
+                    .frame(maxWidth: .infinity,maxHeight: 100)
+                    .modifier(SwipeModifier(leftAction: {}, rightAction: {}, withDemoAnimation: false))
             }
         }
     }
