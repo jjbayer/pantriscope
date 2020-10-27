@@ -35,10 +35,11 @@ struct InventoryView: View {
     let currentDate = Date()
 
     var body: some View {
-        ZStack {
-            VStack {
-                StatusMessageView(statusMessage: $statusMessage)
-                NavigationView {
+        VStack {
+            StatusMessageView(statusMessage: $statusMessage)
+            NavigationView {
+                ZStack {
+
                     VStack {
                         TextField("Search", text: $searchString)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -47,15 +48,18 @@ struct InventoryView: View {
 
                     }
                     .navigationBarTitle(Text("Inventory"), displayMode: .automatic)
+
+                    if let ratio = consumedRatio {
+                        ScoreBadge(ratio: ratio)
+                            .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 10))
+                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
+                            .offset(x: 0, y: -95)
+                    }
                 }
             }
-
-            if let ratio = consumedRatio {
-                ScoreBadge(ratio: ratio)
-                    .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 10))
-                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
-            }
         }
+
+
         .onAppear {
             let request = NSFetchRequest<Product>()
             request.entity = Product.entity()

@@ -21,7 +21,8 @@ struct ScoreBadge: View {
             .frame(maxWidth: 70, maxHeight: 70)
             .clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
 
-            Text("food score").font(.footnote).foregroundColor(color)
+            Text("% saved").font(.footnote).foregroundColor(color)
+
         }
     }
 

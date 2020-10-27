@@ -13,7 +13,7 @@ struct ContentView: View {
     enum TabID {
         case takeSnapshot
         case inventory
-        case settings
+        case archive
     }
 
     @EnvironmentObject var navigator: Navigator
@@ -44,6 +44,13 @@ struct ContentView: View {
                     // No need to show it anymore
                     navigator.selectedProductID = ""
                 }
+
+//            NavigationView { ArchivedProducts() }
+//                .tabItem {
+//                    Image(systemName: "archivebox")
+//                    Text("Archive")
+//                }
+//                .tag(TabID.archive)
         }
         .accentColor(App.Colors.primary)
     }
