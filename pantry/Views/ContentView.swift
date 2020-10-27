@@ -45,12 +45,14 @@ struct ContentView: View {
                     navigator.selectedProductID = ""
                 }
 
-//            NavigationView { ArchivedProducts() }
-//                .tabItem {
-//                    Image(systemName: "archivebox")
-//                    Text("Archive")
-//                }
-//                .tag(TabID.archive)
+            #if DEBUG
+            NavigationView { ArchivedProducts() }
+                .tabItem {
+                    Image(systemName: "archivebox")
+                    Text("Archive")
+                }
+                .tag(TabID.archive)
+            #endif
         }
         .accentColor(App.Colors.primary)
     }

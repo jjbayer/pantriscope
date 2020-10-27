@@ -20,7 +20,7 @@ struct InventoryView: View {
     @State var showSearchField = false
     @State private var searchString = ""
 
-    @State private var consumedRatio: Double? = nil
+    @State private var score: Int = 0
 
     @FetchRequest(
         entity: Product.entity(),
@@ -49,25 +49,29 @@ struct InventoryView: View {
                     }
                     .navigationBarTitle(Text("Inventory"), displayMode: .automatic)
 
-                    if let ratio = consumedRatio {
-                        ScoreBadge(score: Int(100*ratio))
-                            .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 10))
-                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
-                            .offset(x: 0, y: -95)
-                    }
+                    ScoreBadge(score: $score)
+                        .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 10))
+                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
+                        .offset(x: 0, y: -95)
+
                 }
             }
         }
+        .onAppear { computeScore() }
+        .onReceive(NotificationCenter.default.publisher(for: .NSManagedObjectContextDidSave, object: managedObjectContext)) { value in
+            computeScore()
+        }
+    }
 
-
-        .onAppear {
-            let request = NSFetchRequest<Product>()
-            request.entity = Product.entity()
-            request.predicate = NSPredicate(format: "state = 'consumed'")
-            if let consumedCount = try? managedObjectContext.count(for: request) {
-                request.predicate = NSPredicate(format: "state != 'available'")
-                if let archivedCount = try? managedObjectContext.count(for: request) {
-                    consumedRatio = Double(consumedCount) / Double(archivedCount)
+    func computeScore() {
+        let request = NSFetchRequest<Product>()
+        request.entity = Product.entity()
+        request.predicate = NSPredicate(format: "state = 'consumed'")
+        if let consumedCount = try? managedObjectContext.count(for: request) {
+            request.predicate = NSPredicate(format: "state != 'available'")
+            if let archivedCount = try? managedObjectContext.count(for: request) {
+                if archivedCount != 0 {
+                    score = Int(100*Double(consumedCount) / Double(archivedCount))
                 }
             }
         }
@@ -116,7 +120,7 @@ struct InventoryView_Previews: PreviewProvider {
             ZStack {
                 inner
 
-                ScoreBadge(score: 100)
+                ScoreBadge(score: .constant(100))
                 .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 10))
             }
 

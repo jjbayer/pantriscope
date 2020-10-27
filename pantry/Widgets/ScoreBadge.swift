@@ -10,13 +10,8 @@ import SwiftUI
 
 struct ScoreBadge: View {
 
-    @State var score: Int = 0
+    @Binding var score: Int
     @State private var shownScore = 0
-
-    init(score: Int) {
-        self.score = score
-        shownScore = score
-    }
 
     var body: some View {
         VStack {
@@ -33,12 +28,13 @@ struct ScoreBadge: View {
         .onChange(of: score, perform: { value in
             slowChange()
         })
+        .onAppear { slowChange() }
     }
 
     func slowChange() {
         if shownScore == score { return }
         let step = score > shownScore ? 1 : -1
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.025) {
             shownScore += step
             slowChange()
         }
@@ -65,9 +61,9 @@ struct ScoreBadge: View {
 
 struct ScoreBadge_Previews: PreviewProvider {
     static var previews: some View {
-        ScoreBadge(score: 100).previewLayout(.sizeThatFits)
-        ScoreBadge(score: 65).previewLayout(.sizeThatFits)
-        ScoreBadge(score: 50).previewLayout(.sizeThatFits)
-        ScoreBadge(score: 0).previewLayout(.sizeThatFits)
+        ScoreBadge(score: .constant(100)).previewLayout(.sizeThatFits)
+        ScoreBadge(score: .constant(65)).previewLayout(.sizeThatFits)
+        ScoreBadge(score: .constant(50)).previewLayout(.sizeThatFits)
+        ScoreBadge(score: .constant(0)).previewLayout(.sizeThatFits)
     }
 }
