@@ -26,14 +26,17 @@ struct ExpiryDateParser {
         ("\(day)\\.\(month)\\.\(year)", "dd.MM.yyyy", 1.0),
         ("\(day)-\(month)-\(year)", "dd-MM-yyyy", 1.0),
         ("\(day)/\(month)/\(year)", "dd/MM/yyyy", 1.0),
+        ("\(day) \(month) \(year)", "dd MM yyyy", 0.95),
 
         ("\(day)\\.\(month)\\.\(yearShort)", "dd.MM.yy", 0.9),
         ("\(day)-\(month)-\(yearShort)", "dd-MM-yy", 0.9),
         ("\(day)/\(month)/\(yearShort)", "dd/MM/yy", 0.9),
+        ("\(day) \(month) \(yearShort)", "dd MM yy", 0.85),
 
         ("\(month)\\.\(year)", "MM.yyyy", 0.6),
         ("\(month)-\(year)", "MM-yyyy", 0.6),
         ("\(month)/\(year)", "MM/yyyy", 0.6),
+        ("\(month) \(year)", "MM yyyy", 0.55),
 
         ("\(day)\(month)\(year)", "ddMMyyyy", 0.5),
         ("\(day)\(month)\(yearShort)", "ddMMyy", 0.4),
