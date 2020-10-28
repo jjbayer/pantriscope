@@ -16,6 +16,7 @@ struct ProductView: View {
     @State private var productState: String
     @State private var hasExpiryDate: Bool
     @State private var expiryDate: Date
+    @State private var showDeletionConfirmation = false
 
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.managedObjectContext) var managedObjectContext
@@ -70,21 +71,29 @@ struct ProductView: View {
             Section {
 
                 Button(action: {
-                    print("Deleting...")
-                    managedObjectContext.delete(product)
-                    if let _ = try? managedObjectContext.save() {
-
-                        // Back to list view
-                        presentationMode.wrappedValue.dismiss()
-
-                        statusMessage.success(
-                            NSLocalizedString("Product deleted.", comment: ""))
-                    } else {
-                        statusMessage.error(
-                            NSLocalizedString("Product could not be deleted.", comment: ""))
-                    }
+                    showDeletionConfirmation = true
                 }) {
-                    Text("Delete forever").foregroundColor(App.Colors.error)
+                    Text("Delete").foregroundColor(App.Colors.error)
+                }
+                .actionSheet(isPresented: $showDeletionConfirmation) {
+                    ActionSheet(title: Text("Delete product"), buttons: [
+                        .cancel(Text("Cancel")),
+                        .destructive(Text("Delete forever")) {
+                            print("Deleting...")
+                            managedObjectContext.delete(product)
+                            if let _ = try? managedObjectContext.save() {
+
+                                // Back to list view
+                                presentationMode.wrappedValue.dismiss()
+
+                                statusMessage.success(
+                                    NSLocalizedString("Product deleted.", comment: ""))
+                            } else {
+                                statusMessage.error(
+                                    NSLocalizedString("Product could not be deleted.", comment: ""))
+                            }
+                        }
+                    ])
                 }
                 .frame(maxWidth: .infinity, alignment: .center)
 
