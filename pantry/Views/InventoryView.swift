@@ -90,7 +90,7 @@ struct InventoryView: View {
 
             } else {
 
-                ReadScrollOffsetList(scrollOffset: $scrollOffset) {
+                List {
                     ForEach(products.filter {
                         searchString.isEmpty || $0.detectedText?.lowercased().contains(searchString) ?? false
                     }) { product in
@@ -118,19 +118,13 @@ struct InventoryView_Previews: PreviewProvider {
     }
 
     struct Preview: View {
+        @State private var showSearch = false
         @State var searchString = ""
 
-        @State private var scrollOffset = CGFloat(0.0)
-
         var body: some View {
-            ZStack {
                 inner
 
-                if scrollOffset > -10 {
-                    ScoreBadge(score: .constant(100))
-                    .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 10))
-                }
-            }
+
 
         }
 
@@ -138,13 +132,13 @@ struct InventoryView_Previews: PreviewProvider {
             NavigationView {
                 VStack {
 
-                    if scrollOffset > -10 {
+                    if showSearch {
                         TextField("Search", text: $searchString)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
+
                     }
 
-                    ReadScrollOffsetList(
-                        scrollOffset: $scrollOffset) {
+                    List {
                         ForEach(0..<20) { i in
                             ZStack {
                                 NavigationLink(destination: Text("f")) {
@@ -173,8 +167,15 @@ struct InventoryView_Previews: PreviewProvider {
                     .environment(\.locale, .init(identifier: "de"))
                     .navigationBarTitle(
                         Text("Inventory"),
-                        displayMode: scrollOffset < -10 ? .inline : .automatic
+                        displayMode: showSearch ? .inline : .automatic
                     )
+                    .toolbar(content: {
+                        ToolbarItem {
+                            Button("search") {
+                                showSearch = !showSearch
+                            }
+                        }
+                    })
                 }
             }
         }
