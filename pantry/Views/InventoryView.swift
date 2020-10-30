@@ -22,6 +22,8 @@ struct InventoryView: View {
 
     @State private var score: Int? = nil
 
+    @State private var scrollOffset = CGFloat(0.0)
+
     @FetchRequest(
         entity: Product.entity(),
         sortDescriptors: [
@@ -81,35 +83,35 @@ struct InventoryView: View {
 
     var listView: some View {
 
-//            if products.isEmpty {
-//                Text("No items in inventory.")
-//            } else {
-                ScrollViewReader { proxy in
-                    List {
-                        ForEach(products.filter {
-                            searchString.isEmpty || $0.detectedText?.lowercased().contains(searchString) ?? false
-                        }) { product in
-                            ProductCard(product: product, statusMessage: $statusMessage, withDemoAnimation: products.count == 1)
-                        }
-                        .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 1, trailing: 0))
+        ScrollViewReader { proxy in
+            if products.isEmpty {
+
+                Text("No items in inventory.")
+
+            } else {
+
+                ReadScrollOffsetList(scrollOffset: $scrollOffset) {
+                    ForEach(products.filter {
+                        searchString.isEmpty || $0.detectedText?.lowercased().contains(searchString) ?? false
+                    }) { product in
+                        ProductCard(product: product, statusMessage: $statusMessage, withDemoAnimation: products.count == 1)
                     }
-                    .listStyle(PlainListStyle())
-                    .onReceive(navigator.objectWillChange) {
-                        let productID = navigator.selectedProductID
-                        print("navigator will change, productID = '\(productID)'")
-                        if !productID.isEmpty {
-                            proxy.scrollTo(productID)
-                        }
+                    .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 1, trailing: 0))
+                }
+                .listStyle(PlainListStyle())
+                .onReceive(navigator.objectWillChange) {
+                    let productID = navigator.selectedProductID
+                    print("navigator will change, productID = '\(productID)'")
+                    if !productID.isEmpty {
+                        proxy.scrollTo(productID)
                     }
                 }
             }
-
-//    }
+        }
+    }
 }
 
 struct InventoryView_Previews: PreviewProvider {
-
-
 
     static var previews: some View {
         Preview()
@@ -118,12 +120,16 @@ struct InventoryView_Previews: PreviewProvider {
     struct Preview: View {
         @State var searchString = ""
 
+        @State private var scrollOffset = CGFloat(0.0)
+
         var body: some View {
             ZStack {
                 inner
 
-                ScoreBadge(score: .constant(100))
-                .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 10))
+                if scrollOffset > -10 {
+                    ScoreBadge(score: .constant(100))
+                    .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 10))
+                }
             }
 
         }
@@ -131,46 +137,45 @@ struct InventoryView_Previews: PreviewProvider {
         var inner: some View {
             NavigationView {
                 VStack {
-                    TextField("Search", text: $searchString)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
 
-                    ScrollViewReader { info in
-
-                            List {
-
-                                ForEach(0..<20) { i in
-
-                                    ZStack {
-                                        NavigationLink(destination: Text("f")) {
-                                            Rectangle()
-                                        }.opacity(0.0)
-
-                                            HStack {
-
-                                                ProductThumbnail(imageData: nil)
-
-                                                VStack {
-                                                    Text("Expires in \(i) days")
-                                                    Text("Added 2020-12-31").font(.footnote)
-
-                                                }
-                                                Spacer()
-                                                Image(systemName: "circle")
-                                                    .foregroundColor(App.Colors.warning)
-                                            }
-                                    }
-                                    .modifier(SwipeModifier(leftAction: {}, rightAction: {}, withDemoAnimation: false))
-
-                                }
-                                .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 1, trailing: 0))
-                            }
-
+                    if scrollOffset > -10 {
+                        TextField("Search", text: $searchString)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
                     }
-                }
-                .listStyle(PlainListStyle())
-                .environment(\.locale, .init(identifier: "de"))
-                .navigationBarTitle(Text("Inventory"), displayMode: .automatic)
 
+                    ReadScrollOffsetList(
+                        scrollOffset: $scrollOffset) {
+                        ForEach(0..<20) { i in
+                            ZStack {
+                                NavigationLink(destination: Text("f")) {
+                                    Rectangle()
+                                }.opacity(0.0)
+
+                                HStack {
+
+                                    ProductThumbnail(imageData: nil)
+
+                                    VStack {
+                                        Text("Expires in \(i) days")
+                                        Text("Added 2020-12-31").font(.footnote)
+
+                                    }
+                                    Spacer()
+                                    Image(systemName: "circle")
+                                        .foregroundColor(App.Colors.warning)
+                                }
+                            }
+                            .modifier(SwipeModifier(leftAction: {}, rightAction: {}, withDemoAnimation: false))
+                        }
+                        .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 1, trailing: 0))
+                    }
+                    .listStyle(PlainListStyle())
+                    .environment(\.locale, .init(identifier: "de"))
+                    .navigationBarTitle(
+                        Text("Inventory"),
+                        displayMode: scrollOffset < -10 ? .inline : .automatic
+                    )
+                }
             }
         }
     }
