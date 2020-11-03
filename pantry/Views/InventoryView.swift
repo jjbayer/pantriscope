@@ -38,7 +38,9 @@ struct InventoryView: View {
 
     var body: some View {
         VStack {
-            StatusMessageView(statusMessage: $statusMessage)
+
+            StatusMessageView(statusMessage: statusMessage)
+           
             NavigationView {
                 ZStack {
 
@@ -56,6 +58,7 @@ struct InventoryView: View {
 
                 }
             }
+            
         }
         .onAppear { computeScore() }
         .onReceive(NotificationCenter.default.publisher(for: .NSManagedObjectContextDidSave, object: managedObjectContext)) { value in

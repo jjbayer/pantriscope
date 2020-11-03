@@ -8,9 +8,10 @@
 
 import SwiftUI
 
+// Animation based on https://trailingclosure.com/notification-banner-using-swiftui/
 struct StatusMessageView: View {
 
-    @Binding var statusMessage: StatusMessage
+    @ObservedObject var statusMessage: StatusMessage
 
     var body: some View {
         HStack {
@@ -27,10 +28,8 @@ struct StatusMessageView: View {
             maxHeight: statusMessage.text == nil ? 0 : 32)
         .background(color())
         .foregroundColor(.white)
-        .onAppear {
-            statusMessage.clear()
-        }
-
+        .animation(.easeInOut)
+        .transition(AnyTransition.move(edge: .top))
     }
 
     private func message() -> String {
@@ -54,5 +53,11 @@ struct StatusMessageView: View {
             case .warning: return App.Colors.warning
             case .error: return App.Colors.error
         }
+    }
+}
+
+struct StatusMessageView_Previews: PreviewProvider {
+    static var previews: some View {
+        StatusMessageView(statusMessage: StatusMessage())
     }
 }

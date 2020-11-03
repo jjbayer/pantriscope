@@ -7,7 +7,7 @@
 //
 import SwiftUI
 
-struct StatusMessage {
+class StatusMessage: ObservableObject {
 
     enum StatusType {
         case debug
@@ -18,20 +18,35 @@ struct StatusMessage {
 
     typealias UndoAction = ()->Void
 
-    var text: String?
-    var status: StatusType = .success
+    @Published var text: String?
+    @Published var status: StatusType = .success
 
-    var undoAction: UndoAction?
+    @Published var undoAction: UndoAction?
 
-    mutating func success(_ message: String, undoAction: UndoAction? = nil) {
-        status = .success
-        text = message
-        self.undoAction = undoAction
+    func success(_ message: String, undoAction: UndoAction? = nil) {
+        alter(status: .success, text: message, undoAction: undoAction)
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
+            self.clear()
+        }
     }
-    mutating func error(_ message: String) { status = .error; text = message; self.undoAction = nil }
+    func error(_ message: String) {
+        alter(status: .error, text: message, undoAction: nil)
 
-    mutating func clear() {
-        text = nil
-        undoAction = nil
+        DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
+            self.clear()
+        }
+    }
+
+    func clear() {
+        alter(status: .debug, text: nil, undoAction: nil)
+    }
+
+    func alter(status: StatusType, text: String?, undoAction: UndoAction?) {
+        withAnimation {
+            self.status = status
+            self.text = text
+            self.undoAction = undoAction
+        }
     }
 }

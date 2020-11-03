@@ -24,7 +24,7 @@ struct ArchivedProducts: View {
     var body: some View {
         VStack {
 
-            StatusMessageView(statusMessage: $statusMessage)
+            StatusMessageView(statusMessage: statusMessage)
 
             List {
                 ForEach(products) { product in

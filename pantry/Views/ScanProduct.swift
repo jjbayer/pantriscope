@@ -41,7 +41,7 @@ struct ScanProduct: View {
 
                 VStack {
 
-                    StatusMessageView(statusMessage: $statusMessage)
+                    StatusMessageView(statusMessage: statusMessage)
 
                     Spacer()
 
@@ -77,7 +77,7 @@ struct ScanProduct_Previews: PreviewProvider {
                 }
 
                 VStack {
-                    StatusMessageView(statusMessage: .constant(StatusMessage()))
+                    StatusMessageView(statusMessage: StatusMessage())
                     Spacer()
 
 
