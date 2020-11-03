@@ -81,17 +81,13 @@ struct ScanExpiryDate: View {
         }.padding(EdgeInsets(top: 0, leading: 0, bottom: 5, trailing: 0))
     }
 
-    var labelText: String {
-        if dateWasSelected {
-            return NSLocalizedString("Expiry date:", comment: "")
-        } else {
-            return NSLocalizedString("Detecting expiry date...", comment: "")
-        }
-    }
-
     var datePanel: some View {
         VStack {
-            DatePicker(labelText, selection: $expiryDate, displayedComponents: .date)
+            CustomDatePicker(
+                initialLabel: Text("Detecting expiry date..."),
+                labelAfterPick: Text("Expiry date:"),
+                selection: $expiryDate
+            )
                 .onTapGesture {
                     confidence = 0.0
                 }
@@ -150,4 +146,5 @@ struct ScanExpiryDate: View {
         scanProductMode = .takeSnapshot
     }
 }
+
 
