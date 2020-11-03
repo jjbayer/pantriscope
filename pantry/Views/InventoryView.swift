@@ -43,8 +43,7 @@ struct InventoryView: View {
                 ZStack {
 
                     VStack {
-                        TextField("Search", text: $searchString)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                        SearchField(searchString: $searchString)
 
                         listView
 
