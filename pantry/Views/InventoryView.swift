@@ -42,12 +42,11 @@ struct InventoryView: View {
             NavigationView {
                 ZStack {
 
-                    VStack {
-                        SearchField(searchString: $searchString)
+//                    VStack {
 
                         listView
 
-                    }
+//                    }
                     .navigationBarTitle(Text("Inventory"), displayMode: .automatic)
 
                     ScoreBadge(score: $score)
@@ -90,12 +89,21 @@ struct InventoryView: View {
             } else {
 
                 List {
+
+                    SearchField(searchString: $searchString)
+                        .padding(
+                            EdgeInsets(top: 0.0, leading: 15, bottom: 0, trailing: 0)
+                        )
+                        .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+                        .buttonStyle(PlainButtonStyle())
+
+
                     ForEach(products.filter {
                         searchString.isEmpty || $0.detectedText?.lowercased().contains(searchString) ?? false
                     }) { product in
                         ProductCard(product: product, statusMessage: $statusMessage, withDemoAnimation: products.count == 1)
-                    }
-                    .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 1, trailing: 0))
+                    }.listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 1, trailing: 0))
+
                 }
                 .listStyle(PlainListStyle())
                 .onReceive(navigator.objectWillChange) {

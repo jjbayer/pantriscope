@@ -15,7 +15,7 @@ struct SearchField: View {
     var body: some View {
         HStack {
             TextField("Search", text: $searchString)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
+//                .textFieldStyle(RoundedBorderTextFieldStyle())
                 .keyboardType(.alphabet)
             if !searchString.isEmpty {
                 Button(action: {
