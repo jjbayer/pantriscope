@@ -30,7 +30,7 @@ struct CustomDatePicker: View {
             .fullScreenCover(isPresented: $showDatePicker) {
                 DatePicker("", selection: $selection, displayedComponents: .date)
                     .datePickerStyle(GraphicalDatePickerStyle())
-
+                    .padding()
             }
         }
         .onChange(of: selection, perform: { value in
