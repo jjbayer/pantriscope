@@ -40,7 +40,12 @@ extension Product {
             reminder.timeBeforeExpiry = reminderTime
             print("Adding reminder for \(String(describing: self.id))")
             self.addToReminder(reminder)
-            do { try context.save() } catch { print("Unable to save reminder: \(error)")}
+            DispatchQueue.main.async { // Prevent "Publishing changes from background threads is not allowed" error
+                do {
+                    try context.save()
+
+                } catch { print("Unable to save reminder: \(error)")}
+            }
         } else {
             print("Cannot add reminder to product without context")
         }
