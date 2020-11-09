@@ -75,7 +75,7 @@ struct ProductView: View {
                     }
                 }
 
-                Button(action: { Notifier.instance.scheduleReminder(product, 0)}) {
+                Button(action: { Notifier.instance.scheduleReminder(product, -1)}) {
                     HStack {
                         Image(systemName: "paperplane")
                         Text("Send test notification")

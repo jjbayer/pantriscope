@@ -122,7 +122,7 @@ struct Notifier {
 
         let uuidString = UUID().uuidString
         let request = UNNotificationRequest(identifier: uuidString,
-                                            content: content, trigger: UNTimeIntervalNotificationTrigger(timeInterval: 3, repeats: false))
+                                            content: content, trigger: UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false))
 
         let notificationCenter = UNUserNotificationCenter.current()
         notificationCenter.add(request) { (error) in
