@@ -18,6 +18,10 @@ struct ProductView: View {
     @State private var expiryDate: Date
     @State private var showDeletionConfirmation = false
 
+    #if DEBUG
+    @State private var dateAdded: Date
+    #endif
+
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.managedObjectContext) var managedObjectContext
     @EnvironmentObject var navigator: Navigator
@@ -50,7 +54,13 @@ struct ProductView: View {
                     Text("discarded").tag("discarded")
                     Text("consumed").tag("consumed")
                 }.pickerStyle(SegmentedPickerStyle())
+
+                #if DEBUG
+                DatePicker("date added", selection: $dateAdded, displayedComponents: .date)
+                #endif
+
                 Toggle("has expiry date", isOn: $hasExpiryDate)
+
                 if hasExpiryDate {
                     let label = NSLocalizedString("expiry date", comment: "")
                     DatePicker(label, selection: $expiryDate, displayedComponents: .date)
@@ -58,7 +68,13 @@ struct ProductView: View {
             }
 
             #if DEBUG
-            Section {
+            Section(header: Text("Notifications")) {
+                if let reminders = product.reminder?.allObjects as? [Reminder] {
+                    ForEach(reminders, id: \.id) { reminder in
+                        Text("\(reminder.timeBeforeExpiry)")
+                    }
+                }
+
                 Button(action: { Notifier.instance.scheduleReminder(product, 0)}) {
                     HStack {
                         Image(systemName: "paperplane")
@@ -99,6 +115,11 @@ struct ProductView: View {
 
                 Button(action: {
                     print("Saving...")
+
+                    #if DEBUG
+                    product.dateAdded = dateAdded
+                    #endif
+
                     if hasExpiryDate {
                         product.expiryDate = expiryDate
                     } else {
@@ -134,8 +155,14 @@ extension ProductView {
         let productState = product.state ?? "available"
         let expiryDate = product.expiryDate ?? Date()
         let hasExpiryDate = product.expiryDate != nil
-
+        #if DEBUG
+        let dateAdded = product.dateAdded ?? Date()
+        self.init(product: product, statusMessage: statusMessage, productState: productState, hasExpiryDate: hasExpiryDate, expiryDate: expiryDate, dateAdded: dateAdded)
+        #else
         self.init(product: product, statusMessage: statusMessage, productState: productState, hasExpiryDate: hasExpiryDate, expiryDate: expiryDate)
+        #endif
+
+
     }
 }
 
