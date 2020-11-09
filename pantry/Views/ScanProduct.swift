@@ -32,6 +32,10 @@ struct ScanProduct: View {
                     .layoutPriority(-1) // https://stackoverflow.com/questions/58290963/clip-image-to-square-in-swiftui
 
                 VStack {
+
+                    Spacer()
+                    Spacer()
+
                     RoundedRectangle(cornerRadius: 10)
                         .stroke(App.Colors.note, lineWidth: 4)
                         .frame(
@@ -39,6 +43,10 @@ struct ScanProduct: View {
                             height: relViewFinderHeight * geometry.size.width, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                     Text(scanProductMode == .takeSnapshot ? "Product photo" : "Scan expiry date")
                         .foregroundColor(App.Colors.note)
+
+                    Spacer()
+                    Spacer()
+                    Spacer()
                 }
 
                 VStack {
