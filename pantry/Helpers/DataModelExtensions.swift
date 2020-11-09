@@ -37,6 +37,7 @@ extension Product {
         if let context = self.managedObjectContext {
             let reminder = Reminder(context: context)
             reminder.product = self
+            reminder.timeBeforeExpiry = reminderTime
             print("Adding reminder for \(String(describing: self.id))")
             self.addToReminder(reminder)
             do { try context.save() } catch { print("Unable to save reminder: \(error)")}
