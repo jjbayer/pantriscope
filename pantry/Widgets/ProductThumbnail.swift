@@ -19,7 +19,6 @@ struct ProductThumbnail: View {
             .frame(width: 70, height: 70)
             .clipShape(Capsule())
             .foregroundColor(App.Colors.note)
-            .padding(10)
     }
 
     private var photo: Image {

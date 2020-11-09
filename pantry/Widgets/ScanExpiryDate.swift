@@ -19,6 +19,7 @@ struct ScanExpiryDate: View {
 
     @Binding var scanProductMode: ScanProductMode
     @Binding var statusMessage: StatusMessage
+    @Binding var imageData: Data?
 
     @Environment(\.managedObjectContext) var managedObjectContext
 
@@ -50,7 +51,8 @@ struct ScanExpiryDate: View {
     }
 
     var menu: some View {
-        HStack {
+        HStack(alignment: .top) {
+        
             Button(action: {
                 scanProductMode = .takeSnapshot
             }) {
@@ -58,6 +60,9 @@ struct ScanExpiryDate: View {
             }
             Spacer()
 
+            if let data = imageData {
+                ProductThumbnail(imageData: data)
+            }
         }
     }
 
@@ -118,7 +123,7 @@ struct ScanExpiryDate: View {
         let product = Product(context: self.managedObjectContext)
         product.id = UUID()
         product.dateAdded = Date()
-        if let data = Camera.instance.captureHandler.data {
+        if let data = imageData {
             product.photo = data
             detectText(imageData: data, onSuccess: { text in
                 product.detectedText = text

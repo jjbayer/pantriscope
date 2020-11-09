@@ -10,10 +10,14 @@ import AVFoundation
 
 class CaptureHandler: NSObject, AVCapturePhotoCaptureDelegate {
 
-    var data: Data?
+    var successFn: (Data?) -> ()
+
+    init(onSuccess: @escaping (Data?) -> ()) {
+        successFn = onSuccess
+    }
 
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
-        self.data = photo.fileDataRepresentation()
+        self.successFn(photo.fileDataRepresentation())
     }
 
 }
@@ -37,8 +41,8 @@ struct Camera {
     let captureSession = AVCaptureSession()
     let output = AVCapturePhotoOutput()
     let videoOutput = AVCaptureVideoDataOutput()
-    let captureHandler = CaptureHandler()
     let videoHandler = VideoHandler()
+    var captureHandler: CaptureHandler? = nil
     
     private init() {
 
@@ -101,10 +105,12 @@ struct Camera {
         }
     }
 
-    func takeSnapshot() {
+    mutating func takeSnapshot(successFn: @escaping (Data?) -> ()) {
+        let handler = CaptureHandler(onSuccess: successFn)
+        captureHandler = handler // assign to member variable bc of lifetime issues
         output.capturePhoto(
             with: AVCapturePhotoSettings(),
-            delegate: captureHandler
+            delegate: handler
         )
     }
 

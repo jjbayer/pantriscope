@@ -31,7 +31,7 @@ struct ProductCard: View {
 
             HStack {
 
-                ProductThumbnail(imageData: product.photo)
+                ProductThumbnail(imageData: product.photo).padding(10)
 
                 VStack {
                     self.expiryText

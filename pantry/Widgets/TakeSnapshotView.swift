@@ -11,6 +11,7 @@ import SwiftUI
 struct TakeSnapshotView: View {
 
     @Binding var scanProductMode: ScanProductMode
+    @Binding var imageData: Data?
 
     var body: some View {
         
@@ -20,7 +21,10 @@ struct TakeSnapshotView: View {
             .foregroundColor(App.Colors.primary)
             .padding()
             .simultaneousGesture(TapGesture().onEnded {
-                Camera.instance.takeSnapshot()
+                imageData = nil
+                Camera.instance.takeSnapshot { data in
+                    imageData = data
+                }
                 scanProductMode = .scanExpiryDate
             }
         )

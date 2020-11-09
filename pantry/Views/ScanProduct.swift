@@ -20,6 +20,8 @@ struct ScanProduct: View {
 
     @State var scanProductMode = ScanProductMode.takeSnapshot
 
+    @State var imageData: Data? = nil
+
     let relViewFinderWidth: CGFloat = 0.9
 
     var body: some View {
@@ -46,9 +48,9 @@ struct ScanProduct: View {
                     Spacer()
 
                     if scanProductMode == .takeSnapshot {
-                        TakeSnapshotView(scanProductMode: $scanProductMode)
+                        TakeSnapshotView(scanProductMode: $scanProductMode, imageData: $imageData)
                     } else {
-                        ScanExpiryDate(scanProductMode: $scanProductMode, statusMessage: $statusMessage)
+                        ScanExpiryDate(scanProductMode: $scanProductMode, statusMessage: $statusMessage, imageData: $imageData)
 
                     }
                 }
