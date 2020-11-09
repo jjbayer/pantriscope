@@ -20,10 +20,12 @@ struct ProductCard: View {
 
     @State private var delta: (String, TimeInterval)?
 
+    @State private var showDetail = false
+
     var body: some View {
 
         ZStack {
-            NavigationLink(destination: ProductView(product: product, statusMessage: $statusMessage)) {
+            NavigationLink(destination: ProductView(product: product, statusMessage: $statusMessage), isActive: $showDetail) {
                 Rectangle()
             }.opacity(0.0)
 
@@ -66,6 +68,13 @@ struct ProductCard: View {
         )
         .id(product.id?.uuidString)
         .onAppear { delta = computeDelta() }
+        .onReceive(navigator.objectWillChange) {
+            // Never show detail if coming from notification
+            let productID = navigator.selectedProductID
+            if !productID.isEmpty {
+                showDetail = false
+            }
+        }
     }
 
     private var backgroundColor: Color {
