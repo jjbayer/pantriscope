@@ -29,7 +29,7 @@ struct App {
         // https://coolors.co/48a9a6-4281a4-93b0bf-e4dfda-d4b483-c1666b
         static let warning = Color(hex: 0xD4B483)
         static let primary = Color(hex: 0x48A9A6)
-//        static let info    = Color(hex: 0x4281A4)
+        static let secondary    = Color(hex: 0x4281A4)
         static let error   = Color(hex: 0xC1666B)
         static let note    = Color(hex: 0x93B0BF)
 //        static let background = Color(hex: 0xE4DFDA) // original from coolors
