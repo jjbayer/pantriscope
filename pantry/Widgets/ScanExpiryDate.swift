@@ -68,9 +68,11 @@ struct ScanExpiryDate: View {
 
     var controlPanel: some View {
         VStack {
-            fastForward
+//            fastForward
+            Spacer()
             datePanel
-            saveButton
+            ExpiryDateOptions()
+//            saveButton
         }
     }
 

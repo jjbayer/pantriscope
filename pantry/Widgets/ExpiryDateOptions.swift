@@ -10,42 +10,47 @@ import SwiftUI
 
 struct ExpiryDateOptions: View {
     var body: some View {
-        HStack(alignment: .center) {
 
-            Spacer()
+        VStack {
 
-            ExpiryDateOptionsButton(
-                icon: "chevron.right.2",
-                text: Text("save without expiry date"),
-                size: 50,
-                color: App.Colors.note
-            ) {
+            HStack(alignment: .center) {
 
+                ExpiryDateOptionsButton(
+                    icon: "chevron.right.2",
+                    text: Text("no expiry date"),
+                    size: 50,
+                    color: App.Colors.note
+                ) {
+
+                }
+
+                ExpiryDateOptionsButton(
+                    icon: "plus",
+                    text: Text("save product"),
+                    size: 70,
+                    color: App.Colors.primary
+                ) {
+
+                }
+
+                ExpiryDateOptionsButton(
+                    icon: "calendar",
+                    text: Text("pick a date"),
+                    size: 50,
+                    color: App.Colors.secondary
+                ) {
+
+                }
             }
 
-            Spacer()
-
-            ExpiryDateOptionsButton(
-                icon: "plus",
-                text: Text("save product"),
-                size: 70,
-                color: App.Colors.primary
-            ) {
-
+            HStack {
+                Text("no expiry date").frame(maxWidth: .infinity)
+                Text("save product").frame(maxWidth: .infinity)
+                Text("pick date").frame(maxWidth: .infinity)
             }
-
-            Spacer()
-
-            ExpiryDateOptionsButton(
-                icon: "calendar",
-                text: Text("pick a date"),
-                size: 50,
-                color: App.Colors.secondary
-            ) {
-
-            }
-
-            Spacer()
+            .multilineTextAlignment(.center)
+            .font(.footnote)
+            .foregroundColor(App.Colors.note)
 
         }
     }
@@ -60,29 +65,22 @@ struct ExpiryDateOptionsButton: View {
     let action: () -> ()
 
     var body: some View {
-        return VStack {
-
-            Spacer()
-
-            Button(action: action) {
-                Image(systemName: icon)
-            }
-            .foregroundColor(.white)
-            .frame(minWidth: size, minHeight: size)
-            .background(color)
-            .clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
-            .font(.title)
-
-            Spacer()
-
-            text.font(.footnote).foregroundColor(App.Colors.note)
+        Button(action: action) {
+            Image(systemName: icon)
         }
-        .frame(maxWidth: 90, maxHeight: 100)
+        .foregroundColor(.white)
+        .frame(minWidth: size, minHeight: size)
+        .background(color)
+        .clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
+        .font(.title)
+        .frame(maxWidth: .infinity)
     }
 }
 
 struct SwiftUIView_Previews: PreviewProvider {
     static var previews: some View {
-        ExpiryDateOptions().previewLayout(.sizeThatFits)
+        ExpiryDateOptions()
+            .previewLayout(.sizeThatFits)
+            .environment(\.locale, .init(identifier: "de"))
     }
 }
