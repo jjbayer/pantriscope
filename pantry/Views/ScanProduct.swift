@@ -22,52 +22,29 @@ struct ScanProduct: View {
 
     @State var imageData: Data? = nil
 
-    let relViewFinderWidth: CGFloat = 0.9
-
     var body: some View {
-        GeometryReader { geometry in
-            ZStack {
-                CameraView()
-                    .scaledToFill()
-                    .layoutPriority(-1) // https://stackoverflow.com/questions/58290963/clip-image-to-square-in-swiftui
+        ZStack {
+            CameraView()
+                .scaledToFill()
+                .layoutPriority(-1) // https://stackoverflow.com/questions/58290963/clip-image-to-square-in-swiftui
 
-                VStack {
+            VStack {
 
-                    Spacer()
-                    Spacer()
+                StatusMessageView(statusMessage: statusMessage)
 
-                    RoundedRectangle(cornerRadius: 10)
-                        .stroke(App.Colors.note, lineWidth: 4)
-                        .frame(
-                            width: relViewFinderWidth * geometry.size.width,
-                            height: relViewFinderHeight * geometry.size.width, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                    Text(scanProductMode == .takeSnapshot ? "Product photo" : "Scan expiry date")
-                        .foregroundColor(App.Colors.note)
+                Spacer()
 
                 if scanProductMode == .takeSnapshot {
                     TakeSnapshotView(scanProductMode: $scanProductMode, imageData: $imageData)
                 } else {
                     ScanExpiryDate(scanProductMode: $scanProductMode, statusMessage: $statusMessage, imageData: $imageData)
 
-                    StatusMessageView(statusMessage: statusMessage)
-
-                    Spacer()
-
-                    if scanProductMode == .takeSnapshot {
-                        TakeSnapshotView(scanProductMode: $scanProductMode, imageData: $imageData)
-                    } else {
-                        ScanExpiryDate(scanProductMode: $scanProductMode, statusMessage: $statusMessage, imageData: $imageData)
-
-                    }
                 }
             }
         }
     }
 
-    private var relViewFinderHeight: CGFloat {
-        let aspectRatio = (scanProductMode == .takeSnapshot ? 1.0 : 1.0/3)
-        return CGFloat(aspectRatio) * relViewFinderWidth
-    }
+
 }
 
 struct ScanProduct_Previews: PreviewProvider {

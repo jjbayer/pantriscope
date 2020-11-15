@@ -22,6 +22,7 @@
 		A98414E62530B6720025811E /* TakeSnapshotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98414E52530B6720025811E /* TakeSnapshotView.swift */; };
 		A98949E62542CDBF00FEC6CD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A98949E42542CDBF00FEC6CD /* InfoPlist.strings */; };
 		A98949E92542CDBF00FEC6CD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A98949E72542CDBF00FEC6CD /* Localizable.strings */; };
+		A98AA8AA256159FA00047B77 /* FocusArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98AA8A9256159FA00047B77 /* FocusArea.swift */; };
 		A99D62212545CAFA00ED276C /* ScoreBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99D62202545CAFA00ED276C /* ScoreBadge.swift */; };
 		A9A47AB32530C54F00E0A812 /* ScanExpiryDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A47AB22530C54F00E0A812 /* ScanExpiryDate.swift */; };
 		A9A72C5624FBA70F00BD7F2D /* StatusMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A72C5524FBA70F00BD7F2D /* StatusMessage.swift */; };
@@ -76,6 +77,7 @@
 		A98414E52530B6720025811E /* TakeSnapshotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TakeSnapshotView.swift; sourceTree = "<group>"; };
 		A98949E52542CDBF00FEC6CD /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A98949E82542CDBF00FEC6CD /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A98AA8A9256159FA00047B77 /* FocusArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusArea.swift; sourceTree = "<group>"; };
 		A99D62202545CAFA00ED276C /* ScoreBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreBadge.swift; sourceTree = "<group>"; };
 		A9A47AB22530C54F00E0A812 /* ScanExpiryDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanExpiryDate.swift; sourceTree = "<group>"; };
 		A9A72C5524FBA70F00BD7F2D /* StatusMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusMessage.swift; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 				A9304C312551B0A0000D9165 /* OptionalDatePicker.swift */,
 				A953EB3E25599C9500E1CB12 /* ExpiryDateOptions.swift */,
 				A922F94A255BEBD4009CDA2E /* PickDateButton.swift */,
+				A98AA8A9256159FA00047B77 /* FocusArea.swift */,
 			);
 			path = Widgets;
 			sourceTree = "<group>";
@@ -447,6 +450,7 @@
 				A9A72C5624FBA70F00BD7F2D /* StatusMessage.swift in Sources */,
 				A99D62212545CAFA00ED276C /* ScoreBadge.swift in Sources */,
 				A9ECA6E6253F1578004A1473 /* ProductView.swift in Sources */,
+				A98AA8AA256159FA00047B77 /* FocusArea.swift in Sources */,
 				A953EB3F25599C9500E1CB12 /* ExpiryDateOptions.swift in Sources */,
 				A9F456A124EDB19B00481833 /* ContentView.swift in Sources */,
 				A9AA7CE32539B3C60044BB3C /* DataModelExtensions.swift in Sources */,
