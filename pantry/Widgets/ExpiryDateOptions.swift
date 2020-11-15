@@ -9,6 +9,12 @@
 import SwiftUI
 
 struct ExpiryDateOptions: View {
+
+    @Binding var expiryDate: Date
+    @Binding var canSave: Bool
+    var saveAction: () -> ()
+    var fastForwardAction: () -> ()
+
     var body: some View {
 
         VStack {
@@ -18,26 +24,19 @@ struct ExpiryDateOptions: View {
                 ExpiryDateOptionsButton(
                     icon: "chevron.right.2",
                     size: 50,
-                    color: App.Colors.note
-                ) {
-
-                }
+                    color: App.Colors.note,
+                    action: fastForwardAction
+                )
 
                 ExpiryDateOptionsButton(
                     icon: "plus",
                     size: 70,
-                    color: App.Colors.primary
-                ) {
+                    color: canSave ? App.Colors.primary : App.Colors.background,
+                    action: saveAction
+                )
+                .disabled(!canSave)
 
-                }
-
-                ExpiryDateOptionsButton(
-                    icon: "calendar",
-                    size: 50,
-                    color: App.Colors.secondary
-                ) {
-
-                }
+                PickDateButton(selection: $expiryDate, hasDate: $canSave)
             }
 
             HStack {
@@ -75,8 +74,12 @@ struct ExpiryDateOptionsButton: View {
 
 struct SwiftUIView_Previews: PreviewProvider {
     static var previews: some View {
-        ExpiryDateOptions()
-            .previewLayout(.sizeThatFits)
+        ExpiryDateOptions(
+            expiryDate: .constant(Date()),
+            canSave: .constant(true),
+            saveAction: {},
+            fastForwardAction: {}
+        )
             .environment(\.locale, .init(identifier: "de"))
     }
 }

@@ -29,7 +29,7 @@ struct ScanExpiryDate: View {
         ZStack {
             FocusArea(aspectRatio: 1/3, caption: Text("Scan expiry date"))
             interactionLayer
-        }x
+        }
     }
 
     var interactionLayer: some View {
@@ -75,60 +75,16 @@ struct ScanExpiryDate: View {
 
     var controlPanel: some View {
         VStack {
-//            fastForward
             Spacer()
-//            datePanel
             if dateWasSelected {
                 Text("\(dateFormat)").background(App.Colors.background)
             }
-            ExpiryDateOptions()
-//            saveButton
-        }
-    }
-
-    var fastForward: some View {
-        HStack {
-            Spacer()
-            Button(action: { self.save(useExpiryDate: false) }) {
-                HStack {
-                    Text("Save without expiry date ")
-                    Image(systemName: "chevron.forward.2")
-                }
-            }
-        }.padding(EdgeInsets(top: 0, leading: 0, bottom: 5, trailing: 0))
-    }
-
-    var datePanel: some View {
-        VStack {
-            CustomDatePicker(
-                initialLabel: Text("Detecting expiry date..."),
-                labelAfterPick: Text("Expiry date:"),
-                selection: $expiryDate
+            ExpiryDateOptions(
+                expiryDate: $expiryDate,
+                canSave: $dateWasSelected,
+                saveAction: { self.save(useExpiryDate: true) }, fastForwardAction: { self.save(useExpiryDate: false) }
             )
-                .onTapGesture {
-                    confidence = 0.0
-                }
-                .onChange(of: expiryDate, perform: { _ in
-                    dateWasSelected = true
-                })
-                .padding()
-                .background(Color.white)
-                .cornerRadius(cornerRadius)
         }
-    }
-
-    var saveButton: some View {
-        Button(action: { self.save(useExpiryDate: true) }) {
-            HStack {
-                Image(systemName: "plus.circle")
-                Text("Add Product")
-            }
-        }
-        .disabled(!dateWasSelected)
-        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 50)
-        .foregroundColor(.white)
-        .background(dateWasSelected ? App.Colors.primary : App.Colors.note)
-        .cornerRadius(cornerRadius)
     }
 
     private func save(useExpiryDate: Bool) {
