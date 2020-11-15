@@ -26,6 +26,13 @@ struct ScanExpiryDate: View {
     let cornerRadius = CGFloat(10.0)
 
     var body: some View {
+        ZStack {
+            FocusArea(aspectRatio: 1/3, caption: Text("Scan expiry date"))
+            interactionLayer
+        }x
+    }
+
+    var interactionLayer: some View {
         VStack {
             menu
             Spacer()

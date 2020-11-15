@@ -15,26 +15,29 @@ struct TakeSnapshotView: View {
 
     var body: some View {
 
-        GeometryReader { geom in
-            let buttonSize = 0.2 * geom.frame(in: .global).width
-            VStack(alignment: .center) {
-                Spacer()
-                FocusArea(aspectRatio: 1.0, caption: Text("Product photo"))
-                Spacer()
+        ZStack {
 
-                Image(systemName: "largecircle.fill.circle")
-                .resizable()
-                    .frame(maxWidth: buttonSize, maxHeight: buttonSize)
-                .foregroundColor(App.Colors.primary)
-                .padding()
-                .simultaneousGesture(TapGesture().onEnded {
-                    imageData = nil
-                    Camera.instance.takeSnapshot { data in
-                        imageData = data
-                    }
-                    scanProductMode = .scanExpiryDate
-                })
-            }.frame(maxWidth: .infinity)
+            FocusArea(aspectRatio: 1.0, caption: Text("Product photo"))
+
+            GeometryReader { geom in
+                let buttonSize = 0.2 * geom.frame(in: .global).width
+                VStack(alignment: .center) {
+                    Spacer()
+
+                    Image(systemName: "largecircle.fill.circle")
+                    .resizable()
+                        .frame(maxWidth: buttonSize, maxHeight: buttonSize)
+                    .foregroundColor(App.Colors.primary)
+                    .padding()
+                    .simultaneousGesture(TapGesture().onEnded {
+                        imageData = nil
+                        Camera.instance.takeSnapshot { data in
+                            imageData = data
+                        }
+                        scanProductMode = .scanExpiryDate
+                    })
+                }.frame(maxWidth: .infinity)
+            }
         }
     }
 }
