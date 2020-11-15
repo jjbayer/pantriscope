@@ -17,7 +17,6 @@ struct ExpiryDateOptions: View {
 
                 ExpiryDateOptionsButton(
                     icon: "chevron.right.2",
-                    text: Text("no expiry date"),
                     size: 50,
                     color: App.Colors.note
                 ) {
@@ -26,7 +25,6 @@ struct ExpiryDateOptions: View {
 
                 ExpiryDateOptionsButton(
                     icon: "plus",
-                    text: Text("save product"),
                     size: 70,
                     color: App.Colors.primary
                 ) {
@@ -35,7 +33,6 @@ struct ExpiryDateOptions: View {
 
                 ExpiryDateOptionsButton(
                     icon: "calendar",
-                    text: Text("pick a date"),
                     size: 50,
                     color: App.Colors.secondary
                 ) {
@@ -59,7 +56,6 @@ struct ExpiryDateOptions: View {
 
 struct ExpiryDateOptionsButton: View {
     let icon: String
-    let text: Text
     let size: CGFloat
     let color: Color
     let action: () -> ()

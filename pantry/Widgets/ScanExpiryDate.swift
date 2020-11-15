@@ -70,7 +70,10 @@ struct ScanExpiryDate: View {
         VStack {
 //            fastForward
             Spacer()
-            datePanel
+//            datePanel
+            if dateWasSelected {
+                Text("\(dateFormat)").background(App.Colors.background)
+            }
             ExpiryDateOptions()
 //            saveButton
         }
@@ -151,6 +154,14 @@ struct ScanExpiryDate: View {
             self.statusMessage.error(NSLocalizedString("Error saving product", comment: "")) // TODO: report
         }
         scanProductMode = .takeSnapshot
+    }
+
+    private var dateFormat: String {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        formatter.timeStyle = .none
+
+        return formatter.string(from: expiryDate)
     }
 }
 

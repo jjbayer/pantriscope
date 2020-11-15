@@ -44,12 +44,10 @@ struct ScanProduct: View {
                     Text(scanProductMode == .takeSnapshot ? "Product photo" : "Scan expiry date")
                         .foregroundColor(App.Colors.note)
 
-                    Spacer()
-                    Spacer()
-                    Spacer()
-                }
-
-                VStack {
+                if scanProductMode == .takeSnapshot {
+                    TakeSnapshotView(scanProductMode: $scanProductMode, imageData: $imageData)
+                } else {
+                    ScanExpiryDate(scanProductMode: $scanProductMode, statusMessage: $statusMessage, imageData: $imageData)
 
                     StatusMessageView(statusMessage: statusMessage)
 
