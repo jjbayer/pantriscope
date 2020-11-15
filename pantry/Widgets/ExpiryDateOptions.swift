@@ -35,13 +35,17 @@ struct ExpiryDateOptions: View {
                     action: saveAction
                 )
                 .disabled(!canSave)
+                .opacity(canSave ? 1.0 : 0.0)
 
                 PickDateButton(selection: $expiryDate, hasDate: $canSave)
             }
 
             HStack {
                 Text("no expiry date").frame(maxWidth: .infinity)
-                Text("save product").frame(maxWidth: .infinity)
+                Text("save product")
+                    .frame(maxWidth: .infinity)
+                    .disabled(!canSave)
+                    .opacity(canSave ? 1.0 : 0.0)
                 Text("pick date").frame(maxWidth: .infinity)
             }
             .multilineTextAlignment(.center)

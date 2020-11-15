@@ -27,7 +27,10 @@ struct ScanExpiryDate: View {
 
     var body: some View {
         ZStack {
-            FocusArea(aspectRatio: 1/3, caption: Text("Scan expiry date"))
+            FocusArea(
+                aspectRatio: 1/3,
+                caption: dateWasSelected ? Text(dateFormat) : Text("Scan expiry date")
+            )
             interactionLayer
         }
     }
@@ -76,9 +79,6 @@ struct ScanExpiryDate: View {
     var controlPanel: some View {
         VStack {
             Spacer()
-            if dateWasSelected {
-                Text("\(dateFormat)").background(App.Colors.background)
-            }
             ExpiryDateOptions(
                 expiryDate: $expiryDate,
                 canSave: $dateWasSelected,
