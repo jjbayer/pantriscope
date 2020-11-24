@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import Sentry
 
 
 @UIApplicationMain
@@ -26,6 +27,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
         Notifier.instance.setup()
+
+        SentrySDK.start { options in
+            options.dsn = "https://f3a66de20cde439c9eaa6cb1b60afdff@o481683.ingest.sentry.io/5530706"
+            #if DEBUG
+            options.debug = true
+            #else
+            options.debug = false
+            #endif
+        }
 
         return true
     }
