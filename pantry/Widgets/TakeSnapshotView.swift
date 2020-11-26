@@ -20,6 +20,7 @@ struct TakeSnapshotView: View {
             FocusArea(aspectRatio: 1.0, caption: Text("Product photo"))
 
             GeometryReader { geom in
+
                 let buttonSize = 0.2 * geom.frame(in: .global).width
                 VStack(alignment: .center) {
                     Spacer()
