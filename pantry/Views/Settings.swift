@@ -12,7 +12,7 @@ struct Settings: View {
     var body: some View {
         NavigationView {
             Form {
-                Section(header: Text("Inventory")) {
+                Section(header: Text("Pantry")) {
                     NavigationLink(
                         destination: ArchivedProducts(),
                         label: {

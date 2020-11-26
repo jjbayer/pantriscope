@@ -49,7 +49,7 @@ struct InventoryView: View {
                         listView
 
 //                    }
-                    .navigationBarTitle(Text("Inventory"), displayMode: .automatic)
+                    .navigationBarTitle(Text("Pantry"), displayMode: .automatic)
 
                     ScoreBadge(score: $score)
                         .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 10))
@@ -87,7 +87,7 @@ struct InventoryView: View {
         ScrollViewReader { proxy in
             if products.isEmpty {
 
-                Text("No items in inventory.")
+                Text("No items in pantry.")
 
             } else {
 
@@ -182,7 +182,7 @@ struct InventoryView_Previews: PreviewProvider {
                     .listStyle(PlainListStyle())
                     .environment(\.locale, .init(identifier: "de"))
                     .navigationBarTitle(
-                        Text("Inventory"),
+                        Text("Pantry"),
                         displayMode: showSearch ? .inline : .automatic
                     )
                     .toolbar(content: {

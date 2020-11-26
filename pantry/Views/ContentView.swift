@@ -37,7 +37,7 @@ struct ContentView: View {
             InventoryView()
                 .tabItem {
                     Image(systemName: "list.bullet")
-                    Text("Inventory")
+                    Text("Pantry")
                 }
                 .tag(TabID.inventory)
                 .onDisappear {
