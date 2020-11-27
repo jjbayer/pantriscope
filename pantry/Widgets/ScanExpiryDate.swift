@@ -115,6 +115,9 @@ struct ScanExpiryDate: View {
 
             try self.managedObjectContext.save()
             self.statusMessage.success(NSLocalizedString("Product saved.", comment: ""))
+
+            Notifier.instance.requestAuthorization()
+            
         } catch {
             self.statusMessage.error(NSLocalizedString("Error saving product", comment: "")) // TODO: report
         }

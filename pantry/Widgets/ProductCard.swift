@@ -147,8 +147,6 @@ struct ProductCard: View {
             try self.managedObjectContext.save()
             self.statusMessage.success(successMessage, undoAction: undoAction)
 
-            Notifier.instance.requestAuthorization()
-
         } catch {
             self.statusMessage.error(error.localizedDescription)
         }
