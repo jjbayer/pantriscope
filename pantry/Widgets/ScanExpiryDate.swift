@@ -79,11 +79,13 @@ struct ScanExpiryDate: View {
     var controlPanel: some View {
         VStack {
             Spacer()
-            ExpiryDateOptions(
-                expiryDate: $expiryDate,
-                canSave: $dateWasSelected,
-                saveAction: { self.save(useExpiryDate: true) }, fastForwardAction: { self.save(useExpiryDate: false) }
-            )
+            if let _ = imageData {
+                ExpiryDateOptions(
+                    expiryDate: $expiryDate,
+                    canSave: $dateWasSelected,
+                    saveAction: { self.save(useExpiryDate: true) }, fastForwardAction: { self.save(useExpiryDate: false) }
+                )
+            }
         }
     }
 
