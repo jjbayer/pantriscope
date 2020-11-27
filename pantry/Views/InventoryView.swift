@@ -106,10 +106,10 @@ struct InventoryView: View {
                     }, id: \.id) { product in
                         ProductCard(product: product, statusMessage: $statusMessage, withDemoAnimation: products.count == 1)
                     }.listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 1, trailing: 0))
-                    .onAppear {
-                        scrollToSelected(proxy)
-                    }
 
+                }
+                .onAppear {
+                    scrollToSelected(proxy)
                 }
                 .listStyle(PlainListStyle())
                 .onReceive(navigator.objectWillChange) {
