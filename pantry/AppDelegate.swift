@@ -26,16 +26,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
-        print("Init sentry...")
+        #if !DEBUG
         SentrySDK.start { options in
             options.dsn = "https://a0724654ac474d5a9743af4653902222@o481683.ingest.sentry.io/5533788"
-            #if DEBUG
-            options.debug = true
-            #else
-            options.debug = false
-            #endif
         }
-        print("done.")
+        #endif
 
         Notifier.instance.setup()
 
