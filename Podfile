@@ -1,7 +1,7 @@
 #source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '14.0'
 
-use_frameworks!
+#use_frameworks!  # Use static libraries instead -> faster app startup
 
 pod 'GoogleMLKit/TextRecognition'
 
