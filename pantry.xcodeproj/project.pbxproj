@@ -637,7 +637,7 @@
 				ENABLE_PREVIEWS = NO;
 				INFOPLIST_FILE = pantry/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.jorisio.pantry;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jorisbayer.pantry;
 				PRODUCT_NAME = Plenti;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				STRIP_INSTALLED_PRODUCT = YES;
@@ -659,7 +659,7 @@
 				ENABLE_PREVIEWS = NO;
 				INFOPLIST_FILE = pantry/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.jorisio.pantry;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jorisbayer.pantry;
 				PRODUCT_NAME = Plenti;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -677,7 +677,7 @@
 				DEVELOPMENT_TEAM = 3VVCAYK524;
 				INFOPLIST_FILE = pantryTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.jorisio.pantryTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jorisbayer.pantryTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -695,7 +695,7 @@
 				DEVELOPMENT_TEAM = 3VVCAYK524;
 				INFOPLIST_FILE = pantryTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.jorisio.pantryTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jorisbayer.pantryTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

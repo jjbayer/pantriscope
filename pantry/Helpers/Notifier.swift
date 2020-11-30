@@ -31,7 +31,7 @@ class ResponseReceiver: NSObject, UNUserNotificationCenterDelegate {
 
 struct Notifier {
 
-    static let taskId = "com.jorisio.pantry.notifier"
+    static let taskId = (Bundle.main.object(forInfoDictionaryKey: "BGTaskSchedulerPermittedIdentifiers") as! Array<String>)[0]
 
     static let minRelativeLifespan = 2.0
     static let reminderTimes = [0, 1, 7, 30].map { 1.0 * $0 * 24 * 3600 }
