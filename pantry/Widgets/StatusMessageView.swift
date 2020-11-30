@@ -27,9 +27,12 @@ struct StatusMessageView: View {
             minWidth: 0, maxWidth: .infinity,
             maxHeight: statusMessage.text == nil ? 0 : 32)
         .background(color())
+        .cornerRadius(10)
+        .padding()
         .foregroundColor(.white)
         .animation(.easeInOut)
         .transition(AnyTransition.move(edge: .top))
+
     }
 
     private func message() -> String {
