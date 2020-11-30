@@ -23,14 +23,14 @@ struct ScanProduct: View {
     @State var imageData: Data? = nil
 
     var body: some View {
-        ZStack {
+        ZStack(alignment: .top) {
             CameraView()
                 .scaledToFill()
                 .layoutPriority(-1) // https://stackoverflow.com/questions/58290963/clip-image-to-square-in-swiftui
 
-            VStack {
+            StatusMessageView(statusMessage: statusMessage)
 
-                StatusMessageView(statusMessage: statusMessage)
+            VStack {
 
                 Spacer()
 
