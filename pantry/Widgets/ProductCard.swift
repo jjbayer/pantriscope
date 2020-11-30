@@ -68,6 +68,7 @@ struct ProductCard: View {
         )
         .id(product.id?.uuidString)
         .onAppear { delta = computeDelta() }
+        .onDisappear { delta = computeDelta() }
         .onReceive(navigator.objectWillChange) {
             // Never show detail if coming from notification
             let productID = navigator.selectedProductID

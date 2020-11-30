@@ -39,7 +39,6 @@ struct SwipeModifier: AnimatableModifier {
                 .offset(self.contentOffset)
         }
         .onAppear {
-            print("Product card appears...")
             if withDemoAnimation {
                 swipeDemo()
             }
