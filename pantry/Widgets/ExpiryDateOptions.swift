@@ -15,6 +15,7 @@ struct ExpiryDateOptions: View {
     var saveAction: (Bool) -> ()
 
     @State private var productHasExpiryDate = true
+    @State private var showDatePicker = false
 
     var body: some View {
         VStack {
@@ -27,19 +28,31 @@ struct ExpiryDateOptions: View {
 
                     Spacer()
 
-                    DatePicker(
-                        "expiry date",
-                        selection: $expiryDate,
-                        displayedComponents: .date
-                    )
-                    .onChange(of: expiryDate, perform: { value in
-                        dateWasSelected = true
-                    })
+                    Text("\(formattedDate)")
+                    .foregroundColor(App.Colors.primary)
+                    .onTapGesture {
+                        showDatePicker = true
+                    }
+                    .fullScreenCover(isPresented: $showDatePicker) {
+                        DatePicker(
+                            "expiry date",
+                            selection: $expiryDate,
+                            displayedComponents: .date
+                        )
+                        .onChange(of: expiryDate, perform: { _ in
+                                dateWasSelected = true
+                                showDatePicker = false
+                        })
+                        .datePickerStyle(GraphicalDatePickerStyle())
+                        .padding()
+                    }
+
                     .opacity(productHasExpiryDate ? 1 : 0)
                     .disabled(!productHasExpiryDate)
                 }
                 .labelsHidden()
-                .padding(5)
+                .padding(10)
+
             }
             .background(Color.white)
             .cornerRadius(10)
@@ -57,6 +70,19 @@ struct ExpiryDateOptions: View {
 
     private var canSave: Bool {
         return dateWasSelected || !productHasExpiryDate
+    }
+
+    private var formattedDate: String {
+
+        if !dateWasSelected {
+            return NSLocalizedString("Choose", comment: "")
+        }
+
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        formatter.timeStyle = .none
+
+        return formatter.string(from: self.expiryDate)
     }
 }
 

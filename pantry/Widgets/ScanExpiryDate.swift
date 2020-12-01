@@ -49,6 +49,7 @@ struct ScanExpiryDate: View {
                     if parsed.confidence > confidence {
                         print("set parsed date \(parsed.date) with confidence \(parsed.confidence)")
                         expiryDate = parsed.date
+                        dateWasSelected = true // Why is this necessary? .onChange(expiryDate) should set it anyway
                         confidence = parsed.confidence
                     }
                 })
