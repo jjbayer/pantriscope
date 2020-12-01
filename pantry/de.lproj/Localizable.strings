@@ -31,6 +31,8 @@
 /* No comment provided by engineer. */
 "Item %@" = "Object %@";
 
+"expiry date" = "Ablaufdatum";
+
 /* No comment provided by engineer. */
 "no expiry date" = "kein Ablaufdatum";
 

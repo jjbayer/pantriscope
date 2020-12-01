@@ -29,7 +29,7 @@ struct ScanExpiryDate: View {
         ZStack {
             FocusArea(
                 aspectRatio: 1/3,
-                caption: dateWasSelected ? Text(dateFormat) : Text("Scan expiry date")
+                caption: Text("Scan expiry date")
             )
             interactionLayer
         }
@@ -82,8 +82,8 @@ struct ScanExpiryDate: View {
             if let _ = imageData {
                 ExpiryDateOptions(
                     expiryDate: $expiryDate,
-                    canSave: $dateWasSelected,
-                    saveAction: { self.save(useExpiryDate: true) }, fastForwardAction: { self.save(useExpiryDate: false) }
+                    dateWasSelected: $dateWasSelected,
+                    saveAction: { useExpiryDate in self.save(useExpiryDate: useExpiryDate) }
                 )
             }
         }

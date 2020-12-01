@@ -11,51 +11,70 @@ import SwiftUI
 struct ExpiryDateOptions: View {
 
     @Binding var expiryDate: Date
-    @Binding var canSave: Bool
-    var saveAction: () -> ()
-    var fastForwardAction: () -> ()
+    @Binding var dateWasSelected: Bool
+    var saveAction: (Bool) -> ()
+
+    @State private var productHasExpiryDate = true
 
     var body: some View {
-
         VStack {
+            ExpiryDateOptionsSection {
+                HStack {
+                    Toggle("has expiry date", isOn: $productHasExpiryDate)
+                        .padding(5)
 
-            HStack(alignment: .center) {
+                    Text("expiry date")
 
-                ExpiryDateOptionsButton(
-                    icon: "chevron.right.2",
-                    size: 50,
-                    color: App.Colors.note,
-                    action: fastForwardAction
-                )
+                    Spacer()
 
-                ExpiryDateOptionsButton(
-                    icon: "plus",
-                    size: 70,
-                    color: canSave ? App.Colors.primary : App.Colors.background,
-                    action: saveAction
-                )
-                .disabled(!canSave)
-                .opacity(canSave ? 1.0 : 0.0)
-
-                PickDateButton(selection: $expiryDate, hasDate: $canSave)
+                    DatePicker(
+                        "expiry date",
+                        selection: $expiryDate,
+                        displayedComponents: .date
+                    )
+                    .onChange(of: expiryDate, perform: { value in
+                        dateWasSelected = true
+                    })
+                    .opacity(productHasExpiryDate ? 1 : 0)
+                    .disabled(!productHasExpiryDate)
+                }
+                .labelsHidden()
             }
+            .background(Color.white)
+            .cornerRadius(10)
 
-            HStack {
-                Text("no expiry date").frame(maxWidth: .infinity)
-                Text("save product")
-                    .frame(maxWidth: .infinity)
+            ExpiryDateOptionsSection {
+                Button("Save") { saveAction(productHasExpiryDate) }
                     .disabled(!canSave)
-                    .opacity(canSave ? 1.0 : 0.0)
-                Text("pick date").frame(maxWidth: .infinity)
             }
-            .multilineTextAlignment(.center)
-            .font(.footnote)
-            .foregroundColor(App.Colors.note)
-
+            .foregroundColor(Color.white)
+            .background(App.Colors.secondary)
+            .cornerRadius(10)
+            .opacity(canSave ? 1 : 0)
         }
+    }
+
+    private var canSave: Bool {
+        return dateWasSelected || !productHasExpiryDate
     }
 }
 
+
+struct ExpiryDateOptionsSection<Content: View>: View {
+
+    let content: Content
+
+    init(@ViewBuilder content: () -> Content) {
+        self.content = content()
+    }
+
+    var body: some View {
+
+        content
+            .frame(maxWidth: .infinity, minHeight: 50)
+
+    }
+}
 
 struct ExpiryDateOptionsButton: View {
     let icon: String
@@ -80,9 +99,8 @@ struct SwiftUIView_Previews: PreviewProvider {
     static var previews: some View {
         ExpiryDateOptions(
             expiryDate: .constant(Date()),
-            canSave: .constant(true),
-            saveAction: {},
-            fastForwardAction: {}
+            dateWasSelected: .constant(false),
+            saveAction: { _ in ()}
         )
             .environment(\.locale, .init(identifier: "de"))
     }
