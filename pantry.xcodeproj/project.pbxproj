@@ -10,10 +10,7 @@
 		8A7D8CCD2AB10263177777BF /* libPods-pantry.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B312C4E72BA97E532E70328F /* libPods-pantry.a */; };
 		A90CB7DC2535986900852E1D /* ExpiryDateParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90CB7DB2535986900852E1D /* ExpiryDateParser.swift */; };
 		A917893B253B52F500D2C826 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = A917893A253B52F400D2C826 /* App.swift */; };
-		A922F94B255BEBD4009CDA2E /* PickDateButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A922F94A255BEBD4009CDA2E /* PickDateButton.swift */; };
 		A9304C2E255180F9000D9165 /* SearchField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9304C2D255180F9000D9165 /* SearchField.swift */; };
-		A9304C322551B0A0000D9165 /* OptionalDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9304C312551B0A0000D9165 /* OptionalDatePicker.swift */; };
-		A93F1ECA2549851500C65598 /* ReadScrollOffsetList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93F1EC92549851400C65598 /* ReadScrollOffsetList.swift */; };
 		A94A34A225377F69006C4FD6 /* SwipeModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94A34A125377F69006C4FD6 /* SwipeModifier.swift */; };
 		A94A34A625383BA8006C4FD6 /* ProductCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94A34A525383BA8006C4FD6 /* ProductCard.swift */; };
 		A953EB3F25599C9500E1CB12 /* ExpiryDateOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A953EB3E25599C9500E1CB12 /* ExpiryDateOptions.swift */; };
@@ -30,7 +27,6 @@
 		A9AA7CDF2539961E0044BB3C /* Notifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AA7CDE2539961E0044BB3C /* Notifier.swift */; };
 		A9AA7CE32539B3C60044BB3C /* DataModelExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AA7CE22539B3C60044BB3C /* DataModelExtensions.swift */; };
 		A9AA7CE72539B4660044BB3C /* Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AA7CE62539B4660044BB3C /* Time.swift */; };
-		A9AAB4BB254C245300400B92 /* FocusTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AAB4BA254C245300400B92 /* FocusTextField.swift */; };
 		A9BAE99A254305D000EB9433 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BAE999254305D000EB9433 /* Settings.swift */; };
 		A9BAE99E2543068600EB9433 /* ArchivedProducts.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BAE99D2543068600EB9433 /* ArchivedProducts.swift */; };
 		A9BAE9A2254307E300EB9433 /* ProductThumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BAE9A1254307E300EB9433 /* ProductThumbnail.swift */; };
@@ -64,10 +60,7 @@
 		6DDF027C9086692215926334 /* Pods-pantry.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pantry.debug.xcconfig"; path = "Target Support Files/Pods-pantry/Pods-pantry.debug.xcconfig"; sourceTree = "<group>"; };
 		A90CB7DB2535986900852E1D /* ExpiryDateParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpiryDateParser.swift; sourceTree = "<group>"; };
 		A917893A253B52F400D2C826 /* App.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
-		A922F94A255BEBD4009CDA2E /* PickDateButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickDateButton.swift; sourceTree = "<group>"; };
 		A9304C2D255180F9000D9165 /* SearchField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchField.swift; sourceTree = "<group>"; };
-		A9304C312551B0A0000D9165 /* OptionalDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionalDatePicker.swift; sourceTree = "<group>"; };
-		A93F1EC92549851400C65598 /* ReadScrollOffsetList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadScrollOffsetList.swift; sourceTree = "<group>"; };
 		A94A34A125377F69006C4FD6 /* SwipeModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeModifier.swift; sourceTree = "<group>"; };
 		A94A34A525383BA8006C4FD6 /* ProductCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCard.swift; sourceTree = "<group>"; };
 		A953EB3E25599C9500E1CB12 /* ExpiryDateOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpiryDateOptions.swift; sourceTree = "<group>"; };
@@ -84,7 +77,6 @@
 		A9AA7CDE2539961E0044BB3C /* Notifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifier.swift; sourceTree = "<group>"; };
 		A9AA7CE22539B3C60044BB3C /* DataModelExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModelExtensions.swift; sourceTree = "<group>"; };
 		A9AA7CE62539B4660044BB3C /* Time.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Time.swift; sourceTree = "<group>"; };
-		A9AAB4BA254C245300400B92 /* FocusTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusTextField.swift; sourceTree = "<group>"; };
 		A9BAE999254305D000EB9433 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		A9BAE99D2543068600EB9433 /* ArchivedProducts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchivedProducts.swift; sourceTree = "<group>"; };
 		A9BAE9A1254307E300EB9433 /* ProductThumbnail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductThumbnail.swift; sourceTree = "<group>"; };
@@ -156,12 +148,8 @@
 				A94A34A525383BA8006C4FD6 /* ProductCard.swift */,
 				A9BAE9A1254307E300EB9433 /* ProductThumbnail.swift */,
 				A99D62202545CAFA00ED276C /* ScoreBadge.swift */,
-				A93F1EC92549851400C65598 /* ReadScrollOffsetList.swift */,
-				A9AAB4BA254C245300400B92 /* FocusTextField.swift */,
 				A9304C2D255180F9000D9165 /* SearchField.swift */,
-				A9304C312551B0A0000D9165 /* OptionalDatePicker.swift */,
 				A953EB3E25599C9500E1CB12 /* ExpiryDateOptions.swift */,
-				A922F94A255BEBD4009CDA2E /* PickDateButton.swift */,
 				A98AA8A9256159FA00047B77 /* FocusArea.swift */,
 			);
 			path = Widgets;
@@ -431,7 +419,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A922F94B255BEBD4009CDA2E /* PickDateButton.swift in Sources */,
 				A9F4569D24EDB19B00481833 /* AppDelegate.swift in Sources */,
 				A971B73825348F2700E18DCE /* Vision.swift in Sources */,
 				A94A34A625383BA8006C4FD6 /* ProductCard.swift in Sources */,
@@ -443,8 +430,6 @@
 				A9A47AB32530C54F00E0A812 /* ScanExpiryDate.swift in Sources */,
 				A94A34A225377F69006C4FD6 /* SwipeModifier.swift in Sources */,
 				A9AA7CDF2539961E0044BB3C /* Notifier.swift in Sources */,
-				A93F1ECA2549851500C65598 /* ReadScrollOffsetList.swift in Sources */,
-				A9304C322551B0A0000D9165 /* OptionalDatePicker.swift in Sources */,
 				A9BAE9A2254307E300EB9433 /* ProductThumbnail.swift in Sources */,
 				A9F456D424F93AD500481833 /* DataModel.xcdatamodeld in Sources */,
 				A9A72C5624FBA70F00BD7F2D /* StatusMessage.swift in Sources */,
@@ -460,7 +445,6 @@
 				A90CB7DC2535986900852E1D /* ExpiryDateParser.swift in Sources */,
 				A9BAE99A254305D000EB9433 /* Settings.swift in Sources */,
 				A9F456C724F2A0DB00481833 /* CameraView.swift in Sources */,
-				A9AAB4BB254C245300400B92 /* FocusTextField.swift in Sources */,
 				A98414E62530B6720025811E /* TakeSnapshotView.swift in Sources */,
 				A9F456CB24F2A0FA00481833 /* Camera.swift in Sources */,
 				A9A72C5824FBA9FC00BD7F2D /* StatusMessageView.swift in Sources */,
