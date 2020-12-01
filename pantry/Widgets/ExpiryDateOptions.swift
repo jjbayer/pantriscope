@@ -21,7 +21,7 @@ struct ExpiryDateOptions: View {
             ExpiryDateOptionsSection {
                 HStack {
                     Toggle("has expiry date", isOn: $productHasExpiryDate)
-                        .padding(5)
+
 
                     Text("expiry date")
 
@@ -39,6 +39,7 @@ struct ExpiryDateOptions: View {
                     .disabled(!productHasExpiryDate)
                 }
                 .labelsHidden()
+                .padding(5)
             }
             .background(Color.white)
             .cornerRadius(10)
@@ -48,7 +49,7 @@ struct ExpiryDateOptions: View {
                     .disabled(!canSave)
             }
             .foregroundColor(Color.white)
-            .background(App.Colors.secondary)
+            .background(App.Colors.primary)
             .cornerRadius(10)
             .opacity(canSave ? 1 : 0)
         }
