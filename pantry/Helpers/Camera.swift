@@ -61,7 +61,7 @@ struct Camera {
         captureSession.beginConfiguration()
 
         output.isHighResolutionCaptureEnabled = true
-        output.isLivePhotoCaptureEnabled = output.isLivePhotoCaptureSupported
+        output.isLivePhotoCaptureEnabled = false
 
 
         guard captureSession.canAddOutput(output) else { return }
