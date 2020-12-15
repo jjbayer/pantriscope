@@ -9,24 +9,26 @@ import AVFoundation
 import MLKit
 
 
-func detectExpiryDate(sampleBuffer: CMSampleBuffer, cameraPosition: AVCaptureDevice.Position, onSuccess: @escaping (ParsedExpiryDate) -> ()) {
+func detectExpiryDate(sampleBuffer: CMSampleBuffer, cameraPosition: AVCaptureDevice.Position) -> ParsedExpiryDate? {
 
     let image = VisionImage(buffer: sampleBuffer)
     image.orientation = imageOrientation(
       deviceOrientation: UIDevice.current.orientation,
       cameraPosition: cameraPosition)
 
-    TextRecognizer.textRecognizer().process(image) { result, error in
-        guard error == nil, let result = result else {
-            print("Failed to get text recognition data")
-            return
-        }
+    if let result = try? TextRecognizer.textRecognizer().results(in: image) {
+
         print("Detected text: '\(result.text)'")
         if !result.text.isEmpty {
-            let result = ExpiryDateParser().parse(text: result.text)
-            onSuccess(result)
+
+            return ExpiryDateParser().parse(text: result.text)
         }
+
+    } else {
+        print("Failed to get text recognition data")
     }
+
+    return nil
 }
 
 
