@@ -21,6 +21,7 @@ func detectExpiryDate(sampleBuffer: CMSampleBuffer, onSuccess: @escaping (Parsed
             print("Failed to get text recognition data")
             return
         }
+        print("Detected text: '\(result.text)'")
         if !result.text.isEmpty {
             let result = ExpiryDateParser().parse(text: result.text)
             onSuccess(result)
