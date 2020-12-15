@@ -65,7 +65,7 @@ struct Camera {
 
 
         guard captureSession.canAddOutput(output) else { return }
-        captureSession.sessionPreset = .photo
+        captureSession.sessionPreset = .medium
         captureSession.addOutput(output)
 
         guard captureSession.canAddOutput(videoOutput) else {
