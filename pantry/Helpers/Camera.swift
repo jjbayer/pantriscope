@@ -43,13 +43,13 @@ struct Camera {
     let videoOutput = AVCaptureVideoDataOutput()
     let videoHandler = VideoHandler()
     var captureHandler: CaptureHandler? = nil
+
+    let device = getDevice()
     
     private init() {
 
         print("Camera.setUp")
     
-        let device = getDevice()
-
         // https://developer.apple.com/documentation/avfoundation/cameras_and_media_capture/setting_up_a_capture_session
         let videoDeviceInput = try? AVCaptureDeviceInput(device: device)
 
@@ -122,7 +122,7 @@ struct Camera {
         videoHandler.callback = nil
     }
     
-    private func getDevice() -> AVCaptureDevice {
+    static private func getDevice() -> AVCaptureDevice {
         // https://developer.apple.com/documentation/avfoundation/cameras_and_media_capture/choosing_a_capture_device
         if let device = AVCaptureDevice.default(.builtInDualCamera,
                                                 for: .video, position: .back) {

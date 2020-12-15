@@ -45,7 +45,10 @@ struct ScanExpiryDate: View {
         .onAppear {
             print("expdate appear")
             Camera.instance.onFrame { frame in
-                detectExpiryDate(sampleBuffer: frame, onSuccess: { parsed in
+                detectExpiryDate(
+                    sampleBuffer: frame,
+                    cameraPosition: Camera.instance.device.position,
+                    onSuccess: { parsed in
                     if parsed.confidence > confidence {
                         print("set parsed date \(parsed.date) with confidence \(parsed.confidence)")
                         expiryDate = parsed.date
