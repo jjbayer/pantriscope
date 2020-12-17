@@ -12,9 +12,7 @@ import MLKit
 func detectExpiryDate(sampleBuffer: CMSampleBuffer, cameraPosition: AVCaptureDevice.Position) -> ParsedExpiryDate? {
 
     let image = VisionImage(buffer: sampleBuffer)
-    image.orientation = imageOrientation(
-      deviceOrientation: UIDevice.current.orientation,
-      cameraPosition: cameraPosition)
+    image.orientation = .right // Only one orientation allowed in app
 
     if let result = try? TextRecognizer.textRecognizer().results(in: image) {
 
@@ -30,30 +28,6 @@ func detectExpiryDate(sampleBuffer: CMSampleBuffer, cameraPosition: AVCaptureDev
 
     return nil
 }
-
-
-/// Copied from https://developers.google.com/ml-kit/vision/text-recognition/ios
-func imageOrientation(
-  deviceOrientation: UIDeviceOrientation,
-  cameraPosition: AVCaptureDevice.Position
-) -> UIImage.Orientation {
-  switch deviceOrientation {
-  case .portrait:
-    return cameraPosition == .front ? .leftMirrored : .right
-  case .landscapeLeft:
-    return cameraPosition == .front ? .downMirrored : .up
-  case .portraitUpsideDown:
-    return cameraPosition == .front ? .rightMirrored : .left
-  case .landscapeRight:
-    return cameraPosition == .front ? .upMirrored : .down
-  case .faceDown, .faceUp, .unknown:
-    return .up
-  @unknown default:
-    print("Unknown UIImage orientation '\(deviceOrientation)'")
-    return .right
-  }
-}
-
 
 
 func detectText(imageData: Data, onSuccess: @escaping (String) -> ()) {
