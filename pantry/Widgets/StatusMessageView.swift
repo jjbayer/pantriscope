@@ -28,6 +28,7 @@ struct StatusMessageView: View {
             maxHeight: statusMessage.text == nil ? 0 : 32)
         .background(color())
         .cornerRadius(10)
+        .shadow(radius: 5)
         .padding()
         .foregroundColor(.white)
         .animation(.easeInOut)
@@ -60,7 +61,21 @@ struct StatusMessageView: View {
 }
 
 struct StatusMessageView_Previews: PreviewProvider {
+
+    struct Preview: View {
+
+        private var sm = StatusMessage()
+
+        init() {
+            sm.success("Success message")
+        }
+
+        var body: some View {
+            StatusMessageView(statusMessage: sm)
+        }
+    }
+
     static var previews: some View {
-        StatusMessageView(statusMessage: StatusMessage())
+        Preview()
     }
 }

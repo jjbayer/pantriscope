@@ -42,18 +42,14 @@ struct InventoryView: View {
             NavigationView {
                 ZStack {
 
-//                    VStack {
+                    listView
 
-                        listView
-
-//                    }
                     .navigationBarTitle(Text("Pantry"), displayMode: .automatic)
 
                     ScoreBadge(score: $score)
                         .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 10))
                         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
                         .offset(x: 0, y: -95)
-
                 }
             }
 
