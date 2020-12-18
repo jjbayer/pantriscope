@@ -48,10 +48,14 @@ struct Camera {
     
     private init() {
 
+        if device == nil {
+            return
+        }
+
         print("Camera.setUp")
     
         // https://developer.apple.com/documentation/avfoundation/cameras_and_media_capture/setting_up_a_capture_session
-        let videoDeviceInput = try? AVCaptureDeviceInput(device: device)
+        let videoDeviceInput = try? AVCaptureDeviceInput(device: device!)
 
         if !captureSession.canAddInput(videoDeviceInput!) { // FIXME: unwrapping
             fatalError("Failed to add video input")
@@ -122,7 +126,7 @@ struct Camera {
         videoHandler.callback = nil
     }
     
-    static private func getDevice() -> AVCaptureDevice {
+    static private func getDevice() -> AVCaptureDevice? {
         // https://developer.apple.com/documentation/avfoundation/cameras_and_media_capture/choosing_a_capture_device
         if let device = AVCaptureDevice.default(.builtInDualCamera,
                                                 for: .video, position: .back) {
@@ -138,7 +142,10 @@ struct Camera {
             return device
             
         } else {
-            fatalError("Missing expected back camera device")
+
+            print("Could not find camera")
+
+            return nil
         }
     }
     

@@ -45,15 +45,17 @@ struct ScanExpiryDate: View {
         .onAppear {
             print("expdate appear")
             Camera.instance.onFrame { frame in
-                if let parsed = detectExpiryDate(
-                    sampleBuffer: frame,
-                    cameraPosition: Camera.instance.device.position) {
+                if let device = Camera.instance.device {
+                    if let parsed = detectExpiryDate(
+                        sampleBuffer: frame,
+                        cameraPosition: device.position) {
 
-                    if parsed.confidence > confidence {
-                        print("set parsed date \(parsed.date) with confidence \(parsed.confidence)")
-                        expiryDate = parsed.date
-                        dateWasSelected = true // Why is this necessary? .onChange(expiryDate) should set it anyway
-                        confidence = parsed.confidence
+                        if parsed.confidence > confidence {
+                            print("set parsed date \(parsed.date) with confidence \(parsed.confidence)")
+                            expiryDate = parsed.date
+                            dateWasSelected = true // Why is this necessary? .onChange(expiryDate) should set it anyway
+                            confidence = parsed.confidence
+                        }
                     }
                 }
             }
