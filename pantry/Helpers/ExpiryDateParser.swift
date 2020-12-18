@@ -15,35 +15,15 @@ struct ParsedExpiryDate {
 
 struct ExpiryDateParser {
 
+    static let begin = #"(^|\s)"#
+    static let end = #"($|\s)"#
+
     static let day = #"(([012]\d)|(3(0|1)))"#
     static let month = #"((0[1-9])|(1[0-2]))"#
     static let year = #"(20\d{2})"#
     static let yearShort = #"(\d{2})"#
 
-    // TODO: localize date patterns. These are for common Austrian products
-    // Make sure confidences descend
-    static let datePatterns = [
-        ("\(day)\\.\(month)\\.\(year)", "dd.MM.yyyy$", 1.0),
-        ("\(day)-\(month)-\(year)", "dd-MM-yyyy$", 1.0),
-        ("\(day)/\(month)/\(year)", "dd/MM/yyyy$", 1.0),
-        ("\(day) \(month) \(year)", "dd MM yyyy$", 0.95),
-
-        ("\(day)\\.\(month)\\.\(yearShort)$", "dd.MM.yy", 0.9),
-        ("\(day)-\(month)-\(yearShort)$", "dd-MM-yy", 0.9),
-        ("\(day)/\(month)/\(yearShort)$", "dd/MM/yy", 0.9),
-        ("\(day) \(month) \(yearShort)$", "dd MM yy", 0.85),
-
-        ("\(month)\\.\(year)", "MM.yyyy$", 0.6),
-        ("\(month)-\(year)", "MM-yyyy$", 0.6),
-        ("\(month)/\(year)", "MM/yyyy$", 0.6),
-        ("\(month) \(year)", "MM yyyy$", 0.55),
-
-        ("\(day)\(month)\(year)", "ddMMyyyy$", 0.5),
-        ("\(day)\(month)\(yearShort)", "ddMMyy$", 0.4),
-
-        ("\(day)\\. ?\(month)\\.$", "dd.MM.", 0.3),
-        ("\(day)\\. ?\(month)$", "dd.MM", 0.25),
-    ]
+    static let datePatterns = initDatePatterns()
 
     static let minDate = Date().addingTimeInterval(-5*365*24*3600)
     static let maxDate = Date().addingTimeInterval(20*365*24*3600)
@@ -94,4 +74,38 @@ struct ExpiryDateParser {
         return ParsedExpiryDate()
     }
 
+    static func initDatePatterns() -> [(String, String, Double)] {
+
+        // TODO: localize date patterns. These are for common Austrian products
+        // NOTE: Make sure confidences descend
+        return [
+            ("\(day)\\.\(month)\\.\(year)", "dd.MM.yyyy", 1.0),
+            ("\(day)-\(month)-\(year)", "dd-MM-yyyy", 1.0),
+            ("\(day)/\(month)/\(year)", "dd/MM/yyyy", 1.0),
+            ("\(day) \(month) \(year)", "dd MM yyyy", 0.95),
+
+            ("\(day)\\.\(month)\\.\(yearShort)", "dd.MM.yy", 0.9),
+            ("\(day)-\(month)-\(yearShort)", "dd-MM-yy", 0.9),
+            ("\(day)/\(month)/\(yearShort)", "dd/MM/yy", 0.9),
+            ("\(day) \(month) \(yearShort)", "dd MM yy", 0.85),
+
+            ("\(month)\\.\(year)", "MM.yyyy", 0.6),
+            ("\(month)-\(year)", "MM-yyyy", 0.6),
+            ("\(month)/\(year)", "MM/yyyy", 0.6),
+            ("\(month) \(year)", "MM yyyy", 0.55),
+
+            ("\(day)\(month)\(year)", "ddMMyyyy", 0.5),
+            ("\(day)\(month)\(yearShort)", "ddMMyy", 0.4),
+
+            ("\(day)\\. ?\(month)\\.", "dd.MM.", 0.3),
+            ("\(day)\\. ?\(month)", "dd.MM", 0.25),
+        ].map { (pattern, format, confidence) in
+
+            // Make sure that dates are delimited by non-words:
+            ("\(begin)\(pattern)\(end)", format, confidence)
+
+        }
+    }
 }
+
+

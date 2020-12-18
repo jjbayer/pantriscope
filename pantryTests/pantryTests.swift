@@ -27,6 +27,11 @@ class pantryTests: XCTestCase {
         )
 
         XCTAssertEqual(
+            ExpiryDateParser().parse(text: "4356 # 31.12.2021 asdf").date,
+            makeDate(2021, 12, 31)
+        )
+
+        XCTAssertEqual(
             ExpiryDateParser().parse(text: "17.10.20").date,
             makeDate(2020, 10, 17)
         )
