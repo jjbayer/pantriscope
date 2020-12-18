@@ -23,26 +23,26 @@ struct ExpiryDateParser {
     // TODO: localize date patterns. These are for common Austrian products
     // Make sure confidences descend
     static let datePatterns = [
-        ("\(day)\\.\(month)\\.\(year)", "dd.MM.yyyy", 1.0),
-        ("\(day)-\(month)-\(year)", "dd-MM-yyyy", 1.0),
-        ("\(day)/\(month)/\(year)", "dd/MM/yyyy", 1.0),
-        ("\(day) \(month) \(year)", "dd MM yyyy", 0.95),
+        ("\(day)\\.\(month)\\.\(year)", "dd.MM.yyyy$", 1.0),
+        ("\(day)-\(month)-\(year)", "dd-MM-yyyy$", 1.0),
+        ("\(day)/\(month)/\(year)", "dd/MM/yyyy$", 1.0),
+        ("\(day) \(month) \(year)", "dd MM yyyy$", 0.95),
 
-        ("\(day)\\.\(month)\\.\(yearShort)", "dd.MM.yy", 0.9),
-        ("\(day)-\(month)-\(yearShort)", "dd-MM-yy", 0.9),
-        ("\(day)/\(month)/\(yearShort)", "dd/MM/yy", 0.9),
-        ("\(day) \(month) \(yearShort)", "dd MM yy", 0.85),
+        ("\(day)\\.\(month)\\.\(yearShort)$", "dd.MM.yy", 0.9),
+        ("\(day)-\(month)-\(yearShort)$", "dd-MM-yy", 0.9),
+        ("\(day)/\(month)/\(yearShort)$", "dd/MM/yy", 0.9),
+        ("\(day) \(month) \(yearShort)$", "dd MM yy", 0.85),
 
-        ("\(month)\\.\(year)", "MM.yyyy", 0.6),
-        ("\(month)-\(year)", "MM-yyyy", 0.6),
-        ("\(month)/\(year)", "MM/yyyy", 0.6),
-        ("\(month) \(year)", "MM yyyy", 0.55),
+        ("\(month)\\.\(year)", "MM.yyyy$", 0.6),
+        ("\(month)-\(year)", "MM-yyyy$", 0.6),
+        ("\(month)/\(year)", "MM/yyyy$", 0.6),
+        ("\(month) \(year)", "MM yyyy$", 0.55),
 
-        ("\(day)\(month)\(year)", "ddMMyyyy", 0.5),
-        ("\(day)\(month)\(yearShort)", "ddMMyy", 0.4),
+        ("\(day)\(month)\(year)", "ddMMyyyy$", 0.5),
+        ("\(day)\(month)\(yearShort)", "ddMMyy$", 0.4),
 
-        ("\(day)\\. ?\(month)\\.", "dd.MM.", 0.3),
-        ("\(day)\\. ?\(month)", "dd.MM", 0.25),
+        ("\(day)\\. ?\(month)\\.$", "dd.MM.", 0.3),
+        ("\(day)\\. ?\(month)$", "dd.MM", 0.25),
     ]
 
     static let minDate = Date().addingTimeInterval(-5*365*24*3600)
