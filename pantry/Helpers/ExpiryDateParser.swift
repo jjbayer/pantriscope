@@ -40,6 +40,9 @@ struct ExpiryDateParser {
 
         ("\(day)\(month)\(year)", "ddMMyyyy", 0.5),
         ("\(day)\(month)\(yearShort)", "ddMMyy", 0.4),
+
+        ("\(day)\\. ?\(month)\\.", "dd.MM.", 0.3),
+        ("\(day)\\. ?\(month)", "dd.MM", 0.25),
     ]
 
     static let minDate = Date().addingTimeInterval(-5*365*24*3600)
@@ -59,7 +62,14 @@ struct ExpiryDateParser {
 
                     print("Parsed date \(date) (confidence: \(confidence))")
 
-                    if !format.contains("d") {
+                    if !format.contains("y") {
+                        // If no year given, use closest:
+                        let components = Calendar.current.dateComponents([.month, .day], from: date)
+                        if let alteredDate = closestDate(from: today(), to: components) {
+
+                            date = alteredDate
+                        }
+                    } else if !format.contains("d") {
                         // If only month given, use  last day of month:
                         let oneMonth = DateComponents(month: 1, day: -1)
                         if let alteredDate = Calendar.current.date(byAdding: oneMonth, to: date) {

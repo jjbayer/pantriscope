@@ -13,6 +13,7 @@ func normalize(_ date: Date) -> Date {
     Calendar.current.startOfDay(for: date)
 }
 
+
 /// Shortcut for today
 func today() -> Date {
     normalize(Date())
@@ -24,4 +25,35 @@ func relativeDateDescription(_ date: Date) -> String {
     formatter.unitsStyle = .full
 
     return formatter.localizedString(for: normalize(date), relativeTo: today())
+}
+
+
+func closestDate(from: Date, to: DateComponents) -> Date? {
+
+    // If same, return
+    if Calendar.current.date(from, matchesComponents: to) {
+
+        return from
+    }
+
+    let next = Calendar.current.nextDate(after: from, matching: to, matchingPolicy: .nextTime)
+    let prev = Calendar.current.nextDate(after: from, matching: to, matchingPolicy: .nextTime, direction: .backward)
+
+    if let nextDate = next {
+        if let prevDate = prev {
+            let delta = { (date: Date) -> TimeInterval in abs(date.distance(to: from)) }
+
+            print("\(delta(prevDate)) \(delta(nextDate))")
+            return delta(nextDate) < delta(prevDate) ? nextDate : prevDate
+        }
+
+        return nextDate
+    }
+
+    if let prevDate = prev {
+
+        return prevDate
+    }
+
+    return nil
 }

@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import pantry
+@testable import Plenti
 
 class pantryTests: XCTestCase {
 
@@ -46,11 +46,47 @@ class pantryTests: XCTestCase {
 
     }
 
-    private func makeDate(_ year: Int, _ month: Int, _ day: Int) -> Date {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyyMMdd"
+    func testClosestDate() throws {
 
-        return formatter.date(from: "\(year)\(month)\(day)")!
+        // Exact date will always be exact date
+        XCTAssertEqual(
+            closestDate(from: makeDate(2020, 12, 18), to: DateComponents(year: 2005, month: 7, day: 18)),
+            makeDate(2005, 7, 18)
+        )
+
+        // Yesterday
+        XCTAssertEqual(
+            closestDate(from: makeDate(2020, 12, 17), to: DateComponents(month: 12, day: 16)),
+            makeDate(2020, 12, 16)
+        )
+
+        // Today
+        XCTAssertEqual(
+            closestDate(from: makeDate(2020, 12, 17), to: DateComponents(month: 12, day: 17)),
+            makeDate(2020, 12, 17)
+        )
+
+        // Tomorrow
+        XCTAssertEqual(
+            closestDate(from: makeDate(2020, 12, 17), to: DateComponents(month: 12, day: 18)),
+            makeDate(2020, 12, 18)
+        )
+
+        // Next year
+        XCTAssertEqual(
+            closestDate(from: makeDate(2020, 12, 17), to: DateComponents(month: 1, day: 4))!,
+            makeDate(2021, 1, 4)
+        )
+
+        // Previous year
+        XCTAssertEqual(
+            closestDate(from: makeDate(2021, 1, 4), to: DateComponents(month: 12, day: 17))!,
+            makeDate(2020, 12, 17)
+        )
+    }
+
+    private func makeDate(_ year: Int, _ month: Int, _ day: Int) -> Date {
+        return Calendar.current.date(from: DateComponents(year: year, month: month, day: day))!
     }
 
 }
