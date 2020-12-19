@@ -50,7 +50,7 @@ struct ScanProduct: View {
         }
         .background(Color.black)
         .onAppear {
-            if Camera.instance.device == nil {
+            if !Camera.instance.isWorking {
                 cameraEnabled = false
                 statusMessage.error(NSLocalizedString("Unable to access camera", comment: ""))
             }

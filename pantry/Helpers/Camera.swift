@@ -45,22 +45,32 @@ struct Camera {
     var captureHandler: CaptureHandler? = nil
 
     let device = getDevice()
+
+    var isWorking = true
     
     private init() {
 
-        if device == nil {
+        guard let device = self.device else {
+            isWorking = false
             return
         }
 
         print("Camera.setUp")
     
         // https://developer.apple.com/documentation/avfoundation/cameras_and_media_capture/setting_up_a_capture_session
-        let videoDeviceInput = try? AVCaptureDeviceInput(device: device!)
 
-        if !captureSession.canAddInput(videoDeviceInput!) { // FIXME: unwrapping
-            fatalError("Failed to add video input")
+        guard let videoDeviceInput = try? AVCaptureDeviceInput(device: device) else {
+            print("Failed to create video device input")
+            isWorking = false
+            return
         }
-        captureSession.addInput(videoDeviceInput!) // FIXME: unwrapping
+
+        if !captureSession.canAddInput(videoDeviceInput) {
+            print("Failed to add video input")
+            isWorking = false
+            return
+        }
+        captureSession.addInput(videoDeviceInput)
 
         captureSession.beginConfiguration()
 
@@ -74,6 +84,7 @@ struct Camera {
 
         guard captureSession.canAddOutput(videoOutput) else {
             print("Cannot add video output")
+            isWorking = false
             return
         }
 
@@ -86,7 +97,6 @@ struct Camera {
         // end
         videoOutput.setSampleBufferDelegate(videoHandler, queue: outputQueue)
         captureSession.addOutput(videoOutput)
-
 
         captureSession.commitConfiguration()
     }
@@ -112,6 +122,12 @@ struct Camera {
     mutating func takeSnapshot(successFn: @escaping (Data?) -> ()) {
         let handler = CaptureHandler(onSuccess: successFn)
         captureHandler = handler // assign to member variable bc of lifetime issues
+
+        guard isWorking else {
+            print("Cannot use camera")
+            return
+        }
+
         output.capturePhoto(
             with: AVCapturePhotoSettings(),
             delegate: handler
