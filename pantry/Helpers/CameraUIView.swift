@@ -12,8 +12,10 @@ import UIKit
 /// see https://developer.apple.com/documentation/avfoundation/cameras_and_media_capture/setting_up_a_capture_session
 class CameraUIView: UIView {
 
-    init() {
+    private var camera: Camera
 
+    init(_ camera: Camera) {
+        self.camera = camera
         super.init(frame: .zero)
 
         reconnect()
@@ -21,7 +23,7 @@ class CameraUIView: UIView {
 
     func reconnect() {
         if !videoPreviewLayer.isPreviewing {
-            Camera.instance.connectPreview(previewLayer: videoPreviewLayer)
+            camera.connectPreview(previewLayer: videoPreviewLayer)
         }
     }
 

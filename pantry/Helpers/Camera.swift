@@ -34,9 +34,7 @@ class VideoHandler: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
 }
 
 
-struct Camera {
-
-    static var instance = Camera()
+class Camera: ObservableObject {
 
     let captureSession = AVCaptureSession()
     let output = AVCapturePhotoOutput()
@@ -46,9 +44,9 @@ struct Camera {
 
     let device = getDevice()
 
-    var isWorking = true
+    @Published var isWorking = true
     
-    private init() {
+    init() {
 
         guard let device = self.device else {
             isWorking = false
@@ -109,17 +107,17 @@ struct Camera {
 
     func stop() {
         DispatchQueue.main.async {
-            captureSession.stopRunning()
+            self.captureSession.stopRunning()
         }
     }
 
     func start() {
         DispatchQueue.main.async {
-            captureSession.startRunning()
+            self.captureSession.startRunning()
         }
     }
 
-    mutating func takeSnapshot(successFn: @escaping (Data?) -> ()) {
+    func takeSnapshot(successFn: @escaping (Data?) -> ()) {
         let handler = CaptureHandler(onSuccess: successFn)
         captureHandler = handler // assign to member variable bc of lifetime issues
 

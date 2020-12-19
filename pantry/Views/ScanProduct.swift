@@ -22,9 +22,7 @@ struct ScanProduct: View {
 
     @State var imageData: Data? = nil
 
-    // TODO: make Camera an observed global object,
-    //       s.t. cameraEnabled becomes unnecessary
-    @State private var cameraEnabled = true
+    @EnvironmentObject var camera: Camera
 
     var body: some View {
         ZStack(alignment: .top) {
@@ -41,7 +39,7 @@ struct ScanProduct: View {
 
                 if scanProductMode == .takeSnapshot {
                     TakeSnapshotView(scanProductMode: $scanProductMode, imageData: $imageData)
-                        .disabled(!cameraEnabled)
+                        .disabled(!camera.isWorking)
                 } else {
                     ScanExpiryDate(scanProductMode: $scanProductMode, statusMessage: $statusMessage, imageData: $imageData)
 
@@ -50,8 +48,7 @@ struct ScanProduct: View {
         }
         .background(Color.black)
         .onAppear {
-            if !Camera.instance.isWorking {
-                cameraEnabled = false
+            if !camera.isWorking {
                 statusMessage.error(NSLocalizedString("Unable to access camera", comment: ""))
             }
         }

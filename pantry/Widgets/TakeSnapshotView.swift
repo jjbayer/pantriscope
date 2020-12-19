@@ -13,6 +13,8 @@ struct TakeSnapshotView: View {
     @Binding var scanProductMode: ScanProductMode
     @Binding var imageData: Data?
 
+    @EnvironmentObject var camera: Camera
+
     var body: some View {
 
         ZStack {
@@ -32,7 +34,7 @@ struct TakeSnapshotView: View {
                     .padding()
                     .simultaneousGesture(TapGesture().onEnded {
                         imageData = nil
-                        Camera.instance.takeSnapshot { data in
+                        camera.takeSnapshot { data in
                             imageData = data
                         }
                         scanProductMode = .scanExpiryDate

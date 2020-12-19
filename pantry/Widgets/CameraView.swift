@@ -13,7 +13,9 @@ import AVFoundation
 
 
 struct CameraView: UIViewRepresentable {
-    
+
+    @EnvironmentObject var camera: Camera
+
     typealias UIViewType = CameraUIView
     
     init() {
@@ -23,24 +25,17 @@ struct CameraView: UIViewRepresentable {
     func makeUIView(context: Context) -> CameraUIView {
         print("CameraView.makeUIView")
 
-        return CameraUIView()
+        return CameraUIView(camera)
     }
     
     func updateUIView(_ uiView: CameraUIView, context: Context) {
         uiView.reconnect()
-        let s = Camera.instance.captureSession
+        let s = camera.captureSession
         print("CameraView.updateUIView: isRunning \(s.isRunning), isInterrupted \(s.isInterrupted), previewing: \(uiView.videoPreviewLayer.isPreviewing)")
     }
 
     static func dismantleUIView(_ uiView: Self.UIViewType, coordinator: Self.Coordinator) {
         print("CameraView.dismantleUIView")
         uiView.disconnect()
-//        Camera.instance.captureSession.stopRunning()
-    }
-}
-
-struct CameraView_Previews: PreviewProvider {
-    static var previews: some View {
-        /*@START_MENU_TOKEN@*/Text("Hello, World!")/*@END_MENU_TOKEN@*/
     }
 }

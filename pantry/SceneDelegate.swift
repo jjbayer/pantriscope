@@ -23,10 +23,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         let navigator = Navigator.instance
 
+        let camera = Camera()
+
         // Create the SwiftUI view that provides the window contents.
         let contentView = ContentView()
             .environment(\.managedObjectContext, context)
             .environmentObject(navigator)
+            .environmentObject(camera)
         
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {

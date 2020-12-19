@@ -21,6 +21,8 @@ struct ScanExpiryDate: View {
     @Binding var statusMessage: StatusMessage
     @Binding var imageData: Data?
 
+    @EnvironmentObject var camera: Camera
+
     @Environment(\.managedObjectContext) var managedObjectContext
 
     let cornerRadius = CGFloat(10.0)
@@ -44,8 +46,8 @@ struct ScanExpiryDate: View {
         .padding()
         .onAppear {
             print("expdate appear")
-            Camera.instance.onFrame { frame in
-                if let device = Camera.instance.device {
+            camera.onFrame { frame in
+                if let device = camera.device {
                     if let parsed = detectExpiryDate(
                         sampleBuffer: frame,
                         cameraPosition: device.position) {
@@ -62,7 +64,7 @@ struct ScanExpiryDate: View {
         }
         .onDisappear {
             print("expdate gone")
-            Camera.instance.clearFrameHandler()
+            camera.clearFrameHandler()
         }
     }
 
