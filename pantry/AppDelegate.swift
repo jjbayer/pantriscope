@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         SentrySDK.start { options in
             options.dsn = "https://a0724654ac474d5a9743af4653902222@o481683.ingest.sentry.io/5533788"
-            options.debug = true // Enabled debug when first installing is always helpful
+            options.debug = false
         }
 
         Notifier.instance.setup()
