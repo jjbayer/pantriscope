@@ -6,6 +6,7 @@
 //  Copyright © 2020 Joris. All rights reserved.
 //
 import AVFoundation
+import os
 
 
 class CaptureHandler: NSObject, AVCapturePhotoCaptureDelegate {
@@ -45,6 +46,8 @@ class Camera: ObservableObject {
     let device = getDevice()
 
     @Published var isWorking = true
+
+    private let logger = Logger(subsystem: App.name, category: "camera")
     
     init() {
 
@@ -53,18 +56,18 @@ class Camera: ObservableObject {
             return
         }
 
-        print("Camera.setUp")
+        logger.info("Camera.setUp")
     
         // https://developer.apple.com/documentation/avfoundation/cameras_and_media_capture/setting_up_a_capture_session
 
         guard let videoDeviceInput = try? AVCaptureDeviceInput(device: device) else {
-            print("Failed to create video device input")
+            logger.warning("Failed to create video device input")  // when user denies access
             isWorking = false
             return
         }
 
         if !captureSession.canAddInput(videoDeviceInput) {
-            print("Failed to add video input")
+            logger.error("Failed to add video input")
             isWorking = false
             return
         }
@@ -81,7 +84,7 @@ class Camera: ObservableObject {
         captureSession.addOutput(output)
 
         guard captureSession.canAddOutput(videoOutput) else {
-            print("Cannot add video output")
+            logger.error("Cannot add video output")
             isWorking = false
             return
         }
@@ -122,7 +125,7 @@ class Camera: ObservableObject {
         captureHandler = handler // assign to member variable bc of lifetime issues
 
         guard isWorking else {
-            print("Cannot use camera")
+            logger.warning("Cannot use camera")
             return
         }
 
@@ -141,23 +144,26 @@ class Camera: ObservableObject {
     }
     
     static private func getDevice() -> AVCaptureDevice? {
+
+        let logger = Logger(subsystem: App.name, category: "camera")
+
         // https://developer.apple.com/documentation/avfoundation/cameras_and_media_capture/choosing_a_capture_device
         if let device = AVCaptureDevice.default(.builtInDualCamera,
                                                 for: .video, position: .back) {
-            print("Choosing dual camera")
+            logger.info("Choosing dual camera")
             
             return device
             
         } else if let device = AVCaptureDevice.default(.builtInWideAngleCamera,
                                                        for: .video, position: .back) {
            
-            print("Choosing wide angle camera")
+            logger.info("Choosing wide angle camera")
             
             return device
             
         } else {
 
-            print("Could not find camera")
+            logger.error("Could not find camera")
 
             return nil
         }
