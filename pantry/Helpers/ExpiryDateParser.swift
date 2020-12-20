@@ -6,6 +6,7 @@
 //  Copyright © 2020 Joris. All rights reserved.
 //
 import Foundation
+import os
 
 
 struct ParsedExpiryDate {
@@ -28,6 +29,8 @@ struct ExpiryDateParser {
     static let minDate = Date().addingTimeInterval(-5*365*24*3600)
     static let maxDate = Date().addingTimeInterval(20*365*24*3600)
 
+    private let logger = Logger(subsystem: App.name, category: "ExpiryDateParser")
+
     func parse(text: String) -> ParsedExpiryDate {
 
         for (pattern, format, confidence) in ExpiryDateParser.datePatterns {
@@ -39,8 +42,6 @@ struct ExpiryDateParser {
                 formatter.timeZone = TimeZone.current
 
                 if var date = formatter.date(from: dateString) {
-
-                    print("Parsed date \(date) (confidence: \(confidence))")
 
                     if !format.contains("y") {
                         // If no year given, use closest:
@@ -55,7 +56,7 @@ struct ExpiryDateParser {
                         if let alteredDate = Calendar.current.date(byAdding: oneMonth, to: date) {
                             date = alteredDate
                         } else {
-                            print("Error pushing date to end of month: \(date)")
+                            logger.reportError("Error pushing date to end of month: \(date)")
                         }
                     }
 

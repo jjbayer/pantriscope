@@ -43,7 +43,6 @@ func closestDate(from: Date, to: DateComponents) -> Date? {
         if let prevDate = prev {
             let delta = { (date: Date) -> TimeInterval in abs(date.distance(to: from)) }
 
-            print("\(delta(prevDate)) \(delta(nextDate))")
             return delta(nextDate) < delta(prevDate) ? nextDate : prevDate
         }
 

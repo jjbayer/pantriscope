@@ -95,7 +95,6 @@ struct ProductView: View {
                     ActionSheet(title: Text("Delete product"), buttons: [
                         .cancel(Text("Cancel")),
                         .destructive(Text("Delete forever")) {
-                            print("Deleting...")
                             managedObjectContext.delete(product)
                             if let _ = try? managedObjectContext.save() {
 
@@ -114,7 +113,6 @@ struct ProductView: View {
                 .frame(maxWidth: .infinity, alignment: .center)
 
                 Button(action: {
-                    print("Saving...")
 
                     #if DEBUG
                     product.dateAdded = dateAdded

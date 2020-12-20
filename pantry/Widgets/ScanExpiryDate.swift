@@ -8,6 +8,7 @@
 
 import SwiftUI
 import AVFoundation
+import os
 
 
 
@@ -27,6 +28,8 @@ struct ScanExpiryDate: View {
 
     let cornerRadius = CGFloat(10.0)
 
+    private let logger = Logger(subsystem: App.name, category: "ScanExpiryDate")
+
     var body: some View {
         ZStack {
             FocusArea(
@@ -45,7 +48,6 @@ struct ScanExpiryDate: View {
         }
         .padding()
         .onAppear {
-            print("expdate appear")
             camera.onFrame { frame in
                 if let device = camera.device {
                     if let parsed = detectExpiryDate(
@@ -53,7 +55,6 @@ struct ScanExpiryDate: View {
                         cameraPosition: device.position) {
 
                         if parsed.confidence > confidence {
-                            print("set parsed date \(parsed.date) with confidence \(parsed.confidence)")
                             expiryDate = parsed.date
                             dateWasSelected = true // Why is this necessary? .onChange(expiryDate) should set it anyway
                             confidence = parsed.confidence
@@ -63,7 +64,6 @@ struct ScanExpiryDate: View {
             }
         }
         .onDisappear {
-            print("expdate gone")
             camera.clearFrameHandler()
         }
     }
@@ -111,7 +111,7 @@ struct ScanExpiryDate: View {
                     try self.managedObjectContext.save()
                     self.statusMessage.success(NSLocalizedString("Product saved.", comment: ""))
                 } catch {
-                    print("Error saving detected text")
+                    logger.reportError("Error saving detected text")
                 }
             })
         }

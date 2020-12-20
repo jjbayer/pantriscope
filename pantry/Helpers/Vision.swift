@@ -7,6 +7,10 @@
 //
 import AVFoundation
 import MLKit
+import os
+
+
+private let logger = Logger(subsystem: App.name, category: "vision")
 
 
 func detectExpiryDate(sampleBuffer: CMSampleBuffer, cameraPosition: AVCaptureDevice.Position) -> ParsedExpiryDate? {
@@ -14,9 +18,10 @@ func detectExpiryDate(sampleBuffer: CMSampleBuffer, cameraPosition: AVCaptureDev
     let image = VisionImage(buffer: sampleBuffer)
     image.orientation = .right // Only one orientation allowed in app
 
+    // TODO: create text recognizer only once
     if let result = try? TextRecognizer.textRecognizer().results(in: image) {
 
-        print("Detected text: '\(result.text)'")
+        logger.debug("Detected text: '\(result.text)'")
         if !result.text.isEmpty {
 
             return ExpiryDateParser().parse(text: result.text)
@@ -37,7 +42,7 @@ func detectText(imageData: Data, onSuccess: @escaping (String) -> ()) {
 
         TextRecognizer.textRecognizer().process(visionImage) { result, error in
             guard error == nil, let result = result else {
-                print("Failed to get text recognition data")
+                logger.reportError("Failed to get text recognition data")
                 return
             }
             if !result.text.isEmpty {
@@ -45,6 +50,6 @@ func detectText(imageData: Data, onSuccess: @escaping (String) -> ()) {
             }
         }
     } else {
-        print("Unable to create image from image data")
+        logger.reportError("Unable to create image from image data")
     }
 }

@@ -7,9 +7,12 @@
 //
 import Foundation
 import UIKit
+import os
 
 
 extension Product {
+
+    static private let logger = Logger(subsystem: App.name, category: "products")
 
     var lifespan: TimeInterval? {
         if let expiryDate = self.expiryDate, let dateAdded = self.dateAdded {
@@ -38,26 +41,24 @@ extension Product {
             let reminder = Reminder(context: context)
             reminder.product = self
             reminder.timeBeforeExpiry = reminderTime
-            print("Adding reminder for \(String(describing: self.id))")
+            Product.logger.info("Adding reminder for \(String(describing: self.id))")
             self.addToReminder(reminder)
             DispatchQueue.main.async { // Prevent "Publishing changes from background threads is not allowed" error
                 do {
                     try context.save()
 
-                } catch { print("Unable to save reminder: \(error)")}
+                } catch { Product.logger.reportError("Unable to save reminder: \(error)")}
             }
         } else {
-            print("Cannot add reminder to product without context")
+            Product.logger.reportError("Cannot add reminder to product without context")
         }
     }
 
     func hasReminder(_ reminderTime: TimeInterval) -> Bool {
         if let reminders = self.reminder {
-            print("Product \(String(describing: self.id)) has reminders")
             let predicate = NSPredicate(format: "timeBeforeExpiry == \(reminderTime)")  // TODO: float comparison
 
             let hasIt = !(reminders.filtered(using: predicate).isEmpty)
-            print("  Product has this reminder: \(hasIt)")
 
             return hasIt
         }

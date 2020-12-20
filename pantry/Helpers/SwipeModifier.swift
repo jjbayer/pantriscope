@@ -76,13 +76,11 @@ struct SwipeModifier: AnimatableModifier {
     private var gesture: some Gesture {
         DragGesture(minimumDistance: 50, coordinateSpace: .local)
             .onChanged { value in
-                print("changed")
                 self.contentOffset.width = value.translation.width
                 self.direction = value.translation.width > 0 ? .left2right : .right2left
                 isActive = abs(value.translation.width) > SwipeModifier.minSwipe
             }
             .onEnded { _ in
-                print("ended")
                 withAnimation {
                     self.contentOffset.width = 0
                 }

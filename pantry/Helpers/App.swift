@@ -26,7 +26,6 @@ extension Color {
 struct App {
 
     static let name = Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as! String
-    static let logger = Logger()
 
     struct Colors {
         // https://coolors.co/48a9a6-4281a4-93b0bf-e4dfda-d4b483-c1666b

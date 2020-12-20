@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import BackgroundTasks
+import os
 
 
 class ResponseReceiver: NSObject, UNUserNotificationCenterDelegate {
@@ -19,7 +20,6 @@ class ResponseReceiver: NSObject, UNUserNotificationCenterDelegate {
 
         if let id = response.notification.request.content.userInfo["PRODUCT_ID"] as? String {
             // TODO: when we have inventories, go to the correct inventory
-            print("Set product ID for navigation")
             Navigator.instance.selectedTabItem = .inventory
             Navigator.instance.selectedProductID = id
             Navigator.instance.dummy = true // HACK to make InventoryView scroll to correct product
@@ -42,6 +42,8 @@ struct Notifier {
 
     let receiver = ResponseReceiver()
 
+    private let logger = Logger(subsystem: App.name, category: "Notifier")
+
     func setup() {
 
         BGTaskScheduler.shared.register(forTaskWithIdentifier: Notifier.taskId, using: nil) { task in
@@ -53,7 +55,7 @@ struct Notifier {
 
     func scheduleBackgroundTask() {
 
-        print("Scheduling reminder background task...")
+        logger.info("Scheduling reminder background task...")
 
         BGTaskScheduler.shared.cancel(taskRequestWithIdentifier: Notifier.taskId)
         let request = BGAppRefreshTaskRequest(identifier: Notifier.taskId)
@@ -61,7 +63,7 @@ struct Notifier {
         do {
             try BGTaskScheduler.shared.submit(request)
         } catch {
-            print("Could not schedule reminder task: \(error)")
+            logger.reportError("Could not schedule reminder task: \(error)")
         }
     }
 
@@ -75,7 +77,7 @@ struct Notifier {
     }
 
     func sendOutReminders() {
-        print("Sending out reminders...")
+        logger.info("Sending out reminders...")
 
         let request = NSFetchRequest<Product>()
         request.entity = Product.entity()
@@ -84,7 +86,7 @@ struct Notifier {
         do {
             try products = context.fetch(request)
         } catch {
-            print("Failed to fetch products for reminders")
+            logger.reportError("Failed to fetch products for reminders")
 
             return
         }
@@ -96,13 +98,11 @@ struct Notifier {
 
     func requestAuthorization() {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
-            print("Notification granted: \(granted) with error: \(String(describing: error))")
+            logger.info("Notification granted: \(granted) with error: \(String(describing: error))")
         }
     }
 
     func sendNotification(title: String, body: String, fileURL: URL?, userInfo: [AnyHashable : Any], successFn: @escaping () -> ()) {
-        print("Sending notification...")
-
         // TODO: localize
         let content = UNMutableNotificationContent()
         content.title = title
@@ -116,7 +116,7 @@ struct Notifier {
                 try attachment = UNNotificationAttachment(identifier: "productImage", url: url)
                 content.attachments.append(attachment)
             } catch {
-                print("Unable to create attachment: \(error.localizedDescription)")
+                logger.reportError("Unable to create attachment: \(error.localizedDescription)")
             }
         }
 
@@ -127,7 +127,7 @@ struct Notifier {
         let notificationCenter = UNUserNotificationCenter.current()
         notificationCenter.add(request) { (error) in
             if let error = error {
-                print("Failed to notify: \(error.localizedDescription)")
+                logger.reportError("Failed to notify: \(error.localizedDescription)")
             } else {
                 successFn()
             }
@@ -153,7 +153,7 @@ struct Notifier {
     }
 
     func scheduleReminder(_ product: Product, _ reminderTime: TimeInterval) {
-        print("Schedule reminder for product \(String(describing: product.id))")
+        logger.info("Schedule reminder for product \(String(describing: product.id))")
         if let expiryString = product.expiryStringLong, let id = product.id {
 
             var imageURL: URL? = nil
@@ -163,7 +163,7 @@ struct Notifier {
                     try imageData.write(to: imagePath)
                     imageURL = imagePath
                 } catch {
-                    print("Unable to write image")
+                    logger.reportError("Unable to write image")
                 }
             }
 
@@ -177,7 +177,7 @@ struct Notifier {
                 }
             )
         } else {
-            print("ERROR: Scheduling reminder for product without expiry date")
+            logger.reportError("Scheduling reminder for product without expiry date")
         }
 
     }
