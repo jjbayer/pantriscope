@@ -67,7 +67,7 @@ class Camera: ObservableObject {
         }
 
         if !captureSession.canAddInput(videoDeviceInput) {
-            logger.error("Failed to add video input")
+            logger.reportError("Failed to add video input")
             isWorking = false
             return
         }
@@ -84,7 +84,7 @@ class Camera: ObservableObject {
         captureSession.addOutput(output)
 
         guard captureSession.canAddOutput(videoOutput) else {
-            logger.error("Cannot add video output")
+            logger.reportError("Cannot add video output")
             isWorking = false
             return
         }
@@ -163,7 +163,7 @@ class Camera: ObservableObject {
             
         } else {
 
-            logger.error("Could not find camera")
+            logger.reportError("Could not find camera")
 
             return nil
         }

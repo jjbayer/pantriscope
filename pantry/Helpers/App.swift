@@ -7,8 +7,6 @@
 //
 
 import SwiftUI
-import Sentry
-import os
 
 
 // from https://stackoverflow.com/questions/56874133/use-hex-color-in-swiftui
@@ -40,13 +38,6 @@ struct App {
 //        static let background = Color(hex: 0xE4DFDA) // original from coolors
         static let background = Color(hex: 0xe2f3f2)
     }
-
-    /// Log error to console and report to Sentry
-    static func logError(_ message: String) {
-        logger.error("\(message)")
-        SentrySDK.capture(message: message)
-    }
-
 }
 
 
