@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import os
+import CoreData
 
 
 extension Product {
@@ -118,4 +119,43 @@ extension Product {
             return NSLocalizedString("<no added date>", comment: "Should never happen")
         }
     }
+}
+
+
+extension Inventory {
+
+    static let defaultName = "default"
+
+    static func defaultInventory(_ context: NSManagedObjectContext) -> Inventory? {
+        let request = NSFetchRequest<Inventory>()
+        request.entity = Inventory.entity()
+        request.predicate = NSPredicate(format: "name like '\(Inventory.defaultName)'")
+
+        guard let results = try? context.fetch(request) else {
+            Logger().reportError("Failed to fetch default inventory")
+
+            return nil
+        }
+
+        if results.isEmpty {
+            let inventory = Inventory(context: context)
+            inventory.id = UUID()
+            inventory.name = Inventory.defaultName
+
+            do {
+                try context.save()
+            } catch {
+                Logger().reportError("Failed to create default inventory")
+
+                return nil
+            }
+
+            return inventory
+
+        } else {
+
+            return results[0]
+        }
+    }
+
 }

@@ -100,6 +100,7 @@ struct ScanExpiryDate: View {
     private func save(useExpiryDate: Bool) {
         let product = Product(context: self.managedObjectContext)
         product.id = UUID()
+        product.inventory = Inventory.defaultInventory(self.managedObjectContext)
         product.dateAdded = Date()
         if let data = imageData {
             product.photo = data

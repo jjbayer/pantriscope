@@ -45,6 +45,16 @@ struct ProductView: View {
                             .scaledToFit()
                     }
                 }
+
+                #if DEBUG
+                if let inventoryID = product.inventory?.id {
+                    Text("Inventory ID: \(inventoryID)")
+                }
+                if let productID = product.id {
+                    Text("Product ID: \(productID)")
+                }
+                #endif
+
                 Text(product.addedStringLong)
             }
 
