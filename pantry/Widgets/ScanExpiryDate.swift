@@ -50,7 +50,7 @@ struct ScanExpiryDate: View {
         .onAppear {
             camera.onFrame { frame in
                 if let device = camera.device {
-                    if let parsed = detectExpiryDate(
+                    if let parsed = TextDetector.instance.detectExpiryDate(
                         sampleBuffer: frame,
                         cameraPosition: device.position) {
 
@@ -103,7 +103,7 @@ struct ScanExpiryDate: View {
         product.dateAdded = Date()
         if let data = imageData {
             product.photo = data
-            detectText(imageData: data, onSuccess: { text in
+            TextDetector.instance.detectText(imageData: data, onSuccess: { text in
                 product.detectedText = text
 
                 // Save, because async

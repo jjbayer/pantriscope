@@ -10,46 +10,60 @@ import MLKit
 import os
 
 
-private let logger = Logger(subsystem: App.name, category: "vision")
+struct TextDetector {
 
+    static let instance = TextDetector()
 
-func detectExpiryDate(sampleBuffer: CMSampleBuffer, cameraPosition: AVCaptureDevice.Position) -> ParsedExpiryDate? {
+    private let logger = Logger(subsystem: App.name, category: "ExpiryDateFinder")
 
-    let image = VisionImage(buffer: sampleBuffer)
-    image.orientation = .right // Only one orientation allowed in app
+    private let textRecognizer = TextRecognizer.textRecognizer()
 
-    // TODO: create text recognizer only once
-    if let result = try? TextRecognizer.textRecognizer().results(in: image) {
+    private let expiryDateParser = ExpiryDateParser()
 
-        logger.debug("Detected text: '\(result.text)'")
-        if !result.text.isEmpty {
+    private init() {}
 
-            return ExpiryDateParser().parse(text: result.text)
-        }
+    func detectExpiryDate(sampleBuffer: CMSampleBuffer, cameraPosition: AVCaptureDevice.Position) -> ParsedExpiryDate? {
 
-    } else {
-        print("Failed to get text recognition data")
-    }
+        let image = VisionImage(buffer: sampleBuffer)
+        image.orientation = .right // Only one orientation allowed in app
 
-    return nil
-}
+        if let result = try? textRecognizer.results(in: image) {
 
-
-func detectText(imageData: Data, onSuccess: @escaping (String) -> ()) {
-    if let image = UIImage(data: imageData) {
-        let visionImage = VisionImage(image: image)
-        visionImage.orientation = .right // FIXME hard-coded orientation
-
-        TextRecognizer.textRecognizer().process(visionImage) { result, error in
-            guard error == nil, let result = result else {
-                logger.reportError("Failed to get text recognition data")
-                return
-            }
+            logger.debug("Detected text: '\(result.text)'")
             if !result.text.isEmpty {
-                onSuccess(result.text)
+
+                return expiryDateParser.parse(text: result.text)
             }
+
+        } else {
+            print("Failed to get text recognition data")
         }
-    } else {
-        logger.reportError("Unable to create image from image data")
+
+        return nil
     }
+
+    func detectText(imageData: Data, onSuccess: @escaping (String) -> ()) {
+        if let image = UIImage(data: imageData) {
+            let visionImage = VisionImage(image: image)
+            visionImage.orientation = .right // FIXME hard-coded orientation
+
+            TextRecognizer.textRecognizer().process(visionImage) { result, error in
+                guard error == nil, let result = result else {
+                    logger.reportError("Failed to get text recognition data")
+                    return
+                }
+                if !result.text.isEmpty {
+                    onSuccess(result.text)
+                }
+            }
+        } else {
+            logger.reportError("Unable to create image from image data")
+        }
+    }
+
 }
+
+
+
+
+
