@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8A7D8CCD2AB10263177777BF /* libPods-pantry.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B312C4E72BA97E532E70328F /* libPods-pantry.a */; };
+		A1F647E8D7E6D8003E9AF15F /* Pods_pantry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1619AD0F4FEBCEC3D4E3B75C /* Pods_pantry.framework */; };
 		A90CB7DC2535986900852E1D /* ExpiryDateParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90CB7DB2535986900852E1D /* ExpiryDateParser.swift */; };
 		A917893B253B52F500D2C826 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = A917893A253B52F400D2C826 /* App.swift */; };
 		A9304C2E255180F9000D9165 /* SearchField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9304C2D255180F9000D9165 /* SearchField.swift */; };
@@ -43,7 +43,7 @@
 		A9F456CB24F2A0FA00481833 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F456CA24F2A0FA00481833 /* Camera.swift */; };
 		A9F456D424F93AD500481833 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A9F456D224F93AD500481833 /* DataModel.xcdatamodeld */; };
 		A9F4573824FA8F7200481833 /* InventoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F4573724FA8F7200481833 /* InventoryView.swift */; };
-		DDEBFEADF075BEE65681EE45 /* libPods-pantryTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F8D63CC685E1AE94680FE75B /* libPods-pantryTests.a */; };
+		BF6C6E60F436BAA81C4863A0 /* Pods_pantryTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F343742F78C7D8EC89166AE9 /* Pods_pantryTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +57,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1619AD0F4FEBCEC3D4E3B75C /* Pods_pantry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_pantry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DDF027C9086692215926334 /* Pods-pantry.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pantry.debug.xcconfig"; path = "Target Support Files/Pods-pantry/Pods-pantry.debug.xcconfig"; sourceTree = "<group>"; };
 		A90CB7DB2535986900852E1D /* ExpiryDateParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpiryDateParser.swift; sourceTree = "<group>"; };
 		A917893A253B52F400D2C826 /* App.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
@@ -98,11 +99,10 @@
 		A9F456CA24F2A0FA00481833 /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		A9F456D324F93AD500481833 /* Product.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Product.xcdatamodel; sourceTree = "<group>"; };
 		A9F4573724FA8F7200481833 /* InventoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryView.swift; sourceTree = "<group>"; };
-		B312C4E72BA97E532E70328F /* libPods-pantry.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-pantry.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8AE38ECC5955D2CCDC597DD /* Pods-pantry.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pantry.release.xcconfig"; path = "Target Support Files/Pods-pantry/Pods-pantry.release.xcconfig"; sourceTree = "<group>"; };
 		E06ABC227FCCDD6CC3A8D174 /* Pods-pantryTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pantryTests.debug.xcconfig"; path = "Target Support Files/Pods-pantryTests/Pods-pantryTests.debug.xcconfig"; sourceTree = "<group>"; };
 		EC603360B51A791A54178074 /* Pods-pantryTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pantryTests.release.xcconfig"; path = "Target Support Files/Pods-pantryTests/Pods-pantryTests.release.xcconfig"; sourceTree = "<group>"; };
-		F8D63CC685E1AE94680FE75B /* libPods-pantryTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-pantryTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F343742F78C7D8EC89166AE9 /* Pods_pantryTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_pantryTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,7 +110,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8A7D8CCD2AB10263177777BF /* libPods-pantry.a in Frameworks */,
+				A1F647E8D7E6D8003E9AF15F /* Pods_pantry.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -118,7 +118,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DDEBFEADF075BEE65681EE45 /* libPods-pantryTests.a in Frameworks */,
+				BF6C6E60F436BAA81C4863A0 /* Pods_pantryTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -243,8 +243,8 @@
 		F736A1EBCD5C10F7FE36864D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B312C4E72BA97E532E70328F /* libPods-pantry.a */,
-				F8D63CC685E1AE94680FE75B /* libPods-pantryTests.a */,
+				1619AD0F4FEBCEC3D4E3B75C /* Pods_pantry.framework */,
+				F343742F78C7D8EC89166AE9 /* Pods_pantryTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -261,6 +261,7 @@
 				A9F4569624EDB19B00481833 /* Frameworks */,
 				A9F4569724EDB19B00481833 /* Resources */,
 				F33CA0E101BD754ABF17D6E6 /* [CP] Copy Pods Resources */,
+				960F568E6522D77AD768C2D4 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -371,6 +372,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		960F568E6522D77AD768C2D4 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-pantry/Pods-pantry-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-pantry/Pods-pantry-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-pantry/Pods-pantry-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B97A887E28C4A83259D5B7D9 /* [CP] Check Pods Manifest.lock */ = {
@@ -542,7 +560,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -598,7 +616,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -620,7 +638,7 @@
 				DEVELOPMENT_TEAM = 3VVCAYK524;
 				ENABLE_PREVIEWS = NO;
 				INFOPLIST_FILE = pantry/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jorisbayer.pantry;
 				PRODUCT_NAME = Plenti;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -642,7 +660,7 @@
 				DEVELOPMENT_TEAM = 3VVCAYK524;
 				ENABLE_PREVIEWS = NO;
 				INFOPLIST_FILE = pantry/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jorisbayer.pantry;
 				PRODUCT_NAME = Plenti;
 				PROVISIONING_PROFILE_SPECIFIER = "";
