@@ -98,7 +98,10 @@ struct Notifier {
 
     func requestAuthorization() {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
-            logger.info("Notification granted: \(granted) with error: \(String(describing: error))")
+            logger.info("Notification granted: \(granted)")
+            if let error = error {
+                logger.reportError("Error requesting notification authorization: \(error)")
+            }
         }
     }
 
