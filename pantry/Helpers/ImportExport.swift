@@ -25,22 +25,25 @@ func share(
     vc.excludedActivityTypes = excludedActivityTypes
     vc.popoverPresentationController?.sourceView = source.view
     source.present(vc, animated: true)
+
     return true
 }
 
 
 class CodableProduct: Codable {
 
-    var id: UUID
-    var dateAdded: Date
+    var id: UUID?
+    var dateAdded: Date?
     var expiryDate: Date?
-    var image: Data
+//    var photo: Data?
+    var detectedText: String?
 
-    init(id: UUID, dateAdded: Date, expiryDate: Date?, image: Data) {
-        self.id = id
-        self.dateAdded = dateAdded
-        self.expiryDate = expiryDate
-        self.image = image
+    init(product: Product) {
+        self.id = product.id
+        self.dateAdded = product.dateAdded
+        self.expiryDate = product.expiryDate
+//        self.photo = product.photo
+        self.detectedText = product.detectedText
     }
 }
 
@@ -57,16 +60,7 @@ class CodableInventory: Codable {
         if let items = products {
             for item in items {
                 if let product = item as? Product {
-                    if let id = product.id, let dateAdded = product.dateAdded, let image = product.photo {
-                        self.products.append(
-                            CodableProduct(
-                                id: id,
-                                dateAdded: dateAdded,
-                                expiryDate: product.expiryDate,
-                                image: image
-                            )
-                        )
-                    }
+                    self.products.append(CodableProduct(product: product))
                 }
             }
         }
@@ -80,6 +74,7 @@ func export(inventory: Inventory) -> Bool {
 
         let json = JSONEncoder()
         json.outputFormatting = .prettyPrinted
+        json.dateEncodingStrategy = .iso8601
 
         let codable = CodableInventory(id: id, name: name, products: inventory.product)
 
