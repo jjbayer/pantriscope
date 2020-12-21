@@ -60,7 +60,7 @@ struct Settings: View {
 
         .fileImporter(
             isPresented: $showFileImporter,
-            allowedContentTypes: [.directory],
+            allowedContentTypes: [.folder],
             allowsMultipleSelection: false
         )
         { result in
@@ -72,10 +72,15 @@ struct Settings: View {
                 return
             }
 
-            if importInventory(url[0], context: managedObjectContext) {
-                // All good
+            let exportURL = url[0]
+            let _ = exportURL.startAccessingSecurityScopedResource() // obscure, see https://stackoverflow.com/a/64842270
+            let success = importInventory(exportURL, context: managedObjectContext)
+            exportURL.stopAccessingSecurityScopedResource()
+
+            if success {
+                statusMessage.success(NSLocalizedString("Successfully imported pantry.", comment: ""))
             } else {
-                statusMessage.error("Failed to import pantry.")
+                statusMessage.error(NSLocalizedString("Failed to import pantry.", comment: ""))
             }
         }
     }
