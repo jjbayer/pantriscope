@@ -91,7 +91,9 @@ func export(inventory: Inventory) -> Bool {
             return false
         }
 
-        let basename = "\(App.name)_\(name)"
+        print(App.name)
+        let now = iso8601(date: Date())
+        let basename = "\(App.name)_\(name)_\(now)"
 
         let tempURL = FileManager.default.temporaryDirectory.appendingPathComponent(NSUUID().uuidString)
         let dirURL = tempURL.appendingPathComponent(basename)

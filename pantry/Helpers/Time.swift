@@ -56,3 +56,12 @@ func closestDate(from: Date, to: DateComponents) -> Date? {
 
     return nil
 }
+
+
+func iso8601(date: Date) -> String {
+
+    let formatter = DateFormatter()
+    formatter.dateFormat = "yyyyMMdd'T'HHmmssZ"
+
+    return formatter.string(from: date)
+}
