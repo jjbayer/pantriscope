@@ -37,15 +37,15 @@ class CodableProduct: Codable {
     var id: UUID?
     var dateAdded: Date?
     var expiryDate: Date?
-//    var photo: Data?
     var detectedText: String?
+    var state: String?
 
     init(product: Product) {
         self.id = product.id
         self.dateAdded = product.dateAdded
         self.expiryDate = product.expiryDate
-//        self.photo = product.photo
         self.detectedText = product.detectedText
+        self.state = product.state
     }
 }
 
