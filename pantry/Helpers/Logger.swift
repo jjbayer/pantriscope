@@ -13,13 +13,17 @@ extension Logger {
     /// Write error to console and send to Sentry
     func reportError(_ message: String) {
         self.error("\(message)")
+        SentrySDK.logLevel = .error
         SentrySDK.capture(message: message)
+        SentrySDK.logLevel = .none
     }
 
     /// Write error to console and send to Sentry
     func reportError(error: Error) {
         self.error("\(error.localizedDescription)")
-        SentrySDK.capture(error: error)
+        SentrySDK.logLevel = .error
+        SentrySDK.capture(message: "\(error.localizedDescription)")
+        SentrySDK.logLevel = .none
     }
 
 }

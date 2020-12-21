@@ -70,6 +70,8 @@ class CodableInventory: Codable {
 
 func export(inventory: Inventory) -> Bool {
 
+    let logger = Logger(subsystem: App.name, category: "export")
+
     if let id = inventory.id, let name = inventory.name {
 
         let json = JSONEncoder()
@@ -82,22 +84,36 @@ func export(inventory: Inventory) -> Bool {
         do {
             result = try json.encode(codable)
         } catch {
-            Logger().reportError(error: error)
+            logger.reportError(error: error)
 
             return false
         }
 
-        let tempFileURL = FileManager.default.temporaryDirectory.appendingPathComponent("inventory_\(name).json")
+        let basename = "\(App.name)_\(name)"
+
+        let tempURL = FileManager.default.temporaryDirectory.appendingPathComponent(NSUUID().uuidString)
+        let dirURL = tempURL.appendingPathComponent(basename)
+
+        do {
+            try FileManager.default.createDirectory(at: dirURL, withIntermediateDirectories: true)
+        } catch {
+            logger.reportError(error: error)
+
+            return false
+        }
+
+        let tempFileURL = dirURL.appendingPathComponent("\(basename).json")
 
         do {
             try result.write(to: tempFileURL)
         } catch {
-            Logger().reportError("Failed to write export: \(error.localizedDescription)")
+            logger.reportError(error: error)
 
             return false
         }
 
-        return share(items: [tempFileURL])
+        // Finally, share the entire directory
+        return share(items: [dirURL])
     }
 
     return false
