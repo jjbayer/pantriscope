@@ -78,20 +78,26 @@ func export(inventory: Inventory) -> Bool {
 
         let codable = CodableInventory(id: id, name: name, products: inventory.product)
 
-        if let result = try? json.encode(codable) {
+        var result: Data
+        do {
+            result = try json.encode(codable)
+        } catch {
+            Logger().reportError(error: error)
 
-            let tempFileURL = FileManager.default.temporaryDirectory.appendingPathComponent("inventory_\(name).json")
-
-            do {
-                try result.write(to: tempFileURL)
-            } catch {
-                Logger().error("Failed to write export: \(error.localizedDescription)")
-
-                return false
-            }
-
-            return share(items: [tempFileURL])
+            return false
         }
+
+        let tempFileURL = FileManager.default.temporaryDirectory.appendingPathComponent("inventory_\(name).json")
+
+        do {
+            try result.write(to: tempFileURL)
+        } catch {
+            Logger().reportError("Failed to write export: \(error.localizedDescription)")
+
+            return false
+        }
+
+        return share(items: [tempFileURL])
     }
 
     return false

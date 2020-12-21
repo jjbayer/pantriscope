@@ -28,7 +28,7 @@ struct Settings: View {
                         Button("Export pantry") {
                             if let inventory = Inventory.defaultInventory(managedObjectContext) {
                                 if export(inventory: inventory) {
-                                    statusMessage.success("Pantry was exported.")
+                                    // All good
                                 } else {
                                     statusMessage.error("Failed to export pantry.")
                                 }

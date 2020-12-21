@@ -16,5 +16,11 @@ extension Logger {
         SentrySDK.capture(message: message)
     }
 
+    /// Write error to console and send to Sentry
+    func reportError(error: Error) {
+        self.error("\(error.localizedDescription)")
+        SentrySDK.capture(error: error)
+    }
+
 }
 
