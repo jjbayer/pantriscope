@@ -34,11 +34,13 @@ class CodableProduct: Codable {
     var id: UUID
     var dateAdded: Date
     var expiryDate: Date?
+    var image: Data
 
-    init(id: UUID, dateAdded: Date, expiryDate: Date?) {
+    init(id: UUID, dateAdded: Date, expiryDate: Date?, image: Data) {
         self.id = id
         self.dateAdded = dateAdded
         self.expiryDate = expiryDate
+        self.image = image
     }
 }
 
@@ -55,8 +57,15 @@ class CodableInventory: Codable {
         if let items = products {
             for item in items {
                 if let product = item as? Product {
-                    if let id = product.id, let dateAdded = product.dateAdded {
-                        self.products.append(CodableProduct(id: id, dateAdded: dateAdded, expiryDate: product.expiryDate))
+                    if let id = product.id, let dateAdded = product.dateAdded, let image = product.photo {
+                        self.products.append(
+                            CodableProduct(
+                                id: id,
+                                dateAdded: dateAdded,
+                                expiryDate: product.expiryDate,
+                                image: image
+                            )
+                        )
                     }
                 }
             }
