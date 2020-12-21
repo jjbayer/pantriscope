@@ -114,6 +114,23 @@ func export(inventory: Inventory) -> Bool {
             return false
         }
 
+        // Write images
+        if let items = inventory.product {
+            for item in items {
+                if let product = item as? Product {
+                    if let id = product.id, let imageData = product.photo {
+                        let imageURL = dirURL.appendingPathComponent("\(id).jpg")
+                        do {
+                            try imageData.write(to: imageURL)
+                        } catch {
+                            logger.warning("Failed to write product image: \(error.localizedDescription)")
+                        }
+
+                    }
+                }
+            }
+        }
+
         // Finally, share the entire directory
         return share(items: [dirURL])
     }
