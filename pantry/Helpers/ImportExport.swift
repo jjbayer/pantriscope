@@ -74,13 +74,13 @@ func export(inventory: Inventory) -> Bool {
 
     let logger = Logger(subsystem: App.name, category: "export")
 
-    if let id = inventory.id, let name = inventory.name {
+    if let inventoryID = inventory.id, let inventoryName = inventory.name {
 
         let json = JSONEncoder()
         json.outputFormatting = .prettyPrinted
         json.dateEncodingStrategy = .iso8601
 
-        let codable = CodableInventory(id: id, name: name, products: inventory.product)
+        let codable = CodableInventory(id: inventoryID, name: inventoryName, products: inventory.product)
 
         var result: Data
         do {
@@ -91,22 +91,20 @@ func export(inventory: Inventory) -> Bool {
             return false
         }
 
-        print(App.name)
         let now = iso8601(date: Date())
-        let basename = "\(App.name)_\(name)_\(now)"
 
         let tempURL = FileManager.default.temporaryDirectory.appendingPathComponent(NSUUID().uuidString)
-        let dirURL = tempURL.appendingPathComponent(basename)
+        let exportDirectory = tempURL.appendingPathComponent("\(App.name)_\(inventoryName)_\(now)")
 
         do {
-            try FileManager.default.createDirectory(at: dirURL, withIntermediateDirectories: true)
+            try FileManager.default.createDirectory(at: exportDirectory, withIntermediateDirectories: true)
         } catch {
             logger.reportError(error: error)
 
             return false
         }
 
-        let tempFileURL = dirURL.appendingPathComponent("\(basename).json")
+        let tempFileURL = exportDirectory.appendingPathComponent("\(inventoryName).json")
 
         do {
             try result.write(to: tempFileURL)
@@ -121,7 +119,7 @@ func export(inventory: Inventory) -> Bool {
             for item in items {
                 if let product = item as? Product {
                     if let id = product.id, let imageData = product.photo {
-                        let imageURL = dirURL.appendingPathComponent("\(id).jpg")
+                        let imageURL = exportDirectory.appendingPathComponent("\(id).jpg")
                         do {
                             try imageData.write(to: imageURL)
                         } catch {
@@ -134,7 +132,7 @@ func export(inventory: Inventory) -> Bool {
         }
 
         // Finally, share the entire directory
-        return share(items: [dirURL])
+        return share(items: [exportDirectory])
     }
 
     return false
