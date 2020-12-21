@@ -115,3 +115,11 @@
 "Unable to access camera" = "Kamera nicht verfügbar";
 
 "Export pantry" = "Speisekammer exportieren";
+
+"Failed to export pantry." = "Export fehlgeschlagen.";
+
+"Import pantry" = "Speisekammer importieren";
+
+"Failed to import pantry." = "Import fehlgeschlagen.";
+
+

@@ -14,9 +14,16 @@ struct Settings: View {
 
     @State private var statusMessage = StatusMessage()
 
+    @FetchRequest(
+        entity: Inventory.entity(),
+        sortDescriptors: [],
+        predicate: NSPredicate(format: "name like 'default'")
+    )
+    var inventories: FetchedResults<Inventory>
+
     var body: some View {
-        ZStack(alignment: .top) {
-            NavigationView {
+        NavigationView {
+            ZStack(alignment: .top) {
                 Form {
                     Section(header: Text("Pantry")) {
                         NavigationLink(
@@ -24,6 +31,12 @@ struct Settings: View {
                             label: {
                                 Text("View archived products")
                             })
+
+                        if inventories.isEmpty {
+                            Button("Import pantry") {
+
+                            }
+                        }
 
                         Button("Export pantry") {
                             if let inventory = Inventory.defaultInventory(managedObjectContext) {
@@ -36,11 +49,9 @@ struct Settings: View {
                         }
                     }
                 }
-                .navigationBarTitle(Text("Settings"))
+                StatusMessageView(statusMessage: statusMessage)
             }
-
-            StatusMessageView(statusMessage: statusMessage)
-        }
+        }.navigationBarTitle(Text("Settings"))
     }
 }
 
