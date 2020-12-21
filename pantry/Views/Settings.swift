@@ -7,12 +7,16 @@
 //
 
 import SwiftUI
+import os
+
 
 struct Settings: View {
 
     @Environment(\.managedObjectContext) var managedObjectContext
 
     @State private var statusMessage = StatusMessage()
+
+    @State private var showFileImporter = false
 
     @FetchRequest(
         entity: Inventory.entity(),
@@ -34,24 +38,46 @@ struct Settings: View {
 
                         if inventories.isEmpty {
                             Button("Import pantry") {
-
+                                showFileImporter = true
                             }
                         }
-
-                        Button("Export pantry") {
-                            if let inventory = Inventory.defaultInventory(managedObjectContext) {
-                                if export(inventory: inventory) {
+                        else if inventories.count == 1 {
+                            Button("Export pantry") {
+                                if export(inventory: inventories[0]) {
                                     // All good
                                 } else {
                                     statusMessage.error("Failed to export pantry.")
                                 }
                             }
                         }
+
+
                     }
                 }
                 StatusMessageView(statusMessage: statusMessage)
             }
         }.navigationBarTitle(Text("Settings"))
+
+        .fileImporter(
+            isPresented: $showFileImporter,
+            allowedContentTypes: [.directory],
+            allowsMultipleSelection: false
+        )
+        { result in
+            var url: [URL]
+            do {
+                try url = result.get()
+            } catch {
+                Logger().reportError(error: error)
+                return
+            }
+
+            if importInventory(url[0], context: managedObjectContext) {
+                // All good
+            } else {
+                statusMessage.error("Failed to import pantry.")
+            }
+        }
     }
 }
 

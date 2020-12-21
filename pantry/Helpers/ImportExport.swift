@@ -8,6 +8,7 @@
 import os
 import Foundation
 import UIKit
+import CoreData
 
 
 /// From https://stackoverflow.com/a/59515229
@@ -136,4 +137,62 @@ func export(inventory: Inventory) -> Bool {
     }
 
     return false
+}
+
+
+func importInventory(_ exportURL: URL, context: NSManagedObjectContext) -> Bool {
+
+    let logger = Logger(subsystem: App.name, category: "import")
+
+    let json = JSONDecoder()
+    json.dateDecodingStrategy = .iso8601
+
+    // FIXME: always imports default.json
+    let jsonURL = exportURL.appendingPathComponent("\(Inventory.defaultName).json")
+
+    if let data = FileManager.default.contents(atPath: jsonURL.path) {
+        var codableInventory: CodableInventory
+        do {
+            try codableInventory = json.decode(CodableInventory.self, from: data)
+        } catch {
+            logger.reportError(error: error)
+
+            return false
+        }
+
+        let inventory = Inventory(context: context)
+        inventory.id = codableInventory.id
+        inventory.name = codableInventory.name
+
+        for codableProduct in codableInventory.products {
+            let product = Product(context: context)
+            product.id = codableProduct.id
+            product.dateAdded = codableProduct.dateAdded
+            product.expiryDate = codableProduct.expiryDate
+            product.state = codableProduct.state
+            product.detectedText = codableProduct.detectedText
+
+            if let productID = product.id {
+                // Add image data
+                let imagePath = exportURL.appendingPathComponent("\(productID).jpg").path
+                let imageData = FileManager.default.contents(atPath: imagePath)
+                product.photo = imageData
+            }
+        }
+
+        do {
+            try context.save()
+        } catch {
+            logger.reportError(error: error)
+
+            return false
+        }
+
+        return true
+
+    } else {
+        logger.reportError("Failed to read contents from '\(jsonURL)'")
+
+        return false
+    }
 }
