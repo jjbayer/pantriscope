@@ -174,6 +174,7 @@ func importInventory(_ exportURL: URL, context: NSManagedObjectContext) -> Bool 
 
     for codableProduct in codableInventory.products {
         let product = Product(context: context)
+        product.inventory = inventory
         product.id = codableProduct.id
         product.dateAdded = codableProduct.dateAdded
         product.expiryDate = codableProduct.expiryDate
