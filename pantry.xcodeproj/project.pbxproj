@@ -31,6 +31,7 @@
 		A9BAE99E2543068600EB9433 /* ArchivedProducts.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BAE99D2543068600EB9433 /* ArchivedProducts.swift */; };
 		A9BAE9A2254307E300EB9433 /* ProductThumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BAE9A1254307E300EB9433 /* ProductThumbnail.swift */; };
 		A9DCF342258F84A000A6BA70 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DCF341258F84A000A6BA70 /* Logger.swift */; };
+		A9DCF36A258F8F6C00A6BA70 /* ImportExport.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DCF369258F8F6C00A6BA70 /* ImportExport.swift */; };
 		A9ECA6E6253F1578004A1473 /* ProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ECA6E5253F1578004A1473 /* ProductView.swift */; };
 		A9F4569D24EDB19B00481833 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F4569C24EDB19B00481833 /* AppDelegate.swift */; };
 		A9F4569F24EDB19B00481833 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F4569E24EDB19B00481833 /* SceneDelegate.swift */; };
@@ -83,6 +84,7 @@
 		A9BAE99D2543068600EB9433 /* ArchivedProducts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchivedProducts.swift; sourceTree = "<group>"; };
 		A9BAE9A1254307E300EB9433 /* ProductThumbnail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductThumbnail.swift; sourceTree = "<group>"; };
 		A9DCF341258F84A000A6BA70 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		A9DCF369258F8F6C00A6BA70 /* ImportExport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportExport.swift; sourceTree = "<group>"; };
 		A9ECA6E5253F1578004A1473 /* ProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductView.swift; sourceTree = "<group>"; };
 		A9EFAAB0253F03A6005C9587 /* pantry.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = pantry.entitlements; sourceTree = "<group>"; };
 		A9F4569924EDB19B00481833 /* Plenti.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Plenti.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -172,6 +174,7 @@
 				A9AA7CE62539B4660044BB3C /* Time.swift */,
 				A9710F0B253DDD3300D8E345 /* Navigator.swift */,
 				A9DCF341258F84A000A6BA70 /* Logger.swift */,
+				A9DCF369258F8F6C00A6BA70 /* ImportExport.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -450,6 +453,7 @@
 				A9304C2E255180F9000D9165 /* SearchField.swift in Sources */,
 				A9710F0C253DDD3400D8E345 /* Navigator.swift in Sources */,
 				A9A47AB32530C54F00E0A812 /* ScanExpiryDate.swift in Sources */,
+				A9DCF36A258F8F6C00A6BA70 /* ImportExport.swift in Sources */,
 				A94A34A225377F69006C4FD6 /* SwipeModifier.swift in Sources */,
 				A9AA7CDF2539961E0044BB3C /* Notifier.swift in Sources */,
 				A9BAE9A2254307E300EB9433 /* ProductThumbnail.swift in Sources */,

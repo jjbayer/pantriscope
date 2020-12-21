@@ -9,18 +9,37 @@
 import SwiftUI
 
 struct Settings: View {
+
+    @Environment(\.managedObjectContext) var managedObjectContext
+
+    @State private var statusMessage = StatusMessage()
+
     var body: some View {
-        NavigationView {
-            Form {
-                Section(header: Text("Pantry")) {
-                    NavigationLink(
-                        destination: ArchivedProducts(),
-                        label: {
-                            Text("View archived products")
-                        })
+        ZStack(alignment: .top) {
+            NavigationView {
+                Form {
+                    Section(header: Text("Pantry")) {
+                        NavigationLink(
+                            destination: ArchivedProducts(),
+                            label: {
+                                Text("View archived products")
+                            })
+
+                        Button("Export pantry") {
+                            if let inventory = Inventory.defaultInventory(managedObjectContext) {
+                                if export(inventory: inventory) {
+                                    statusMessage.success("Pantry was exported.")
+                                } else {
+                                    statusMessage.error("Failed to export pantry.")
+                                }
+                            }
+                        }
+                    }
                 }
+                .navigationBarTitle(Text("Settings"))
             }
-            .navigationBarTitle(Text("Settings"))
+
+            StatusMessageView(statusMessage: statusMessage)
         }
     }
 }
