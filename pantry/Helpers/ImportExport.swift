@@ -15,7 +15,9 @@ func share(
     items: [Any],
     excludedActivityTypes: [UIActivity.ActivityType]? = nil
 ) -> Bool {
-    guard let source = UIApplication.shared.windows.last?.rootViewController else {
+    // Use first window instead of last:
+    // https://jeevatamil.medium.com/how-to-create-share-sheet-uiactivityviewcontroller-in-swiftui-cef64b26f073
+    guard let source = UIApplication.shared.windows.first?.rootViewController else {
         return false
     }
     let vc = UIActivityViewController(

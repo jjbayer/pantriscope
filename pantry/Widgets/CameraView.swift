@@ -9,8 +9,6 @@
 import SwiftUI
 import AVFoundation
 
-import AVFoundation
-
 
 struct CameraView: UIViewRepresentable {
 
