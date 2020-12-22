@@ -109,14 +109,20 @@ class Camera: ObservableObject {
     }
 
     func stop() {
+        logger.debug("Camera stop requested.")
         DispatchQueue.main.async {
+            self.logger.debug("Camera stop...")
             self.captureSession.stopRunning()
+            self.logger.debug("Camera stopped.")
         }
     }
 
     func start() {
+        logger.debug("Camera start requested.")
         DispatchQueue.main.async {
+            self.logger.debug("Camera start...")
             self.captureSession.startRunning()
+            self.logger.debug("Camera started.")
         }
     }
 

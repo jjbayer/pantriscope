@@ -48,9 +48,15 @@ struct ScanProduct: View {
         }
         .background(Color.black)
         .onAppear {
+
             if !camera.isWorking {
                 statusMessage.error(NSLocalizedString("Unable to access camera", comment: ""))
+            } else {
+                camera.start()
             }
+        }
+        .onDisappear {
+            camera.stop()
         }
     }
 

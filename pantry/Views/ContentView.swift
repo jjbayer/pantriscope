@@ -17,7 +17,6 @@ struct ContentView: View {
     }
 
     @EnvironmentObject var navigator: Navigator
-    @EnvironmentObject var camera: Camera
 
     var body: some View {
         TabView(selection: $navigator.selectedTabItem) {
@@ -28,12 +27,6 @@ struct ContentView: View {
                     Text("Add products")
                 }
                 .tag(TabID.takeSnapshot)
-                .onAppear {
-                    camera.start()
-                }
-                .onDisappear {
-                    camera.stop()
-                }
 
             InventoryView()
                 .tabItem {
