@@ -46,7 +46,7 @@ struct ContentView: View {
                     navigator.selectedProductID = ""
                 }
 
-            NavigationView { Settings() }
+            Settings()
                 .tabItem {
                     Image(systemName: "gear")
                     Text("Settings")

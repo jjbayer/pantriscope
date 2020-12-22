@@ -14,7 +14,7 @@ struct Settings: View {
 
     @Environment(\.managedObjectContext) var managedObjectContext
 
-    @State private var statusMessage = StatusMessage()
+    @State var statusMessage = StatusMessage()
 
     @State private var showFileImporter = false
 
@@ -26,8 +26,8 @@ struct Settings: View {
     var inventories: FetchedResults<Inventory>
 
     var body: some View {
-        NavigationView {
-            ZStack(alignment: .top) {
+        ZStack(alignment: .top) {
+            NavigationView {
                 Form {
                     Section(header: Text("Pantry")) {
                         NavigationLink(
@@ -50,13 +50,13 @@ struct Settings: View {
                                 }
                             }
                         }
-
-
                     }
-                }
-                StatusMessageView(statusMessage: statusMessage)
+
+                }.navigationBarTitle(Text("Settings"))
             }
-        }.navigationBarTitle(Text("Settings"))
+
+            StatusMessageView(statusMessage: statusMessage)
+        }
 
         .fileImporter(
             isPresented: $showFileImporter,
@@ -88,6 +88,9 @@ struct Settings: View {
 
 struct Settings_Previews: PreviewProvider {
     static var previews: some View {
-        Settings()
+        let settings = Settings()
+        settings.statusMessage.success("Success message")
+
+        return settings
     }
 }
