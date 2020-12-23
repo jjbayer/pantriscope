@@ -20,12 +20,14 @@ struct TextDetector {
 
     private let expiryDateParser = ExpiryDateParser()
 
-    private init() {}
+    private let orientation = UIImage.Orientation.right // app can only be used in portrait mode
+
+    private init() {} // singleton
 
     func detectExpiryDate(sampleBuffer: CMSampleBuffer, cameraPosition: AVCaptureDevice.Position) -> ParsedExpiryDate? {
 
         let image = VisionImage(buffer: sampleBuffer)
-        image.orientation = .right // Only one orientation allowed in app
+        image.orientation = orientation
 
         if let result = try? textRecognizer.results(in: image) {
 
@@ -36,7 +38,7 @@ struct TextDetector {
             }
 
         } else {
-            print("Failed to get text recognition data")
+            logger.reportError("Failed to get text recognition data")
         }
 
         return nil
@@ -45,9 +47,9 @@ struct TextDetector {
     func detectText(imageData: Data, onSuccess: @escaping (String) -> ()) {
         if let image = UIImage(data: imageData) {
             let visionImage = VisionImage(image: image)
-            visionImage.orientation = .right // FIXME hard-coded orientation
+            visionImage.orientation = orientation
 
-            TextRecognizer.textRecognizer().process(visionImage) { result, error in
+            textRecognizer.process(visionImage) { result, error in
                 guard error == nil, let result = result else {
                     logger.reportError("Failed to get text recognition data")
                     return
