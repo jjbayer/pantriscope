@@ -53,6 +53,9 @@ struct ProductView: View {
                 if let productID = product.id {
                     Text("Product ID: \(productID)")
                 }
+                if let detectedText = product.detectedText {
+                    Text("Detected text:\n\(detectedText)")
+                }
                 #endif
 
                 Text(product.addedStringLong)

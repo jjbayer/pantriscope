@@ -27,6 +27,7 @@ struct ScanProduct: View {
     var body: some View {
         ZStack(alignment: .top) {
             CameraView()
+                .edgesIgnoringSafeArea(.all)
                 .scaledToFill()
                 .layoutPriority(-1) // https://stackoverflow.com/questions/58290963/clip-image-to-square-in-swiftui
 

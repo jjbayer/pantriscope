@@ -83,7 +83,7 @@ class Camera: ObservableObject {
             isWorking = false
             return
         }
-        captureSession.sessionPreset = .photo
+        captureSession.sessionPreset = .high
         captureSession.addOutput(output)
 
         guard captureSession.canAddOutput(videoOutput) else {
