@@ -78,9 +78,12 @@ class Camera: ObservableObject {
         output.isHighResolutionCaptureEnabled = true
         output.isLivePhotoCaptureEnabled = false
 
-
-        guard captureSession.canAddOutput(output) else { return }
-        captureSession.sessionPreset = .medium
+        guard captureSession.canAddOutput(output) else {
+            logger.reportError("Cannot add photo output")
+            isWorking = false
+            return
+        }
+        captureSession.sessionPreset = .photo
         captureSession.addOutput(output)
 
         guard captureSession.canAddOutput(videoOutput) else {
