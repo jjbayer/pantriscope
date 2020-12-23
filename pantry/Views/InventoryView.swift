@@ -97,7 +97,7 @@ struct InventoryView: View {
 
 
                     ForEach(products.filter {
-                        searchString.isEmpty || $0.detectedText?.lowercased().contains(searchString) ?? false
+                        searchString.isEmpty || $0.detectedText?.lowercased().contains(searchString.lowercased()) ?? false
                     }, id: \.id) { product in
                         ProductCard(product: product, statusMessage: $statusMessage, withDemoAnimation: products.count == 1)
                     }.listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 1, trailing: 0))
