@@ -10,6 +10,8 @@ import SwiftUI
 
 struct ArchivedProducts: View {
 
+    @Binding var statusMessage: StatusMessage
+
     @FetchRequest(
         entity: Product.entity(),
         sortDescriptors: [
@@ -19,25 +21,19 @@ struct ArchivedProducts: View {
     )
     private var products: FetchedResults<Product>
 
-    @State private var statusMessage = StatusMessage()
-
     var body: some View {
-        VStack {
 
-            StatusMessageView(statusMessage: statusMessage)
-
-            List {
-                ForEach(products) { product in
-                    NavigationLink(destination: ProductView(product: product, statusMessage: $statusMessage)) {
-                        HStack {
-                            ProductThumbnail(imageData: product.photo)
-                            Text(product.addedStringLong)
-                        }
+        List {
+            ForEach(products) { product in
+                NavigationLink(destination: ProductView(product: product, statusMessage: $statusMessage)) {
+                    HStack {
+                        ProductThumbnail(imageData: product.photo)
+                        Text(product.addedStringLong)
                     }
-                    .isDetailLink(true)
                 }
-                .listRowInsets(.none)
+                .isDetailLink(true)
             }
+            .listRowInsets(.none)
         }
         .navigationBarTitle(Text("Archived products"), displayMode: .inline)
     }
@@ -45,27 +41,6 @@ struct ArchivedProducts: View {
 
 struct ArchivedProducts_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
-            List {
-                ForEach(0..<5) { i in
-                    NavigationLink(destination: Text("placeholder")) {
-                        HStack {
-                            Image(systemName: "circle")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(maxWidth: 50)
-                                .background(Color.blue)
-                            Text("Placeholder")
-                        }
-                    }.isDetailLink(true)
-                }
-                .listRowInsets(.none)
-            }
-
-
-            .navigationBarTitle(Text("Title"), displayMode: .inline)
-            .navigationBarItems(trailing: Image(systemName: "gear"))
-        }
-
+        ArchivedProducts(statusMessage: .constant(StatusMessage()))
     }
 }

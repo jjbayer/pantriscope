@@ -31,7 +31,7 @@ struct Settings: View {
                 Form {
                     Section(header: Text("Pantry")) {
                         NavigationLink(
-                            destination: ArchivedProducts(),
+                            destination: ArchivedProducts(statusMessage: $statusMessage),
                             label: {
                                 Text("View archived products")
                             })
