@@ -1,5 +1,5 @@
 /* Bundle name */
-"CFBundleName" = "Plenti";
+"CFBundleDisplayName" = "Speisekammer";
 
 /* Privacy - Camera Usage Description */
 "NSCameraUsageDescription" = "Fotos von Produkten, automatische Erkennung des Ablaufdatums.";
