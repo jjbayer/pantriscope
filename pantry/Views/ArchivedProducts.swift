@@ -44,3 +44,14 @@ struct ArchivedProducts_Previews: PreviewProvider {
         ArchivedProducts(statusMessage: .constant(StatusMessage()))
     }
 }
+
+struct ArchivedProductsStandalone: View {
+
+    @State private var statusMessage = StatusMessage()
+
+    var body: some View {
+        NavigationView {
+            ArchivedProducts(statusMessage: $statusMessage)
+        }
+    }
+}
