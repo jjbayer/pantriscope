@@ -41,8 +41,8 @@ struct ContentView: View {
 
             Settings()
                 .tabItem {
-                    Image(systemName: "gear")
-                    Text("Settings")
+                    Image(systemName: "wrench.and.screwdriver")
+                    Text("Extras")
                 }
                 .tag(TabID.settings)
         }

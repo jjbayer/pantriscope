@@ -52,7 +52,7 @@ struct Settings: View {
                         }
                     }
 
-                }.navigationBarTitle(Text("Settings"))
+                }.navigationBarTitle(Text("Extras"))
             }
 
             StatusMessageView(statusMessage: statusMessage)
