@@ -103,6 +103,7 @@
 		A9F456CA24F2A0FA00481833 /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		A9F456D324F93AD500481833 /* Product.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Product.xcdatamodel; sourceTree = "<group>"; };
 		A9F4573724FA8F7200481833 /* InventoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryView.swift; sourceTree = "<group>"; };
+		A9FAC614259A16C1002B3316 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C8AE38ECC5955D2CCDC597DD /* Pods-pantry.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pantry.release.xcconfig"; path = "Target Support Files/Pods-pantry/Pods-pantry.release.xcconfig"; sourceTree = "<group>"; };
 		E06ABC227FCCDD6CC3A8D174 /* Pods-pantryTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pantryTests.debug.xcconfig"; path = "Target Support Files/Pods-pantryTests/Pods-pantryTests.debug.xcconfig"; sourceTree = "<group>"; };
 		EC603360B51A791A54178074 /* Pods-pantryTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pantryTests.release.xcconfig"; path = "Target Support Files/Pods-pantryTests/Pods-pantryTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -509,6 +510,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				A98949E82542CDBF00FEC6CD /* de */,
+				A9FAC614259A16C1002B3316 /* en */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
