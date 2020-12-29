@@ -45,6 +45,7 @@
 		A9F456CB24F2A0FA00481833 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F456CA24F2A0FA00481833 /* Camera.swift */; };
 		A9F456D424F93AD500481833 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A9F456D224F93AD500481833 /* DataModel.xcdatamodeld */; };
 		A9F4573824FA8F7200481833 /* InventoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F4573724FA8F7200481833 /* InventoryView.swift */; };
+		A9FAC624259B7D98002B3316 /* CustomDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9FAC623259B7D97002B3316 /* CustomDatePicker.swift */; };
 		BF6C6E60F436BAA81C4863A0 /* Pods_pantryTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F343742F78C7D8EC89166AE9 /* Pods_pantryTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -104,6 +105,7 @@
 		A9F456D324F93AD500481833 /* Product.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Product.xcdatamodel; sourceTree = "<group>"; };
 		A9F4573724FA8F7200481833 /* InventoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryView.swift; sourceTree = "<group>"; };
 		A9FAC614259A16C1002B3316 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A9FAC623259B7D97002B3316 /* CustomDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDatePicker.swift; sourceTree = "<group>"; };
 		C8AE38ECC5955D2CCDC597DD /* Pods-pantry.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pantry.release.xcconfig"; path = "Target Support Files/Pods-pantry/Pods-pantry.release.xcconfig"; sourceTree = "<group>"; };
 		E06ABC227FCCDD6CC3A8D174 /* Pods-pantryTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pantryTests.debug.xcconfig"; path = "Target Support Files/Pods-pantryTests/Pods-pantryTests.debug.xcconfig"; sourceTree = "<group>"; };
 		EC603360B51A791A54178074 /* Pods-pantryTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pantryTests.release.xcconfig"; path = "Target Support Files/Pods-pantryTests/Pods-pantryTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 				A9304C2D255180F9000D9165 /* SearchField.swift */,
 				A953EB3E25599C9500E1CB12 /* ExpiryDateOptions.swift */,
 				A98AA8A9256159FA00047B77 /* FocusArea.swift */,
+				A9FAC623259B7D97002B3316 /* CustomDatePicker.swift */,
 			);
 			path = Widgets;
 			sourceTree = "<group>";
@@ -446,6 +449,7 @@
 			files = (
 				A9DCF342258F84A000A6BA70 /* Logger.swift in Sources */,
 				A9F4569D24EDB19B00481833 /* AppDelegate.swift in Sources */,
+				A9FAC624259B7D98002B3316 /* CustomDatePicker.swift in Sources */,
 				A971B73825348F2700E18DCE /* Vision.swift in Sources */,
 				A94A34A625383BA8006C4FD6 /* ProductCard.swift in Sources */,
 				A9F4573824FA8F7200481833 /* InventoryView.swift in Sources */,
@@ -649,6 +653,7 @@
 				ENABLE_PREVIEWS = NO;
 				INFOPLIST_FILE = pantry/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				MARKETING_VERSION = 0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jorisio.pantry;
 				PRODUCT_NAME = Plenti;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -671,6 +676,7 @@
 				ENABLE_PREVIEWS = NO;
 				INFOPLIST_FILE = pantry/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				MARKETING_VERSION = 0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jorisio.pantry;
 				PRODUCT_NAME = Plenti;
 				PROVISIONING_PROFILE_SPECIFIER = "";

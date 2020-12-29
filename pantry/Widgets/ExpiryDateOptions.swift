@@ -15,6 +15,7 @@ struct ExpiryDateOptions: View {
     var saveAction: (Bool) -> ()
 
     @State private var productHasExpiryDate = true
+
     @State private var showDatePicker = false
 
     var body: some View {
@@ -28,24 +29,20 @@ struct ExpiryDateOptions: View {
 
                     Spacer()
 
-                    Text("\(formattedDate)")
-                    .foregroundColor(App.Colors.primary)
-                    .onTapGesture {
-                        showDatePicker = true
+
+                    Button(action:{ showDatePicker = true }) {
+                        Text("\(self.formattedDate)")
                     }
-                    .fullScreenCover(isPresented: $showDatePicker) {
-                        DatePicker(
-                            "expiry date",
-                            selection: $expiryDate,
-                            displayedComponents: .date
+
+                    .sheet(isPresented: $showDatePicker) {
+                        CustomDatePicker(
+                            isPresented: $showDatePicker,
+                            date: $expiryDate,
+                            dateWasSelected: $dateWasSelected
                         )
-                        .onChange(of: expiryDate, perform: { _ in
-                                dateWasSelected = true
-                                showDatePicker = false
-                        })
-                        .datePickerStyle(GraphicalDatePickerStyle())
-                        .padding()
                     }
+                    .foregroundColor(App.Colors.primary)
+                    
 
                     .opacity(productHasExpiryDate ? 1 : 0)
                     .disabled(!productHasExpiryDate)
