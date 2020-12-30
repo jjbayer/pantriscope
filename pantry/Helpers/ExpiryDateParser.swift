@@ -33,6 +33,19 @@ struct ExpiryDateParser {
 
     func parse(text: String) -> ParsedExpiryDate {
 
+        var result = ParsedExpiryDate()
+        for line in text.split(separator: "\n") {
+            let lineResult = parseLine(text: String(line))
+            if lineResult.confidence > result.confidence {
+                result = lineResult
+            }
+        }
+
+        return result
+    }
+
+    func parseLine(text: String) -> ParsedExpiryDate {
+
         for (pattern, format, confidence) in ExpiryDateParser.datePatterns {
             if let match = text.range(of: pattern, options: .regularExpression) {
                 let dateString = String(text[match])
