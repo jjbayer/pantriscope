@@ -16,7 +16,10 @@ struct ScanExpiryDate: View {
 
     @State private var expiryDate = Date()
     @State private var confidence = 0.0  // Parser confidence
-    @State private var dateWasSelected = false
+    @State private var dateWasDetected = false
+
+    @State private var showDatePicker = false
+    @State private var dateWasSetManually = false
 
     @Binding var scanProductMode: ScanProductMode
     @Binding var statusMessage: StatusMessage
@@ -32,10 +35,13 @@ struct ScanExpiryDate: View {
 
     var body: some View {
         ZStack {
-            FocusArea(
-                aspectRatio: 1/3,
-                caption: Text("Scan expiry date")
-            )
+
+            if !dateWasSetManually {
+                FocusArea(
+                    aspectRatio: 1/3,
+                    caption: Text("Scan expiry date")
+                )
+            }
             interactionLayer
         }
     }
@@ -49,6 +55,12 @@ struct ScanExpiryDate: View {
         .padding()
         .onAppear {
             camera.onFrame { frame in
+
+                guard !(dateWasSetManually || showDatePicker) else {
+                    // No need to detect
+                    return
+                }
+
                 if let device = camera.device {
                     if let parsed = TextDetector.instance.detectExpiryDate(
                         sampleBuffer: frame,
@@ -56,7 +68,7 @@ struct ScanExpiryDate: View {
 
                         if parsed.confidence > confidence {
                             expiryDate = parsed.date
-                            dateWasSelected = true // Why is this necessary? .onChange(expiryDate) should set it anyway
+                            dateWasDetected = true
                             confidence = parsed.confidence
                         }
                     }
@@ -90,7 +102,9 @@ struct ScanExpiryDate: View {
             if let _ = imageData {
                 ExpiryDateOptions(
                     expiryDate: $expiryDate,
-                    dateWasSelected: $dateWasSelected,
+                    dateWasDetected: $dateWasDetected,
+                    dateWasSetManually: $dateWasSetManually,
+                    showDatePicker: $showDatePicker,
                     saveAction: { useExpiryDate in self.save(useExpiryDate: useExpiryDate) }
                 )
             }

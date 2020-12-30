@@ -11,12 +11,13 @@ import SwiftUI
 struct ExpiryDateOptions: View {
 
     @Binding var expiryDate: Date
-    @Binding var dateWasSelected: Bool
+    @Binding var dateWasDetected: Bool
+    @Binding var dateWasSetManually: Bool
+    @Binding var showDatePicker: Bool
+
     var saveAction: (Bool) -> ()
 
     @State private var productHasExpiryDate = true
-
-    @State private var showDatePicker = false
 
     var body: some View {
         VStack {
@@ -38,7 +39,7 @@ struct ExpiryDateOptions: View {
                         CustomDatePicker(
                             isPresented: $showDatePicker,
                             date: $expiryDate,
-                            dateWasSelected: $dateWasSelected
+                            dateWasSelected: $dateWasSetManually
                         )
                     }
                     .foregroundColor(App.Colors.primary)
@@ -67,13 +68,17 @@ struct ExpiryDateOptions: View {
         }
     }
 
+    private var dateWasSet: Bool {
+        return dateWasDetected || dateWasSetManually
+    }
+
     private var canSave: Bool {
-        return dateWasSelected || !productHasExpiryDate
+        return dateWasSet || !productHasExpiryDate
     }
 
     private var formattedDate: String {
 
-        if !dateWasSelected {
+        if !dateWasSet {
             return NSLocalizedString("Choose", comment: "")
         }
 
@@ -90,7 +95,9 @@ struct SwiftUIView_Previews: PreviewProvider {
     static var previews: some View {
         ExpiryDateOptions(
             expiryDate: .constant(Date()),
-            dateWasSelected: .constant(false),
+            dateWasDetected: .constant(false),
+            dateWasSetManually: .constant(false),
+            showDatePicker: .constant(false),
             saveAction: { _ in ()}
         )
             .environment(\.locale, .init(identifier: "de"))
