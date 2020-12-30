@@ -39,7 +39,7 @@ struct ContentView: View {
                     navigator.selectedProductID = ""
                 }
 
-            ArchivedProductsStandalone()
+            AddProduct()
                 .tabItem {
                     Image(systemName: "archivebox")
                     Text("Archive")
