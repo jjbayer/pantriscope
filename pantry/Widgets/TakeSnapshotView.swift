@@ -30,7 +30,7 @@ struct TakeSnapshotView: View {
                     Image(systemName: "largecircle.fill.circle")
                     .resizable()
                         .frame(maxWidth: buttonSize, maxHeight: buttonSize)
-                    .foregroundColor(App.Colors.primary)
+                    .foregroundColor(App.Colors.note)
                     .padding()
                     .simultaneousGesture(TapGesture().onEnded {
                         imageData = nil
