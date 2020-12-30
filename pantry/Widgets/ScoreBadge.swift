@@ -51,16 +51,16 @@ struct ScoreBadge: View {
     }
 
     var color: Color {
-        if shownScore < 50 {
+        if shownScore < 60 {
 
             return App.Colors.error
         }
-        if shownScore < 65 {
+        if shownScore < 75 {
 
             return App.Colors.warning
         }
 
-        if shownScore < 80 {
+        if shownScore < 90 {
 
             return App.Colors.note
         }
@@ -72,8 +72,8 @@ struct ScoreBadge: View {
 struct ScoreBadge_Previews: PreviewProvider {
     static var previews: some View {
         ScoreBadge(score: .constant(100)).previewLayout(.sizeThatFits)
+        ScoreBadge(score: .constant(76)).previewLayout(.sizeThatFits)
         ScoreBadge(score: .constant(65)).previewLayout(.sizeThatFits)
         ScoreBadge(score: .constant(50)).previewLayout(.sizeThatFits)
-        ScoreBadge(score: .constant(0)).previewLayout(.sizeThatFits)
     }
 }
