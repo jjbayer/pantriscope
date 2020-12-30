@@ -88,7 +88,7 @@
 		A9DCF369258F8F6C00A6BA70 /* ImportExport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportExport.swift; sourceTree = "<group>"; };
 		A9ECA6E5253F1578004A1473 /* ProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductView.swift; sourceTree = "<group>"; };
 		A9EFAAB0253F03A6005C9587 /* pantry.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = pantry.entitlements; sourceTree = "<group>"; };
-		A9F4569924EDB19B00481833 /* Plenti.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Plenti.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A9F4569924EDB19B00481833 /* pantry.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pantry.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9F4569C24EDB19B00481833 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A9F4569E24EDB19B00481833 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		A9F456A024EDB19B00481833 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -198,7 +198,7 @@
 		A9F4569A24EDB19B00481833 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A9F4569924EDB19B00481833 /* Plenti.app */,
+				A9F4569924EDB19B00481833 /* pantry.app */,
 				A9F456AF24EDB19E00481833 /* pantryTests.xctest */,
 			);
 			name = Products;
@@ -279,7 +279,7 @@
 			);
 			name = pantry;
 			productName = pantry;
-			productReference = A9F4569924EDB19B00481833 /* Plenti.app */;
+			productReference = A9F4569924EDB19B00481833 /* pantry.app */;
 			productType = "com.apple.product-type.application";
 		};
 		A9F456AE24EDB19E00481833 /* pantryTests */ = {
@@ -655,7 +655,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				MARKETING_VERSION = 0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jorisio.pantry;
-				PRODUCT_NAME = Plenti;
+				PRODUCT_NAME = pantry;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				STRIP_INSTALLED_PRODUCT = YES;
 				SWIFT_VERSION = 5.0;
@@ -678,7 +678,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				MARKETING_VERSION = 0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jorisio.pantry;
-				PRODUCT_NAME = Plenti;
+				PRODUCT_NAME = pantry;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -699,7 +699,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Plenti.app/Plenti";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/pantry.app/pantry";
 			};
 			name = Debug;
 		};
@@ -717,7 +717,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Plenti.app/Plenti";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/pantry.app/pantry";
 			};
 			name = Release;
 		};

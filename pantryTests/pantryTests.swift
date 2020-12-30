@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import Plenti
+@testable import pantry
 
 class pantryTests: XCTestCase {
 
