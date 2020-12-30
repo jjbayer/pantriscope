@@ -109,7 +109,7 @@ extension Product {
 
         if let added = dateAdded {
 
-            if added == today() {
+            if normalize(added) == today() {
                 return NSLocalizedString("Added today.", comment: "")
             }
 
