@@ -16,8 +16,8 @@ struct ParsedExpiryDate {
 
 struct ExpiryDateParser {
 
-    static let begin = #"(^|\s)"#
-    static let end = #"($|\s)"#
+    static let allowedSurrounding = ["-"]
+    static let allowedSurroundingCharacters = CharacterSet(["-"])
 
     static let day = #"(([012]\d)|(3(0|1)))"#
     static let month = #"((0[1-9])|(1[0-2]))"#
@@ -36,6 +36,7 @@ struct ExpiryDateParser {
         for (pattern, format, confidence) in ExpiryDateParser.datePatterns {
             if let match = text.range(of: pattern, options: .regularExpression) {
                 let dateString = String(text[match])
+                    .trimmingCharacters(in: ExpiryDateParser.allowedSurroundingCharacters)
 
                 let formatter = DateFormatter()
                 formatter.dateFormat = format
@@ -76,6 +77,10 @@ struct ExpiryDateParser {
     }
 
     static func initDatePatterns() -> [(String, String, Double)] {
+
+        let allowedSurroundingRegex = allowedSurrounding.joined(separator: "|")
+        let begin = "(^|\\s|\(allowedSurroundingRegex))"
+        let end = "($|\\s|\(allowedSurroundingRegex))"
 
         // TODO: localize date patterns. These are for common Austrian products
         // NOTE: Make sure confidences descend

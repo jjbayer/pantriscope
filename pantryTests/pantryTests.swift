@@ -59,10 +59,8 @@ class pantryTests: XCTestCase {
     }
 
     func testDashAfterDate() throws {
-        XCTAssertEqual(
-            ExpiryDateParser().parse(text: "09-2023-L\n|100 g enthalten durc").date,
-            makeDate(2023,09,30)
-        )
+        let parsedDate = ExpiryDateParser().parse(text: "09-2023-L\n|100 g enthalten durc").date
+        XCTAssertEqual(parsedDate, makeDate(2023,09,30))
     }
 
     func testWhitespaceInDate() throws {
