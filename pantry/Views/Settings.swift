@@ -50,6 +50,13 @@ struct Settings: View {
                                 }
                             }
                         }
+
+                        #if DEBUG
+                        NavigationLink(
+                            destination: AddProduct(),
+                            label: {Text("Add product")}
+                        )
+                        #endif
                     }
 
                 }.navigationBarTitle(Text("Extras"))

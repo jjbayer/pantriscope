@@ -26,6 +26,8 @@ struct AddProduct: View {
                     if let imageData = self.imageData {
                         if let uiImage = UIImage(data: imageData) {
                             Image(uiImage: uiImage)
+                                .resizable()
+                                .scaledToFit()
                         }
                     }
 
@@ -54,12 +56,10 @@ struct AddProduct: View {
                     Button(action: {
 
                         let product = Product(context: managedObjectContext)
-
-
                         product.id = UUID()
 
                         product.inventory = Inventory.defaultInventory(managedObjectContext)
-
+                        product.dateAdded = Date()
                         product.photo = self.imageData
 
                         if hasExpiryDate {
@@ -73,7 +73,7 @@ struct AddProduct: View {
 
                         } else {
 
-                            print("error")
+                            print("error saving")
                         }
                     }) {
                         Text("Save").foregroundColor(App.Colors.primary)

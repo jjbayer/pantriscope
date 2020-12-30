@@ -14,6 +14,7 @@ struct ContentView: View {
         case takeSnapshot
         case inventory
         case archive
+        case settings
     }
 
     @EnvironmentObject var navigator: Navigator
@@ -39,12 +40,21 @@ struct ContentView: View {
                     navigator.selectedProductID = ""
                 }
 
-            AddProduct()
+            ArchivedProductsStandalone()
                 .tabItem {
                     Image(systemName: "archivebox")
                     Text("Archive")
                 }
                 .tag(TabID.archive)
+
+            #if DEBUG
+            Settings()
+                .tabItem {
+                    Image(systemName: "gear")
+                    Text("Settings")
+                }
+                .tag(TabID.settings)
+            #endif
         }
         .accentColor(App.Colors.primary)
     }
