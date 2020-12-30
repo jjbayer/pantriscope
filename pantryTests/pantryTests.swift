@@ -51,6 +51,27 @@ class pantryTests: XCTestCase {
 
     }
 
+    func testNewlinesAroundDate() throws {
+        XCTAssertEqual(
+            ExpiryDateParser().parse(text: "testens haltbar bis:\n22.05.2021\n18:41 B").date,
+            makeDate(2021, 05, 22)
+        )
+    }
+
+    func testDashAfterDate() throws {
+        XCTAssertEqual(
+            ExpiryDateParser().parse(text: "09-2023-L\n|100 g enthalten durc").date,
+            makeDate(2023,09,30)
+        )
+    }
+
+    func testWhitespaceInDate() throws {
+        XCTAssertEqual(
+            ExpiryDateParser().parse(text: "MHD:31. 03.2022\nL").date,
+            makeDate(2022, 3, 31)
+        )
+    }
+
     func testClosestDate() throws {
 
         // Exact date will always be exact date
