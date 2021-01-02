@@ -34,13 +34,21 @@ struct ExpiryDateOptions: View {
                     Button(action:{ showDatePicker = true }) {
                         Text("\(self.formattedDate)")
                     }
-
                     .sheet(isPresented: $showDatePicker) {
-                        CustomDatePicker(
-                            isPresented: $showDatePicker,
-                            date: $expiryDate,
-                            dateWasSelected: $dateWasSetManually
-                        )
+                        VStack {
+                            Spacer()
+                            CustomDatePicker(
+                                isPresented: $showDatePicker,
+                                date: $expiryDate,
+                                dateWasSelected: $dateWasSetManually
+                            )
+                            Spacer()
+                            Button("Cancel") {
+                                showDatePicker = false
+                            }
+                            .foregroundColor(App.Colors.note)
+                        }
+                        .padding()
                     }
                     .foregroundColor(App.Colors.primary)
                     
@@ -92,14 +100,24 @@ struct ExpiryDateOptions: View {
 
 
 struct SwiftUIView_Previews: PreviewProvider {
+
+    struct Preview: View {
+
+        @State var show = true
+
+        var body: some View {
+            ExpiryDateOptions(
+                expiryDate: .constant(Date()),
+                dateWasDetected: .constant(false),
+                dateWasSetManually: .constant(false),
+                showDatePicker: $show,
+                saveAction: { _ in ()}
+            )
+        }
+    }
+
     static var previews: some View {
-        ExpiryDateOptions(
-            expiryDate: .constant(Date()),
-            dateWasDetected: .constant(false),
-            dateWasSetManually: .constant(false),
-            showDatePicker: .constant(false),
-            saveAction: { _ in ()}
-        )
+        Preview()
             .environment(\.locale, .init(identifier: "de"))
     }
 }
