@@ -15,12 +15,16 @@ struct SearchField: View {
     var body: some View {
         HStack {
             TextField("Search", text: $searchString)
-//                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .onChange(of: searchString, perform: { value in
+                    if searchString.isEmpty {
+                        hideKeyboard()
+                    }
+                })
                 .keyboardType(.alphabet)
             if !searchString.isEmpty {
                 Button(action: {
                     searchString = ""
-                    UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                    hideKeyboard()
                 }) {
                     Image(systemName: "delete.left")
                         .foregroundColor(.secondary)
@@ -28,7 +32,10 @@ struct SearchField: View {
                 .padding(5)
             }
         }
+    }
 
+    private func hideKeyboard() {
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
 }
 

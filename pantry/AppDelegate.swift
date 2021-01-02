@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import Sentry
+import os
 
 
 @UIApplicationMain
