@@ -7,7 +7,7 @@ pod 'GoogleMLKit/TextRecognition'
 
 target 'pantry' do
 
-  pod 'Sentry', :git => 'https://github.com/getsentry/sentry-cocoa.git', :tag => '6.0.12'
+  pod 'Sentry', :git => 'https://github.com/getsentry/sentry-cocoa.git', :tag => '6.1.0'
 
   target 'pantryTests' do
     inherit! :search_paths
